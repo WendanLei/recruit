@@ -1,0 +1,124 @@
+
+<view class="m-index _1ebc9fc">
+  <view class="m-top _1ebc9fc">
+    <view class="m-location-box _1ebc9fc" bindtap="locationTap">
+      <image class="m-icon-loc _1ebc9fc" style="width:32rpx; height:46rpx;margin: 0 22rpx;" src="../../images/icon_dw.png"/>
+      <view class="_1ebc9fc">{{select_city.area_name}}</view>
+    </view>
+    <view class="m-search-box _1ebc9fc" bindtap="inputTap">
+      <image class="m-icon-search _1ebc9fc" style="width: 30rpx;height:30rpx;margin: 0 20rpx;" src="../../images/icon_search.png"/>
+      <input type="text" placeholder="搜索公司/职位" class="_1ebc9fc"/>
+    </view>
+  </view>
+  <view class="m-nav-menu _1ebc9fc">
+    <block class="_1ebc9fc" wx:for="{{nav_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+      <!-- <form bindsubmit="formSubmit" report-submit="true">
+                          <button formType="submit" class='btn'>
+      <form bindsubmit="formSubmit" report-submit="true">
+                          <button formType="submit" class='btn'>
+      <form bindsubmit="formSubmit" report-submit="true">
+                          <button formType="submit" class='btn'>
+      <form bindsubmit="formSubmit" report-submit="true">
+                          <button formType="submit" class='btn'> -->
+      <view class="m-nav _3942404 _1ebc9fc" bindtap="$nav$bindTap" data-com-index="{{index}}" data-wpybindtap-a="{{item}}">
+          <image class="m-icon-nav _3942404" src="https://mini3.pinecc.cn/webinfo/lj/{{item.src}}.png"/>
+          <p class="_3942404">{{item.name}}</p>
+      </view>
+      <!-- </button>
+    </form>
+     </button>
+    </form>
+     </button>
+    </form>
+     </button>
+    </form> -->
+    </block>
+  </view>
+  <view class="m-title-box _1ebc9fc">
+    <view class="m-line _1ebc9fc"/>
+    <view class="m-title _1ebc9fc">为你推荐的好职位</view>
+    <view class="m-line _1ebc9fc"/>
+  </view>
+  <view class="m-index-content _1ebc9fc">
+    <block class="_1ebc9fc" wx:for="{{work_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+      
+      <view class="m-info-box _13e525e _1ebc9fc" bindtap="$info$tap" data-com-index="{{index}}" data-wpytap-a="{{item}}">
+          <image class="m-info-img _13e525e" src="{{item.pic_env}}"/>
+          <view class="m-info-right _13e525e">
+              <view class="m-info-tr1 _13e525e">
+                  <view class="m-info-td1 _13e525e">
+                      <text class="m-name m-over _dccd2f4">{{item.name}} </text>
+                      <view class="m-tabs _13e525e">
+                          <view class="m-tab m-over _13e525e"  wx:if="{{item.reward}}">入职奖{{item.reward}}</view>
+                          <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_up}}">推荐奖{{item.reward_up}}</view>
+                      </view>
+                  </view>
+              </view>
+              <view class="m-info-tr2 _13e525e">
+                  <view class="m-info-td1 _13e525e">
+                      <p class="m-name _13e525e" wx:if="{{!item.train_time && item.company_name}}">{{item.company_name}}</p>
+                      <p class="m-name _13e525e" wx:if="{{item.train_time}}">培训时间：{{item.train_time}}</p>
+                  </view>
+                <view class="m-info-td2 _13e525e">
+                      <p class="m-price m-over _dccd2f2"  wx:if="{{item.mini_salary}}">¥{{item.mini_salary}}-{{item.max_salary}}</p>
+                  </view>
+              </view>
+              <view class="m-info-tr3 _13e525e">
+                  <view class="m-info-td1 _13e525e">
+                      <p class="m-name m-name-first _13e525e" wx:if="{{item.city_name}}">{{item.city_name}}</p>
+                      <p class="m-name m-key-word _13e525e" style="max-width:{{(item.keyword1&&!item.keyword2)?370:(item.keyword1&&item.keyword1.length>6&&item.keyword2)?150:(item.keyword1&&item.keyword1.length<=6&&item.keyword2)?100:0}}rpx;" wx:if="{{item.keyword1}}">{{item.keyword1}}</p>
+                      <p class="m-name m-key-word _13e525e" style="max-width:{{(!item.keyword1&&item.keyword2)?370:(item.keyword1&&item.keyword2)?150:0}}rpx;" wx:if="{{item.keyword2}}">{{item.keyword2}}</p>
+                      <p class="m-name _13e525e" wx:if="{{item.address}}"></p>
+                  </view>
+                  <view class="m-info-td2 _13e525e">
+                      <p class="m-time _13e525e" wx:if="{{item.update_at}}">{{item.update_at}}</p>
+                      <!--<p class="m-time" wx:if="{{list.train_time}}">{{list.train_time}}</p>-->
+                      <!-- <p class="m-link">取消收藏</p> -->
+                  </view>
+              </view>
+              <view class="m-info-tr4 _13e525e" wx:if="{{$info$isShowCancelCollect}}">
+                  <p class="_13e525e"/>
+                  <p class="m-link _13e525e">取消收藏</p>
+              </view>
+              <view class="m-info-tr4 _13e525e" wx:if="{{item.offer}}">
+                  <p class="_13e525e"/>
+                  <view class="m-btn _13e525e">{{item.offer}}</view>
+              </view>
+          </view>
+      </view>
+    </block>
+  </view>
+                           <form bindsubmit="formSubmit" report-submit="true">
+  <button formType="submit" class='btn'>
+    <!-- <view class="vv"> -->
+      <form bindsubmit="formSubmit" report-submit="true">
+        <button formType="submit" class='btn'>
+          <!-- <view class="vv"> -->
+            <form bindsubmit="formSubmit" report-submit="true">
+              <button formType="submit" class='btn'>
+                <!-- <view class="vv"> -->
+                  <form bindsubmit="formSubmit" report-submit="true">
+                    <button formType="submit" class='btn'>
+                      <!-- <view class="vv"> -->
+                        <form bindsubmit="formSubmit" report-submit="true">
+                          <button formType="submit" class='btn'>
+  <block bindtap="getformid">
+    <include src="../../components/CustomerService/CustomerService.wxml" />
+  </block>
+    </button>
+                        </form>
+                      <!-- </view> -->
+                    </button>
+                  </form>
+                <!-- </view> -->
+              </button>
+            </form>
+          <!-- </view> -->
+        </button>
+      </form>
+    <!-- </view> -->
+  </button>
+</form>
+
+</view>
+                         

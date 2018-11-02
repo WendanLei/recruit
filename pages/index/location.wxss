@@ -1,0 +1,34 @@
+@import "./../../components/common/city.wxss";
+input,
+textarea {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red {
+  color: #F96969;
+}
+.m-location-container {
+  background-color: #f9f9f9;
+  min-height: 100%;
+}
+.m-location-container .m-back {
+  height: 20rpx;
+  background-color: #f9f9f9;
+  width: 100%;
+}
+.m-location-container .m-loc-box {
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+.m-location-container .m-loc-box .m-title {
+  font-size: 24rpx;
+}
+.m-location-container .m-loc-box .m-city-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 690rpx;
+}

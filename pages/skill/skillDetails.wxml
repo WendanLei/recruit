@@ -1,0 +1,119 @@
+
+    <view class="m-skillDetails _f5ec5e8">
+        <swiper indicator-dots="{{swiper.indicatorDots}}" autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}" style="height:370rpx;width: 750rpx;" class="_f412186">
+            <block  wx:for="{{all_data.pic_swap}}" wx:key="{{index}}" class="_f412186">
+                <swiper-item class="_f412186">
+                    <image src="{{item}}" class="slide-image _f412186" style="height:370rpx;width: 750rpx;"/>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="m-skill-info _f5ec5e8">
+            <view class="m-tr m-title _f5ec5e8">{{all_data.name}}</view>
+            <view class="m-tr _f5ec5e8">报名时间：{{all_data.train_time}}</view>
+            <view class="m-tr _f5ec5e8">{{detailTitle}}时间：{{all_data.train_time}}</view>
+            <view class="m-tr m-tr-two _f5ec5e8">
+                <p class="m-left _f5ec5e8">{{detailTitle}}地点：{{all_data.address}}</p>
+                <p >已报名：{{all_data.has_apply}}人</p>
+            </view>
+            <view class="m-tr m-tr-two _f5ec5e8">
+                <p class="m-left">更新时间：{{all_data.update_at}}</p>
+                <p class="m-right">上限人数：{{all_data.max_person}}人</p>
+            </view>
+        </view>
+        <view class="m-back _f5ec5e8"/>
+        <view class="share">
+          <view class="block">
+            <p class="shareFirst">
+              <text>分享奖励</text>
+              <text >{{all_data.reward > 0 ? all_data.reward :0}}</text>
+              <text>什么是分享奖励？</text>
+            </p>
+            <p class="sharelast">
+              <text>他人通过分享报名成功</text>
+            </p>
+          </view>
+        </view>
+        <view class="m-back _f5ec5e8"/>
+        <view class="m-skill-detail _f5ec5e8">
+            <p class="m-title _f5ec5e8">培训详情</p>
+ 
+            <view class="m-info _f5ec5e8">
+                
+    <import src="../../wxParse/wxParse.wxml" class="_b98d1e6 _f5ec5e8"/>
+    <block  wx:for="{{$htmlParser$htmlParserTpl.nodes}}" wx:key="{{index}}" class="_b98d1e6">
+        <template is="wxParse0" data="{{item}}" class="_b98d1e6"/>
+    </block>
+                <template is="wxParse" data="{{wxParseData:htmlParserName.nodes}}" class="_f5ec5e8"/>
+            </view>
+
+        </view>
+        <view class="foot _f5ec5e8">
+            <button class="m-link m-btn-share _f412186" bindtap="showShare">
+                    <image src="../../images/icon_fx.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
+                <p class="_f412186">分享</p>
+            </button>
+            <view class="m-btn {{all_data.has_apply? 'm-active':''}} _f5ec5e8" bindtap="applyTrain">立即报名( {{all_data.fee}}元 )</view>
+        </view>
+         <!-- 分享方式 -->
+        <view class="share-mask _f412186" catchtouchmove="true" wx:if="{{isShowShare}}">
+            <view class="share-container _f412186">
+                <view class="share-content _f412186">
+                    <view class="share-way first _f412186" bindtap="getPhoto">
+                        <view class="left _f412186">
+                            <image src="../../images/icon_circle.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
+                            <text class="_f412186">生成朋友圈分享图</text>
+                        </view>
+                        <image src="../../images/icon_arrow_right.png" style="width:20rpx;height:40rpx;" class="_f412186"/>
+                    </view>
+
+                    <button class="share-btn _f412186" open-type="share">
+                        <view class="share-way second _f412186">
+                            <view class="left _f412186">
+                                <image src="../../images/icon_transimt.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
+                                <text class="_f412186">转发给好友或群聊</text>
+                            </view>
+                            <image src="../../images/icon_arrow_right.png" style="width:20rpx;height:40rpx;" class="_f412186"/>
+                        </view>
+                    </button>
+                    <view class="cancel-content _f412186" bindtap="hideShare">
+                        <text class="_f412186" >取消</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 获取分享到朋友圈的图片 -->
+        <view class="circle-photo-mask _f412186" catchtouchmove="true" wx:if="{{isShowPhoto}}">
+            <image class="circle-img _f412187" wx:if="{{circlePhoto}}" src="{{circlePhoto}}"/>
+            <button bindtap="saveImg" class="save-photo-btn _f412186">保存分享图</button>
+            <view class="cancel-view _f412186">
+                <icon type="cancel" size="40" color="white" bindtap="hidePhoto" class="_f412186"/>
+            </view>
+        </view>
+          <!-- 支付方式 -->
+        <view class="share-mask _f412186" catchtouchmove="true" wx:if="{{isShowShare1}}">
+            <view class="share-container _f412186">
+                <view class="share-content _f412186">
+                    <checkbox-group bindchange="checkboxChange">
+                        <label class="checkbox">
+                        <view>
+                        <image src="/images/weixin.png" style='width:50rpx' mode='widthFix'></image><text class="rowFlex">微信支付</text> <checkbox value='1' />
+                          <text class="unCheck {{payType==1 || payType==3 ? 'activeChecked' : ''}}">{{payType==1 || payType==3 ? "√" : ''}}</text>
+                        </view>
+                        <view>
+                          <text class="rowFlex">余额支付 ({{balanceAmount.available_balance}})</text><checkbox value='2' />
+                           <text class="unCheck disabeldCheck" wx:if="{{balanceAmount.available_balance ==0 }}">√</text>
+                           <text wx:else class="unCheck  {{payType==2 || payType==3 ? 'activeChecked' : ''}} ">{{payType==2 || payType==3 ? "√" : ''}}</text>
+                        </view>
+                        </label>
+                      </checkbox-group>
+                    <view class="cancel-content _f412186">
+                       <button bindtap="hideShare1">取消</button>
+                       <button bindtap="wxpay">确认</button>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <block>
+          <include src="../../components/CustomerService/CustomerService.wxml" />
+        </block>
+    </view>

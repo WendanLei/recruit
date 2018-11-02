@@ -1,0 +1,8 @@
+ <view class="m-info _f5ec5e8">
+                
+    <import src="../../wxParse/wxParse.wxml" class="_b98d1e6 _f5ec5e8"/>
+    <block  wx:for="{{$htmlParser$htmlParserTpl.nodes}}" wx:key="{{index}}" class="_b98d1e6">
+        <template is="wxParse0" data="{{item}}" class="_b98d1e6"/>
+    </block>
+    <template is="wxParse" data="{{wxParseData:htmlParserName.nodes}}" class="_f5ec5e8"/>
+</view>

@@ -1,0 +1,8 @@
+<view class='note'>
+  <view class="inputNote">
+    <textarea placeholder='请输入备注' value='{{note}}' bindinput='inputValue' maxlength='100'></textarea>
+    <text>{{hasLeng}}/{{leng}}</text>
+  </view>
+  
+  <button bindtap='complete'>完 成</button>
+</view>

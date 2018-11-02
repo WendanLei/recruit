@@ -1,0 +1,40 @@
+input._c24e586,
+textarea._c24e586 {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._c24e586 {
+  color: #F96969;
+}
+.cash-success-container._c24e586 {
+  background: #eee;
+  padding-top: 20rpx;
+}
+.cash-success-container .conent._c24e586 {
+  background: #fff;
+}
+.cash-success-container .conent .title._c24e586 {
+  padding: 50rpx 0;
+}
+.cash-success-container .conent .title .success-pic._c24e586 {
+  display: block;
+  width: 200rpx;
+  height: 268rpx;
+  margin: 0rpx auto;
+}
+.cash-success-container .conent .title .success-text._c24e586 {
+  font-size: 28rpx;
+  color: #9A9CA9;
+  text-align: center;
+  margin-top: 44rpx;
+}
+.cash-success-container .conent .btn-area .confirm-btn._c24e586 {
+  width: 440rpx;
+  border: 0;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #4C80F5;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: #fff;
+}

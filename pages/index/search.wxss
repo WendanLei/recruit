@@ -1,0 +1,32 @@
+@import "./../../components/common/info.wxss";
+input._16823bc,
+textarea._16823bc {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._16823bc {
+  color: #F96969;
+}
+.m-search._16823bc {
+  background-color: #F9F9F9;
+  min-height: 100%;
+}
+.m-search .m-search-top._16823bc {
+  padding: 20rpx 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.m-search .m-search-top .m-search-box._16823bc {
+  width: 600rpx;
+  height: 72rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #D4DCED;
+  font-size: 24rpx;
+}

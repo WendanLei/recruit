@@ -1,0 +1,130 @@
+  <view class="activeHeader">
+    <button class="{{activeName=='活动'?'activeItem':''}}" bindtap='switchActive' data-name="活动">活动列表</button>
+    <button class="{{activeName=='培训'?'activeItem':''}}" bindtap='switchActive' data-name="培训">培训列表</button>
+  </view>
+  <scroll-view scroll-y="true" id="bg" bindscroll="scroll" scroll-top="0" scroll-left="{{scrollLeft}}" wx:if="{{activeName=='活动'}}">
+    <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}" >
+        <view wx:for="{{navList}}" wx:for-index="idx" class="tab-item {{currentTab==idx?'active':'' }} {{navlength>3 ? '' : (navlength==3 ? 'tab-item-3'  : 'tab-item-5' )}}"  data-current="{{idx}}" bindtap="swichNav" data-title="{{item.id}}">{{item.name}}</view>
+      
+    </scroll-view>
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
+     style="height:{{winHeight}}px" >
+        <swiper-item wx:for="{{navList}}" wx:for-item="list">
+            <scroll-view scroll-y="{{true}}" class="scoll-h"  bindscroll="scroll"  bindscrolltolower="bindDownLoad" data-status="{{list}}" lower-threshold='50px' wx:for="{{navList}}" wx:for-item="list">
+            <view class="m-skillIndex _296d8bb">
+        <!-- <view class="m-back _296d8bb"/> -->
+              <view class="m-skill-box _296d8bb">
+                    <block class="_296d8bb" wx:for="{{skill_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                      
+                      <view class="m-info-box _13e525e _296d8bb" bindtap="$info$tap" data-com-index="{{index}}" data-wpytap-a="{{item}}">
+                          <image class="m-info-img _13e525e" src="{{item.pic_env}}"/>
+                          <view class="m-info-right _13e525e">
+                              <view class="m-info-tr1 _13e525e">
+                                  <view class="m-info-td1 _13e525e">
+                                      <text class="m-name m-over _13e525e">{{item.name}} </text>
+                                  </view>
+                              </view>
+                              <view class="m-info-tr2 _13e525e">
+                                  <view class="m-info-td1 _13e525e">
+                                      <p class="m-name _13e525e" wx:if="{{item.train_time}}">{{activeName}}地点:{{item.address}}</p>
+                                  </view>
+                              </view>
+                              <view class="m-info-tr3 _13e525e">
+                                  <view class="m-info-td1 _13e525e">
+                                      <p class="m-name m-name-first _13e525e" >{{item.train_time}}</p>
+                                      <p class="m-name m-name-last _13e525e" >{{item.fee}}</p>
+                                  </view> 
+                              </view>
+                              <view class="m-info-tr3 _13e525e">
+                                      <p class="m-name _13e525e" ></p>
+                                    <button class="activeItem" catchtap='showShare' data-amount="{{item.fee}}" data-id="{{item.id}}">报名参加</button>
+                                </view>
+                            
+                            
+                          </view>
+                      </view>
+                  </block>
+                  <view wx:if="{{skill_list.length==0}}" class="no-data-content">
+                    <view class="img-view">
+                      <image src="../../images/icon_nodata.png" class="img"></image>
+                      <view class="text">暂无数据</view>
+                    </view>
+                  </view>
+              </view>
+            </view>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+  </scroll-view>
+  <view wx:if="{{activeName=='培训'}}">
+     <view class="m-skillIndex _296d8bb" >
+       
+        <view class="m-skill-box _296d8bb" style='margin-top:125rpx;'>
+              <block class="_296d8bb" wx:for="{{skill_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                
+                <view class="m-info-box _13e525e _296d8bb" bindtap="$info$tap" data-com-index="{{index}}" data-wpytap-a="{{item}}">
+                    <image class="m-info-img _13e525e" src="{{item.pic_env}}"/>
+                    <view class="m-info-right _13e525e">
+                        <view class="m-info-tr1 _13e525e">
+                            <view class="m-info-td1 _13e525e">
+                                <text class="m-name m-over _13e525e">{{item.name}} </text>
+  
+                                
+                            </view>
+                            
+                        </view>
+                        <view class="m-info-tr2 _13e525e">
+                            <view class="m-info-td1 _13e525e">
+                  
+                                <p class="m-name _13e525e" wx:if="{{item.train_time}}">{{activeName}}地点{{item.address}}</p>
+                            </view>
+                        </view>
+                        <view class="m-info-tr3 _13e525e">
+                            <view class="m-info-td1 _13e525e">
+                                <p class="m-name m-name-first _13e525e" >{{item.train_time}}</p>
+                                <p class="m-name m-name-last _13e525e" >￥100</p>
+                            </view> 
+                        </view>
+                        <view class="m-info-tr3 _13e525e">
+                                <p class="m-name _13e525e" ></p>
+                              <button class="activeItem" catchtap='showShare' data-id="{{item.id}}">报名参加</button>
+                          </view>
+                      
+                      
+                    </view>
+                </view>
+            </block>
+            <view wx:if="{{skill_list.length==0}}" class="no-data-content">
+              <view class="img-view">
+                <image src="../../images/icon_nodata.png" class="img"></image>
+                <view class="text">暂无数据</view>
+              </view>
+            </view>
+        </view>
+      </view>
+  </view>
+    <!-- 支付方式 -->
+        <view class="share-mask _f412186" catchtouchmove="true" wx:if="{{isShowShare}}">
+            <view class="share-container _f412186">
+                <view class="share-content _f412186">
+                    <checkbox-group bindchange="checkboxChange">
+                        <label class="checkbox">
+                        <view >
+                        <image src="/images/weixin.png" style='width:50rpx' mode='widthFix'></image><text class="rowFlex">微信支付</text> <checkbox value='1'  class="check"/>
+                        <text class="unCheck {{payType==1 || payType==3 ? 'activeChecked' : ''}}">{{payType==1 || payType==3 ? "√" : ''}}</text>
+                        </view>
+                        <view>
+                          <text class="rowFlex">余额支付 ({{balanceAmount.available_balance}})</text>
+                          <checkbox value='2' class="check" disabled="{{balanceAmount.available_balance >0 ? false : true}}"/>
+                           <text class="unCheck disabeldCheck" wx:if="{{balanceAmount.available_balance ==0 }}">√</text>
+                           <text wx:else class="unCheck  {{payType==2 || payType==3 ? 'activeChecked' : ''}} ">{{payType==2 || payType==3 ? "√" : ''}}</text>
+                        </view>
+                        </label>
+                      </checkbox-group>
+                    <view class="cancel-content _f412186" >
+                       <button bindtap="hideShare">取消</button>
+                       <button bindtap="wxpay">确认</button>
+                    </view>
+                </view>
+            </view>
+        </view>

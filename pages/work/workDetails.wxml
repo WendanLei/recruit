@@ -1,0 +1,386 @@
+
+    <view class="m-workDetails _f412186">
+        <swiper indicator-dots="{{swiper.indicatorDots}}" autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}" style="height:370rpx;width: 750rpx;" class="_f412186">
+            <block  wx:for="{{all_data.pic_swap}}" wx:key="{{index}}" class="_f412186">
+                <swiper-item class="_f412186">
+                    <image src="{{item}}" class="slide-image _f412186" style="height:370rpx;width: 750rpx;"/>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="m-post-main _f412186">
+            <view class="m-tr1 _f412186">
+                <p class="m-left _f412186"><span class="m-title _f412186">{{all_data.name}}</span>（招聘<span class="m-red _f412186">{{all_data.num}}</span>人）</p>
+                <p class="m-price m-red _f412186">¥{{all_data.mini_salary}}-{{all_data.max_salary}}</p>
+            </view>
+            <view class="m-tr2 _f412186">{{all_data.company_name}}</view>
+            <view class="m-tr3 _f412186">
+                <p class="m-tab _f412186">{{all_data.mini_age}} - {{all_data.max_age}}</p>
+                <p class="m-tab _f412186"  wx:for="{{all_data.keyword_arr}}" wx:key="item">{{item}}</p>
+            </view>
+            <view class="m-tr4 _f412186">
+                <view class="m-left _f412186">{{all_data.prov_name}} {{all_data.city_name}} {{all_data.district_name}}</view>
+                <view class="m-right _f412186">更新时间：{{all_data.uodate_at}}</view>
+            </view>
+        </view>
+        <view class="ad" bindtap='adDetail' >
+           <image src="{{adUrl.url}}" style="height:123rpx;width: 693rpx;"/>
+        </view>
+        <view class="m-reward _f412186" style="padding-bottom: 20rpx;">
+            <p class="m-title _f412186">奖励领取条件</p>
+            <table width="100%" class="m-table _f412186">
+                <tr class="_f412186">
+                    <td class="_f412186">1</td>
+                    <td class="_f412186">入职奖励</td>
+                    <td class="_f412186">{{all_data.reward_condition.reward_condition_recruit}}</td>
+                </tr>
+                <tr class="_f412186">
+                    <td class="_f412186">2</td>
+                    <td class="_f412186">推荐奖励</td>
+                    <td class="_f412186">{{all_data.reward_condition.reward_condition_share}}</td>
+                </tr>
+                <tr class="_f412186">
+                    <td class="_f412186">3</td>
+                    <td class="_f412186">其  他</td>
+                    <td class="_f412186">{{all_data.reward_condition.reward_condition_other}}</td>
+                </tr>
+            </table>
+        </view>
+        <view class="m-nav-box _f412186">
+            <view class="m-nav {{toView == 'wages' ? 'm-select':''}}   _f412186" bindtap="tap" data-wpytap-a="wages">工资说明</view>
+            <view class="m-nav {{toView == 'work' ? 'm-select':''}}  _f412186" bindtap="tap" data-wpytap-a="work">岗位说明</view>
+            <view class="m-nav {{toView == 'contract' ? 'm-select':''}}  _f412186" bindtap="tap" data-wpytap-a="contract">企业说明</view>
+        </view>
+        <scroll-view scroll-y style="height: 1000rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" class="_f412186">
+            <view id="wages" class="m-wages m-box _f412186">
+                <view class="m-reward _f412186">
+                    <p class="m-title  _f412186">薪资待遇</p>
+                    <table width="100%" class="m-table m-bottom-border _f412186">
+                        <tr class="_f412186">
+                            <td class="_f412186">1</td>
+                            <td class="_f412186">综合薪资</td>
+                            <td class="_f412186">{{all_data.salary.salary_major}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">2</td>
+                            <td class="_f412186">底  薪</td>
+                            <td class="_f412186">{{all_data.salary.salary_mini}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">3</td>
+                            <td class="_f412186">加  班</td>
+                            <td class="_f412186">{{all_data.salary.salary_plus}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">4</td>
+                            <td class="_f412186">补  贴</td>
+                            <td class="_f412186">{{all_data.salary.salary_extra}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">5</td>
+                            <td class="_f412186">发  薪  日</td>
+                            <td class="_f412186">{{all_data.salary.salary_day}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">6</td>
+                            <td class="_f412186">其  他</td>
+                            <td class="_f412186">{{all_data.salary.salary_other}}</td>
+                        </tr>
+                    </table>
+                </view>
+                <view class="m-reward _f412186">
+                    <p class="m-title _f412186">食宿情况</p>
+                    <table width="100%" class="m-table _f412186">
+                        <tr class="_f412186">
+                            <td class="_f412186">1</td>
+                            <td class="_f412186">伙  食</td>
+                            <td class="_f412186">{{all_data.ef.ef_food}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">2</td>
+                            <td class="_f412186">住  宿</td>
+                            <td class="_f412186">{{all_data.ef.ef_live}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">3</td>
+                            <td class="_f412186">其他</td>
+                            <td class="_f412186">{{all_data.ef.ef_other}}</td>
+                        </tr>
+                    </table>
+                </view>
+            </view>
+            <view id="work" class="m-work m-box _f412186">
+                <view class="m-reward _f412186">
+                    <p class="m-title  _f412186">工作简介</p>
+                    <table width="100%" class="m-table m-bottom-border _f412186">
+                        <tr class="_f412186">
+                            <td class="_f412186">1</td>
+                            <td class="_f412186">岗位说明</td>
+                            <td class="_f412186">{{all_data.brief.brief_instruction}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">2</td>
+                            <td class="_f412186">工作时间</td>
+                            <td class="_f412186">{{all_data.brief.brief_worktime}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">3</td>
+                            <td class="_f412186">工作环境</td>
+                            <td class="_f412186">{{all_data.brief.brief_environment}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">4</td>
+                            <td class="_f412186">其  他</td>
+                            <td class="_f412186">{{all_data.brief.brief_other}}</td>
+                        </tr>
+                    </table>
+                </view>
+                <view class="m-reward _f412186">
+                    <p class="m-title _f412186">招聘要求</p>
+                    <table width="100%" class="m-table _f412186">
+                        <tr class="_f412186">
+                            <td class="_f412186">1</td>
+                            <td class="_f412186">年  龄</td>
+                            <td class="_f412186">{{all_data.requirement.requirement_age}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">2</td>
+                            <td class="_f412186">学历</td>
+                            <td class="_f412186">{{all_data.requirement.requirement_record}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">3</td>
+                            <td class="_f412186">其他</td>
+                            <td class="_f412186">{{all_data.requirement.requirement_other}}</td>
+                        </tr>
+                    </table>
+                </view>
+                <view class="m-reward _f412186">
+                    <p class="m-title _f412186">其他信息</p>
+                    <table width="100%" class="m-table _f412186">
+                        <tr class="_f412186">
+                            <td class="_f412186">1</td>
+                            <td class="_f412186">体检说明</td>
+                            <td class="_f412186">{{all_data.other.other_check}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">2</td>
+                            <td class="_f412186">个人材料</td>
+                            <td class="_f412186">{{all_data.other.other_person}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">3</td>
+                            <td class="_f412186">其  他</td>
+                            <td class="_f412186">{{all_data.other.other_other}}</td>
+                        </tr>
+                    </table>
+                </view>
+            </view>
+            <view id="contract" class="m-contract m-box _f412186">
+                <view class="m-reward _f412186">
+                    <p class="m-title _f412186">合同介绍</p>
+                    <table width="100%" class="m-table _f412186">
+                        <tr class="_f412186">
+                            <td class="_f412186">1</td>
+                            <td class="_f412186">合同说明</td>
+                            <td class="_f412186">{{all_data.contract.contract_instruction}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">2</td>
+                            <td class="_f412186">保险说明</td>
+                            <td class="_f412186">{{all_data.contract.contract_insurance}}</td>
+                        </tr>
+                        <tr class="_f412186">
+                            <td class="_f412186">3</td>
+                            <td class="_f412186">其他说明</td>
+                            <td class="_f412186">{{all_data.contract.contract_other}}</td>
+                        </tr>
+                    </table>
+                </view>
+                <view class="m-company-intro _f412186">
+                    <p class="m-title _f412186">公司简介</p>
+                    <view class="m-company-info _f412186">{{all_data.company_instruction}}</view>
+                    <view class="m-add _f412186">
+                        <p class="m-title _f412186">企业地址</p>
+                        <p class="m-company-add _f412186">{{all_data.company_address}}</p>
+                    </view>
+                </view>
+            </view>
+             
+            <view class="m-reward _f412186" style="padding-bottom: 20rpx;">
+              <p class="m-title _f412186">岗位推荐</p>
+              <view class="m-company-info _f412186">
+                  <view class="m-index-content _1ebc9fc">
+                    <block class="_1ebc9fc" wx:for="{{all_data.rec_work_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                      
+                      <view class="m-info-box _13e525e _1ebc9fc" bindtap="$info$tap" data-com-index="{{index}}" data-wpytap-a="{{item}}">
+                          <image class="m-info-img _13e525e" src="{{item.pic_env}}"/>
+                          <view class="m-info-right _13e525e">
+                              <view class="m-info-tr1 _13e525e">
+                                  <view class="m-info-td1 _13e525e">
+                                      <text class="m-name m-over _dccd2f4">{{item.name}} </text>
+                                      <view class="m-tabs _13e525e">
+                                          <view class="m-tab m-over _13e525e"  wx:if="{{item.reward}}">入职奖{{item.reward}}</view>
+                                          <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_up}}">推荐奖{{item.reward_up}}</view>
+                                      </view>
+                                  </view>
+                              </view>
+                              <view class="m-info-tr2 _13e525e">
+                                  <view class="m-info-td1 _13e525e">
+                                      <p class="m-name _13e525e" wx:if="{{!item.train_time && item.company_name}}">{{item.company_name}}</p>
+                                      <p class="m-name _13e525e" wx:if="{{item.train_time}}">培训时间：{{item.train_time}}</p>
+                                  </view>
+                                <view class="m-info-td2 _13e525e">
+                                      <p class="m-price m-over _dccd2f2"  wx:if="{{item.mini_salary}}">¥{{item.mini_salary}}-{{item.max_salary}}</p>
+                                </view>
+                              </view>
+                              <view class="m-info-tr3 _13e525e">
+                                  <view class="m-info-td1 _13e525e">
+                                      <p class="m-name m-name-first _13e525e" wx:if="{{item.city_name}}">{{item.city_name}}</p>
+                                      <p class="m-name m-key-word _13e525e" style="max-width:{{(item.keyword1&&!item.keyword2)?370:(item.keyword1&&item.keyword1.length>6&&item.keyword2)?150:(item.keyword1&&item.keyword1.length<=6&&item.keyword2)?100:0}}rpx;" wx:if="{{item.keyword1}}">{{item.keyword1}}</p>
+                                      <p class="m-name m-key-word _13e525e" style="max-width:{{(!item.keyword1&&item.keyword2)?370:(item.keyword1&&item.keyword2)?150:0}}rpx;" wx:if="{{item.keyword2}}">{{item.keyword2}}</p>
+                                      <p class="m-name _13e525e" wx:if="{{item.address}}"></p>
+                                  </view>
+                                  <view class="m-info-td2 _13e525e">
+                                      <p class="m-time _13e525e" wx:if="{{item.update_at}}">{{item.update_at}}</p>
+                                      <!--<p class="m-time" wx:if="{{list.train_time}}">{{list.train_time}}</p>-->
+                                      <!-- <p class="m-link">取消收藏</p> -->
+                                  </view>
+                              </view>
+                              <view class="m-info-tr4 _13e525e" wx:if="{{$info$isShowCancelCollect}}">
+                                  <p class="_13e525e"/>
+                                  <p class="m-link _13e525e">取消收藏</p>
+                              </view>
+                              <view class="m-info-tr4 _13e525e" wx:if="{{item.offer}}">
+                                  <p class="_13e525e"/>
+                                  <view class="m-btn _13e525e">{{item.offer}}</view>
+                              </view>
+                          </view>
+                      </view>
+                    </block>
+                  </view>
+              </view>
+            </view>
+       
+            <view class="btn-area _f412186">
+                <button class="confirm-btn _f412186" bindtap="goUrl">查看更多岗位</button>
+            </view>
+        </scroll-view>
+         <view class="m-back _f412186" >
+          <view class="m-reward _f412186" style="padding-bottom: 20rpx;">
+            <p class="m-title _f412186">岗位推荐</p>
+             <view class="m-company-info _f412186">
+                <view class="m-index-content _1ebc9fc">
+                  <block class="_1ebc9fc" wx:for="{{work_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                    
+                    <view class="m-info-box _13e525e _1ebc9fc" bindtap="$info$tap" data-com-index="{{index}}" data-wpytap-a="{{item}}">
+                        <image class="m-info-img _13e525e" src="{{item.pic_env}}"/>
+                        <view class="m-info-right _13e525e">
+                            <view class="m-info-tr1 _13e525e">
+                                <view class="m-info-td1 _13e525e">
+                                    <text class="m-name m-over _dccd2f4">{{item.name}} </text>
+                                    <view class="m-tabs _13e525e">
+                                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward}}">入职奖{{item.reward}}</view>
+                                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_up}}">推荐奖{{item.reward_up}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                            <view class="m-info-tr2 _13e525e">
+                                <view class="m-info-td1 _13e525e">
+                                    <p class="m-name _13e525e" wx:if="{{!item.train_time && item.company_name}}">{{item.company_name}}</p>
+                                    <p class="m-name _13e525e" wx:if="{{item.train_time}}">培训时间：{{item.train_time}}</p>
+                                </view>
+                              <view class="m-info-td2 _13e525e">
+                                    <p class="m-price m-over _dccd2f2"  wx:if="{{item.mini_salary}}">¥{{item.mini_salary}}-{{item.max_salary}}</p>
+                              </view>
+                            </view>
+                            <view class="m-info-tr3 _13e525e">
+                                <view class="m-info-td1 _13e525e">
+                                    <p class="m-name m-name-first _13e525e" wx:if="{{item.city_name}}">{{item.city_name}}</p>
+                                    <p class="m-name m-key-word _13e525e" style="max-width:{{(item.keyword1&&!item.keyword2)?370:(item.keyword1&&item.keyword1.length>6&&item.keyword2)?150:(item.keyword1&&item.keyword1.length<=6&&item.keyword2)?100:0}}rpx;" wx:if="{{item.keyword1}}">{{item.keyword1}}</p>
+                                    <p class="m-name m-key-word _13e525e" style="max-width:{{(!item.keyword1&&item.keyword2)?370:(item.keyword1&&item.keyword2)?150:0}}rpx;" wx:if="{{item.keyword2}}">{{item.keyword2}}</p>
+                                    <p class="m-name _13e525e" wx:if="{{item.address}}"></p>
+                                </view>
+                                <view class="m-info-td2 _13e525e">
+                                    <p class="m-time _13e525e" wx:if="{{item.update_at}}">{{item.update_at}}</p>
+                                    <!--<p class="m-time" wx:if="{{list.train_time}}">{{list.train_time}}</p>-->
+                                    <!-- <p class="m-link">取消收藏</p> -->
+                                </view>
+                            </view>
+                            <view class="m-info-tr4 _13e525e" wx:if="{{$info$isShowCancelCollect}}">
+                                <p class="_13e525e"/>
+                                <p class="m-link _13e525e">取消收藏</p>
+                            </view>
+                            <view class="m-info-tr4 _13e525e" wx:if="{{item.offer}}">
+                                <p class="_13e525e"/>
+                                <view class="m-btn _13e525e">{{item.offer}}</view>
+                            </view>
+                        </view>
+                    </view>
+                  </block>
+                </view>
+             </view>
+          </view>
+        </view>
+
+       
+        <foot class="m-foot _f412186">
+            <view class="m-link m-btn-share _f412186" bindtap="showShare">
+                <view class="_f412186">
+                    <image src="../../images/icon_fx.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
+                </view>
+                <p class="_f412186">分享</p>
+            </view>
+            <view class="m-link m-no-lick _f412186" bindtap="collectTap"  wx:if="{{!all_data.has_collect}}">
+                <view class="m-select-img _f412186">
+                    <image src="../../images/icon_sc.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
+                </view>
+                <p class="m-select-p _f412186">收藏</p>
+            </view>
+            <view class="m-link _f412186" bindtap="collectTap" wx:if="{{all_data.has_collect}}" data-wpycollecttap-a="un">
+                <view class="m-select-img _f412186">
+                    <image src="../../images/icon_sc_onselected.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
+                </view>
+                <p class="m-select-p _f412186">已收藏</p>
+            </view>
+            <view class="m-btn _f412186" bindtap="applyTap" wx:if="{{!all_data.has_apply}}">立即申请</view>
+            <view class="m-btn m-active _f412186" wx:if="{{all_data.has_apply}}">已申请</view>
+        </foot>
+        <!-- 分享方式 -->
+        <view class="share-mask _f412186" catchtouchmove="true" wx:if="{{isShowShare}}">
+            <view class="share-container _f412186">
+                <view class="share-content _f412186">
+                    <view class="share-way first _f412186" bindtap="getPhoto">
+                        <view class="left _f412186">
+                            <image src="../../images/icon_circle.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
+                            <text class="_f412186">生成朋友圈分享图</text>
+                        </view>
+                        <image src="../../images/icon_arrow_right.png" style="width:20rpx;height:40rpx;" class="_f412186"/>
+                    </view>
+
+                    <button class="share-btn _f412186" open-type="share">
+                        <view class="share-way second _f412186">
+                            <view class="left _f412186">
+                                <image src="../../images/icon_transimt.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
+                                <text class="_f412186">转发给好友或群聊</text>
+                            </view>
+                            <image src="../../images/icon_arrow_right.png" style="width:20rpx;height:40rpx;" class="_f412186"/>
+                        </view>
+                    </button>
+                    <view class="cancel-content _f412186" bindtap="hideShare">
+                        <text class="_f412186">取消</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 获取分享到朋友圈的图片 -->
+        <view class="circle-photo-mask _f412186" catchtouchmove="true" wx:if="{{isShowPhoto}}">
+            <image class="circle-img _f412187" wx:if="{{circlePhoto}}" src="{{circlePhoto}}"/>
+            <button bindtap="saveImg" class="save-photo-btn _f412186">保存分享图</button>
+            <view class="cancel-view _f412186">
+                <icon type="cancel" size="40" color="white" bindtap="hidePhoto" class="_f412186"/>
+            </view>
+        </view>
+        <block>
+          <include src="../../components/CustomerService/CustomerService.wxml" />
+        </block>
+    </view>

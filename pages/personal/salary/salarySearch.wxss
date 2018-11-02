@@ -1,0 +1,118 @@
+@import "./../../../components/common/noData.wxss";
+input._7617078,
+textarea._7617078 {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._7617078 {
+  color: #F96969;
+}
+.salary-search-container._7617078 {
+  background: #eee;
+  height: 100%;
+  width: 100%;
+  padding-top: 20rpx;
+}
+.salary-search-container .form-view._7617078 {
+  position: fixed;
+  width: 100%;
+  background: #fff;
+}
+.salary-search-container .form-view .main._7617078 {
+  padding-left: 40rpx;
+}
+.salary-search-container .form-view .form-item._7617078 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.salary-search-container .form-view .form-item .section__title._7617078 {
+  width: 250rpx;
+  font-size: 28rpx;
+  color: #5D677D;
+  margin-right: 10rpx;
+  text-align: left;
+}
+.salary-search-container .form-view .form-item .sex-text._7617078 {
+  color: #bebebe;
+  font-size: 24rpx;
+  margin-right: 15rpx;
+}
+.salary-search-container .form-view .form-item .tel-view._7617078 {
+  border: 0;
+}
+.salary-search-container .form-view .tip._7617078 {
+  margin: 20rpx 40rpx;
+}
+.salary-search-container .form-view .tip .word._7617078 {
+  color: #bebebe;
+  font-size: 24rpx;
+}
+.salary-search-container .form-view .btn-area._7617078 {
+  margin-top: 120rpx;
+  background: #fff;
+}
+.salary-search-container .form-view .btn-area .confirm-btn._7617078 {
+  width: 440rpx;
+  border: 0;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #4C80F5;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: #fff;
+}
+.salary-search-container .search-result._7617078 {
+  padding-top: 450rpx;
+  background: #fff;
+}
+.salary-search-container .search-result .title._7617078 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.salary-search-container .search-result .title .title-item._7617078 {
+  width: 25%;
+  font-size: 28rpx;
+  color: #5D677D;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.salary-search-container .search-result .content .content-item._7617078 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.salary-search-container .search-result .content .content-item .col._7617078 {
+  width: 25%;
+  font-size: 28rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #5D677D;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.salary-search-container .search-result .content .content-item .col .salary._7617078 {
+  color: #F96969;
+}
+.salary-search-container .search-result .content .content-item .col.action._7617078 {
+  font-size: 24rpx;
+  color: #6698FF;
+}
+.salary-search-container .search-result .content .look-more._7617078 {
+  font-size: 32rpx;
+  color: #5D677D;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+}

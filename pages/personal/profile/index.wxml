@@ -1,0 +1,40 @@
+
+    <view class="profile-container _28b839a">
+        <view class="form-view _28b839a">
+            <form bindsubmit="formSubmit" bindreset="formReset" class="_28b839a">
+                <view class="main _28b839a">
+                    <view class="form-item name-view _28b839a">
+                        <view class="section__title _28b839a">姓\r\t\r\t\r\t\r\t\r\t\r\t\r\t\r\t\r\t名</view>
+                        <input name="name" placeholder="请输入姓名" value="{{userData.username}}" placeholder-style="color: #bebebe;font-size: 24rpx;" class="_28b839a"/>
+                    </view>
+                    <view class="form-item sex-view _28b839a">
+                        <view class="section__title _28b839a">性\r\t\r\t\r\t\r\t\r\t\r\t\r\t\r\t\r\t别</view>
+                        <radio-group name="gender" class="_28b839a">
+                            <label class="sex-text _28b839a"><radio value="1" checked="{{userData.gender==1?true:false}}" class="_28b839a"/>男</label>
+                            <label class="sex-text _28b839a"><radio value="0" checked="{{userData.gender==0?true:false}}" class="_28b839a"/>女</label>
+                        </radio-group>
+                    </view>
+                    <view class="form-item birth-view _28b839a">
+                        <view class="section__title _28b839a">出\r\t生\r\t年\r\t月</view>
+                        <picker mode="date" start="1900-01-01" end="{{endDate}}" bindchange="bindDateChange" class="_28b839a">
+                            <view class="picker _28b839a">
+                                {{date}}
+                            </view>
+                        </picker>
+                    </view>
+                    <view class="form-item tel-view _28b839a">
+                        <view class="section__title _28b839a">手\r\t\r\t\r\t机\r\t\r\t\r\t号</view>
+                        <input name="mobile" type="number" bindblur="getTel" placeholder="请输入手机号" value="{{userData.mobile}}" placeholder-style="color: #bebebe;font-size: 24rpx;" class="_28b839a"/>
+                    </view>
+                    <view class="form-item message-view _28b839a">
+                        <view class="section__title _28b839a">短信验证码</view>
+                        <input class="code-input _28b839a" type="number" name="sms_code" placeholder="请输入验证码" placeholder-style="color: #bebebe;font-size: 24rpx;"/>
+                        <view class="get-code-btn _28b839a" bindtap="getCode">{{html}}</view>
+                    </view>
+                </view>
+                <view class="btn-area _28b839a">
+                    <button class="confirm-btn _28b839a" formType="submit">确认</button>
+                </view>
+            </form>
+        </view>
+    </view>

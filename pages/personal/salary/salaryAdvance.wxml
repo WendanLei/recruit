@@ -1,0 +1,40 @@
+
+    <view class="salary-advance-container _9b319e2">
+        <view class="form-view _9b319e2"  wx:if="{{isStaff}}">
+            <form bindsubmit="formSubmit" bindreset="formReset" class="_9b319e2">
+                <view class="main _9b319e2">
+                    <view class="form-item name-view _9b319e2">
+                        <view class="section__title _9b319e2">预支工资</view>
+                        <input name="amount" type="digit" placeholder="请输入预支工资" placeholder-style="color: #bebebe;font-size: 24rpx;" class="_9b319e2"/>
+                    </view>
+                    <view class="form-item name-view _9b319e2">
+                        <view class="section__title _9b319e2">公\t\r\t\r\t\r\t\r\t\r\t\r司</view>
+                        <picker class="picker-select _9b319e2" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                            <view class="picker _9b319e2">
+                                {{select}}
+                            </view>
+                        </picker>
+                    </view>
+                    <view class="form-item tel-view _9b319e2">
+                        <view class="section__title _9b319e2">申请理由</view>
+                        <textarea class="text-area _9b319e2" name="reason" placeholder="请输入申请理由" placeholder-style="color: #bebebe;font-size: 24rpx;"/>
+                    </view>
+                </view>
+                <view class="tip _9b319e2">
+                    <text class="word _9b319e2">提示：非本平台合作单位员工，无法预支工资</text>
+                </view>
+                <view class="btn-area _9b319e2">
+                    <button class="confirm-btn _9b319e2" formType="submit">提交申请</button>
+                </view>
+            </form>
+        </view>
+        <view class="no-tab-content _9b319e2"  wx:if="{{!isStaff}}">
+            <view class="img-view _9b319e2">
+                <image class="img _9b319e2" src="../../../images/pic_gzyz.png"/>
+                <view class="text _9b319e2">你还不是入职员工，不能预支工资</view>
+            </view>
+            <view class="btn-view _9b319e2">
+                <button class="btn _9b319e2">去看看职位</button>
+            </view>
+        </view>
+    </view>

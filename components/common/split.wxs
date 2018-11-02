@@ -1,0 +1,6 @@
+function split(value,_type) {
+  
+  var str=value.split(_type)[0];
+  return str;
+}
+module.exports.split = split

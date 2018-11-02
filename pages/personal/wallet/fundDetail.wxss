@@ -1,0 +1,40 @@
+@import "./../../../components/common/noData.wxss";
+@import "./../../../components/wallet/cashRecord.wxss";
+input,
+textarea {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red {
+  color: #F96969;
+}
+.fund-detail-container .tab-main {
+  position: fixed;
+  border-bottom: 2rpx solid #eee;
+}
+.fund-detail-container .tab-main .tab-view {
+  width: 250rpx;
+  float: left;
+  background: #fff;
+  height: 80rpx;
+  line-height: 80rpx;
+  cursor: pointer;
+}
+.fund-detail-container .tab-main .tab-view .tab-icon {
+  display: block;
+  width: 120rpx;
+  margin: 0 auto;
+  text-align: center;
+  height: 78rpx;
+  line-height: 78rpx;
+  font-size: 28rpx;
+  color: #5D677D;
+  border-bottom: 4rpx solid transparent;
+}
+.fund-detail-container .tab-main .tab-view.active .tab-icon {
+  color: #6698FF;
+  border-bottom-color: #6698FF;
+}
+.fund-detail-container .tab-content {
+  padding-top: 82rpx;
+}

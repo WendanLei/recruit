@@ -1,0 +1,68 @@
+
+    <view class="fund-detail-container">
+        <view class="tab-main">
+            <view class="tab-view {{index == 0 ? 'active' : ''}}"  bindtap="tab" data-wpytab-a="0"><text class="tab-icon">全部</text></view>
+            <view class="tab-view {{index == 1 ? 'active' : ''}}" bindtap="tab" data-wpytab-a="1"><text class="tab-icon">新进款项</text></view>
+            <view class="tab-view {{index == 2 ? 'active' : ''}}" bindtap="tab" data-wpytab-a="2"><text class="tab-icon">待进款项</text></view>
+        </view>
+        <view class="tab-content"  wx:if="{{index==0&&list0.length!=0}}">
+            <block wx:for="{{list0}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                
+    <view class="cash-item _7714720">
+        <view class="top _7714720">
+            <view class="top-left _7714720">{{item.method}}</view>
+            <view class="top-right _7714720">{{item.update_at}}</view>
+        </view>
+        <view class="bottom _7714720">{{item.cash}}</view>
+    </view>
+            </block>
+        </view>
+        <view class="tab-content"  wx:if="{{index==1&&list1.length!=0}}}}">
+            <block wx:for="{{list1}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                
+    <view class="cash-item _7714720">
+        <view class="top _7714720">
+            <view class="top-left _7714720">{{item.method}}</view>
+            <view class="top-right _7714720">{{item.update_at}}</view>
+        </view>
+        <view class="bottom _7714720">{{item.cash}}</view>
+    </view>
+            </block>
+        </view>
+        <view class="tab-content" wx:if="{{index==2&&list2.length!=0}}}}">
+            <block wx:for="{{list2}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                
+    <view class="cash-item _7714720">
+        <view class="top _7714720">
+            <view class="top-left _7714720">{{item.method}}</view>
+            <view class="top-right _7714720">{{item.update_at}}</view>
+        </view>
+        <view class="bottom _7714720">{{item.cash}}</view>
+    </view>
+            </block>
+        </view>
+        
+    <view class="no-data-content" wx:if="{{index==0&&list0.length==0}}">
+        <view class="img-view">
+            <image class="img" src="../../../images/icon_nodata.png"/>
+            <view class="text">暂无数据</view>
+        </view>
+    </view>
+
+        
+    <view class="no-data-content" wx:if="{{index==1&&list1.length==0}}">
+        <view class="img-view">
+            <image class="img" src="../../../images/icon_nodata.png"/>
+            <view class="text">暂无数据</view>
+        </view>
+    </view>
+
+        
+    <view class="no-data-content" wx:if="{{index==2&&list2.length==0}}">
+        <view class="img-view">
+            <image class="img" src="../../../images/icon_nodata.png"/>
+            <view class="text">暂无数据</view>
+        </view>
+    </view>
+
+    </view>

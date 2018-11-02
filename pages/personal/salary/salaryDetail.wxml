@@ -1,0 +1,49 @@
+
+    <view class="salary-detail-container _3f5a6a1">
+        <view class="top-fixed _3f5a6a1">
+            <view class="avatar-content _3f5a6a1">
+                <view class="content _3f5a6a1">
+                    <view class="money _3f5a6a1">
+                        <view class="tab _3f5a6a1" bindtap="showPicker">
+                            <text class="_3f5a6a1">{{year}}年{{month}}月薪资</text>
+                            <image class="icon-arrow _3f5a6a1" src="../../../images/icon_arrow_down1.png"/>
+                        </view>
+                    </view>
+                    <view class="name _3f5a6a1">{{total?total:0.00}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="detail-content _3f5a6a1">
+            <block  wx:if="{{dataLength>0}}" class="_3f5a6a1" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                <view class="line _3f5a6a1">
+                    <view class="pad _3f5a6a1">
+                        <view class="key _3f5a6a1">{{item.name}}</view>
+                        <view class="value _3f5a6a1">{{item.val}}</view>
+                    </view>
+                </view>
+            </block>
+            
+    <view class="no-data-content _c4bd724 _3f5a6a1" wx:if="{{dataLength==0}}">
+        <view class="img-view _c4bd724">
+            <image class="img _c4bd724" src="../../../images/icon_nodata.png"/>
+            <view class="text _c4bd724">暂无数据</view>
+        </view>
+    </view>
+        </view>
+        <picker-view  wx:if="{{isShowPicker}}" class="picker _3f5a6a1" style="position: fixed;bottom:0;width: 100%; height: 300px;" indicator-style="height: 100rpx;line-height: 100rpx;" value="{{value}}" bindchange="bindChange">
+            <view class="btn _3f5a6a1">
+                <view class="text cancel _3f5a6a1" bindtap="hidePicker">取消</view>
+                <view class="text confirm _3f5a6a1" bindtap="comfirm">确定</view>
+            </view>
+            <picker-view-column class="_3f5a6a1">
+                <block class="_3f5a6a1" wx:for="{{years}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                    <view style="line-height: 100rpx;text-align:center;" class="_3f5a6a1">{{item}}年</view>
+                </block>
+            </picker-view-column>
+            <picker-view-column class="_3f5a6a1">
+                <block class="_3f5a6a1" wx:for="{{months}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                    <view style="line-height: 100rpx;text-align:center;" class="_3f5a6a1">{{item}}月</view>
+                </block>
+            </picker-view-column>
+        </picker-view>
+    </view>

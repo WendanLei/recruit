@@ -1,0 +1,71 @@
+input._28b839a,
+textarea._28b839a {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._28b839a {
+  color: #F96969;
+}
+.profile-container._28b839a {
+  background: #eee;
+  height: 100%;
+  width: 100%;
+  padding-top: 20rpx;
+}
+.profile-container .form-view .main._28b839a {
+  padding-left: 40rpx;
+  background: #fff;
+}
+.profile-container .form-view .form-item._28b839a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.profile-container .form-view .form-item .section__title._28b839a {
+  width: 140rpx;
+  font-size: 28rpx;
+  color: #5d677d;
+  margin-right: 10rpx;
+  text-align: right;
+}
+.profile-container .form-view .form-item .sex-text._28b839a {
+  color: #bebebe;
+  font-size: 24rpx;
+  margin-right: 15rpx;
+}
+.profile-container .form-view .form-item radio._28b839a {
+  transform: scale(0.6);
+}
+.profile-container .form-view .form-item .picker._28b839a {
+  width: 250rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 28rpx;
+}
+.profile-container .form-view .form-item input.code-input._28b839a {
+  width: 350rpx;
+}
+.profile-container .form-view .form-item.message-view .get-code-btn._28b839a {
+  color: #4C80F5;
+  font-size: 24rpx;
+  cursor: pointer;
+  border-left: 1rpx solid #eee;
+  padding-left: 10rpx;
+  width: 150rpx;
+}
+.profile-container .form-view .btn-area._28b839a {
+  margin-top: 120rpx;
+}
+.profile-container .form-view .btn-area .confirm-btn._28b839a {
+  width: 440rpx;
+  border: 0;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #4C80F5;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: #fff;
+}

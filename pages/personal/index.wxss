@@ -1,0 +1,100 @@
+.btn{
+  padding: 0;
+  margin: 0;
+  background: none;
+  
+}
+input._f3c6ce6,
+textarea._f3c6ce6 {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._f3c6ce6 {
+  color: #F96969;
+}
+.personal-container._f3c6ce6 {
+  background: #eee;
+}
+.personal-container .avatar-content._f3c6ce6 {
+  height: 300rpx;
+  position: fixed;
+  width: 100%;
+  background: #4C80F5;
+  z-index: 10;
+}
+.personal-container .avatar-content .content._f3c6ce6 {
+  padding-top: 41rpx;
+}
+.personal-container .avatar-content .content .avatar._f3c6ce6 {
+  border: 4rpx solid #fff;
+  width: 156rpx;
+  height: 156rpx;
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+.personal-container .avatar-content .content .name._f3c6ce6 {
+  margin-top: 10rpx;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 36rpx;
+}
+.personal-container .function-content._f3c6ce6 {
+  padding-top: 310rpx;
+}
+.personal-container .function-content .function-one._f3c6ce6 {
+  background: #fff;
+  height: 190rpx;
+  margin-bottom: 10rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.personal-container .function-content .function-one .function._f3c6ce6 {
+  width: 238rpx;
+  position: relative;
+}
+.personal-container .function-content .function-one .function._f3c6ce6 .contact-button{
+ background: none;
+border: none;
+}
+
+.personal-container .function-content .function-one .function .icon._f3c6ce6 {
+  display: block;
+  margin: 0 auto;
+  width: 80rpx;
+  height: 80rpx;
+  position: relative;
+}
+.personal-container .function-content .function-one .function .icon._f3c6ce6 image{
+  width: 100%;
+  height: 100%;
+}
+.personal-container .function-content .function-one .function .icon._f3c6ce6 .num{
+  position: absolute;
+  top: -10rpx;
+  right:-10rpx;
+  width: 32rpx;
+  height: 32rpx;
+  font-size: 20rpx;
+  line-height: 32rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: #FF0000;
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.personal-container .function-content .function-one .function .icon.icon-xz._f3c6ce6 {
+  height: 50rpx;
+  width: 84rpx;
+}
+.personal-container .function-content .function-one .function .name._f3c6ce6 {
+  color: #5d677d;
+  font-size: 28rpx;
+  text-align: center;
+}

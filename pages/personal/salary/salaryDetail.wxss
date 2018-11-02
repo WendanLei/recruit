@@ -1,0 +1,96 @@
+@import "./../../../components/common/noData.wxss";
+input._3f5a6a1,
+textarea._3f5a6a1 {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._3f5a6a1 {
+  color: #F96969;
+}
+.salary-detail-container._3f5a6a1 {
+  background: #eee;
+  height: 100%;
+}
+.salary-detail-container .top-fixed._3f5a6a1 {
+  position: fixed;
+  width: 100%;
+}
+.salary-detail-container .avatar-content._3f5a6a1 {
+  height: 220rpx;
+  width: 100%;
+  background: #4C80F5;
+}
+.salary-detail-container .avatar-content .content._3f5a6a1 {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 41rpx;
+}
+.salary-detail-container .avatar-content .content .money._3f5a6a1 {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 24rpx;
+}
+.salary-detail-container .avatar-content .content .money .tab .icon-arrow._3f5a6a1 {
+  font-size: 28rpx;
+  width: 20rpx;
+  margin-left: 10rpx;
+  height: 10rpx;
+}
+.salary-detail-container .avatar-content .content .name._3f5a6a1 {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 72rpx;
+  margin-top: 10rpx;
+}
+.salary-detail-container .detail-content._3f5a6a1 {
+  padding-top: 240rpx;
+}
+.salary-detail-container .detail-content .line._3f5a6a1 {
+  padding-left: 40rpx;
+  background: #fff;
+}
+.salary-detail-container .detail-content .line .pad._3f5a6a1 {
+  padding-right: 40rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.salary-detail-container .detail-content .line .pad .key._3f5a6a1,
+.salary-detail-container .detail-content .line .pad .value._3f5a6a1 {
+  width: 50%;
+  text-align: left;
+  font-size: 28rpx;
+  color: #5D677D;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.salary-detail-container .detail-content .line .pad .value._3f5a6a1 {
+  text-align: right;
+}
+.salary-detail-container .picker._3f5a6a1 {
+  background: #fff;
+}
+.salary-detail-container .picker .btn._3f5a6a1 {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.salary-detail-container .picker .btn .text._3f5a6a1 {
+  width: 30%;
+  text-align: center;
+  font-size: 32rpx;
+  color: #5D677D;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.salary-detail-container .picker .btn .text.confirm._3f5a6a1 {
+  color: #1aad19;
+}

@@ -1,0 +1,34 @@
+
+    <view class="m-location-container">
+        <view class="m-back"/>
+        <view class="m-loc-box">
+            <p class="m-title">定位区域</p>
+            <view class="m-city-box">
+                <block wx:for="{{district_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                    
+    <view class="m-city-container {{item.code == select_district.areano ? 'm-active':''}}" bindtap="$city$selectTap" data-com-index="{{index}}" data-wpyselecttap-a="{{district}}" data-wpyselecttap-b="{{item}}">{{item.name}}</view>
+
+                </block>
+            </view>
+        </view>
+        <view class="m-loc-box">
+            <p class="m-title">在招城市</p>
+            <view class="m-city-box">
+                <block wx:for="{{city_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                    
+    <view class="m-city-container {{item.code == select_city.areano ? 'm-active':''}}" bindtap="$city$selectTap" data-com-index="{{index}}" data-wpyselecttap-a="{{city}}" data-wpyselecttap-b="{{item}}">{{item.name}}</view>
+
+                </block>
+            </view>
+        </view>
+        <view class="m-loc-box">
+            <p class="m-title">在招省份</p>
+            <view class="m-city-box">
+                <block wx:for="{{prov_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                    
+    <view class="m-city-container {{item.code == select_prov.areano ? 'm-active':''}}" bindtap="$city$selectTap" data-com-index="{{index}}" data-wpyselecttap-a="{{prov}}" data-wpyselecttap-b="{{item}}">{{item.name}}</view>
+
+                </block>
+            </view>
+        </view>
+    </view>

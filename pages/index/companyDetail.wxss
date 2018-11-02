@@ -1,0 +1,27 @@
+/* pages/index/companyDetail.wxss */
+@import "./../../components/common/info.wxss";
+@import "./../../components/common/noData.wxss";
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 98rpx;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  line-height: 98rpx;
+}
+.footer view{
+  width: 50%;
+  height: 100%;
+  background: #A7C2FF;
+  color: #fff;
+  text-align: center;
+  font-size:30rpx;
+}
+.footer .activeItem{
+  background:#4C80F5;
+}
+.m-index-content._1ebc9fc{
+  padding-bottom: 110rpx;
+}

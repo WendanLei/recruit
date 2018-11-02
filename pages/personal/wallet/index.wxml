@@ -1,0 +1,85 @@
+<!-- 我的钱包 -->
+<wxs module="strSplit" src="../../../components/common/split.wxs" />
+    <view class="wallet-container _be2a7ff">
+        <view class="top-fixed _be2a7ff">
+            <view class="avatar-content _be2a7ff">
+                <view class="content _be2a7ff">
+                    <view class="name _be2a7ff">账户余额（元）</view>
+                    <view class="money _be2a7ff">{{purseInfo.available_balance}}</view>
+                </view>
+            </view>
+            <view class='putForward' bindtap="goUrl" data-wpygourl-a="cash">
+                <image src='https://mini3.pinecc.cn/webinfo/lj/tixian.png'></image>
+            </view>
+            <view class='Commission'>
+              <view class='commissionLeft commiss'>
+                <view class='commissionTxt'>今日佣金（元）</view>
+                <view class=''>{{purseInfo.today_commision}}</view>
+              </view>
+              <view class="commissionMiddle commiss">
+                <view class='commissionTxt'>本月佣金（元）</view>
+                <view class=''>{{purseInfo.month_commision}}</view>
+              </view>
+              <view class='commissionRight commiss'>
+                <view class='commissionTxt'>累计佣金（元）</view>
+                <view class=''>{{purseInfo.total_commision}}</view>
+              </view>
+            </view>
+        </view>
+        <view class="cash-record-content _be2a7ff">
+           
+        </view>
+         <scroll-view scroll-y="true" id="bg" bindscroll="scroll" scroll-top="0" >
+          <scroll-view scroll-x="true" class="tab-header"  >
+              <view wx:for="{{tabList}}" wx:for-index="idx" class="tab-navItem {{currentTab==idx?'active':''}}"  data-current="{{idx}}" bindtap="swichNav" data-title="{{navListTitle[idx]}}">{{item}}</view>
+          </scroll-view>
+          <swiper class="tabContent" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}px">
+              <swiper-item wx:for="{{navListTitle}}" wx:for-item="list">
+                  
+                  <scroll-view scroll-y="{{true}}" class="scoll-h"  bindscroll="scroll"   data-status="{{list}}" lower-threshold='50px' wx:for="{{navListTitle}}" wx:for-item="list" bindscrolltolower="bindDownLoad">
+                  <view class="m-skillIndex _296d8bb">
+              <!-- <view class="m-back _296d8bb"/> -->
+                    <view class="m-skill-box _296d8bb">
+                        <view  class="tab-h"  >
+                            <view wx:for="{{navList}}" class="tab-item" >{{item}}</view>
+                        </view>
+                        <view class="myteam">
+                    <!-- <view class="m-back _296d8bb"/> -->
+                          <view class="myteamContent">
+                            <view class="myteamTr" wx:for="{{myList}}" wx:for-index="index" wx:for-item="item" wx:key="index"> 
+                              <view class="myteamCol">
+                                <image src="{{item.avater}}"></image>
+                                <text>{{item.username}}</text>
+                              </view>
+                              <view class="myteamCol">
+                                <text>{{item.method}}</text>
+                                <text>{{item.company_name}}</text>
+                              </view>
+                              <view class="myteamCol">
+                                <text>{{item.cash}}</text>
+                              </view>
+                              <view class="myteamCol">
+                                <text>{{item.ration}}</text>
+                                <text>{{strSplit.split(item.update_at,' ')}}</text>
+                              </view>
+
+                            </view>
+                        
+                             <view wx:if="{{myList.length==0}}" class="no-data-content">
+                              <view class="img-view">
+                                <image src="../../../images/icon_nodata.png" class="img"></image>
+                                <view class="text">暂无数据</view>
+                              </view>
+                            </view>
+                          </view>
+                        </view>
+                    </view>
+                  </view>
+                  </scroll-view>
+              </swiper-item>
+          </swiper>
+        </scroll-view>
+         <block>
+          <include src="../../../components/CustomerService/CustomerService.wxml" />
+        </block>
+    </view>

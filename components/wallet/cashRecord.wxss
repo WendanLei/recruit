@@ -1,0 +1,34 @@
+input,
+textarea {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red {
+  color: #F96969;
+}
+.cash-item {
+  height: 104rpx;
+  background: #fff;
+  padding: 10rpx 20rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.cash-item .top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.cash-item .top .top-left {
+  color: #5d677d;
+  font-size: 28rpx;
+}
+.cash-item .top .top-right {
+  color: #5d677d;
+  font-size: 24rpx;
+}
+.cash-item .bottom {
+  color: #F96969;
+  font-size: 32rpx;
+  text-align: right;
+  margin-top: 10px;
+}

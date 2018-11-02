@@ -1,0 +1,14 @@
+
+    <view class="train-need-container _8837e30">
+        <view class="form-view _8837e30">
+            <form bindsubmit="formSubmit" class="_8837e30">
+                <view class="form-item _8837e30">
+                    <view class="label _8837e30">培训需求</view>
+                    <textarea class="text-area _8837e30" name="content" placeholder="请输入你的培训需求" placeholder-style="color: #bebebe;font-size: 24rpx;"/>
+                </view>
+                <view class="btn-area _8837e30">
+                    <button class="confirm-btn _8837e30" formType="submit">提交</button>
+                </view>
+            </form>
+        </view>
+    </view>

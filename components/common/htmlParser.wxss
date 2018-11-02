@@ -1,0 +1,8 @@
+input._b98d1e6,
+textarea._b98d1e6 {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._b98d1e6 {
+  color: #F96969;
+}

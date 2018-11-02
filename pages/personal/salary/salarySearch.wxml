@@ -1,0 +1,56 @@
+
+    <view class="salary-search-container _7617078">
+        <view class="form-view _7617078">
+            <form bindsubmit="formSubmit" bindreset="formReset" class="_7617078">
+                <view class="main _7617078">
+                    <!-- <view class="form-item name-view">
+                        <view class="section__title">公司名称（选填）</view>
+                        <input name="company_name" placeholder="请输入需要查询的公司名称" placeholder-style="color: #bebebe;font-size: 24rpx;"/>
+                    </view> -->
+                    <view class="form-item tel-view _7617078">
+                        <view class="section__title _7617078">身份证号（必填）</view>
+                        <input name="id_num" type="idcard" placeholder="请输入身份证号" placeholder-style="color: #bebebe;font-size: 24rpx;" class="_7617078"/>
+                    </view>
+                </view>
+                <view class="tip _7617078">
+                    <text class="word _7617078">提示：只有已加入链匠平台的公司才能查询工资</text>
+                </view>
+                <view class="btn-area _7617078">
+                    <button class="confirm-btn _7617078" formType="submit">立即查询</button>
+                </view>
+            </form>
+        </view>
+        <view class="search-result _7617078">
+            <view class="title _7617078">
+                <view class="title-item _7617078">月份</view>
+                <view class="title-item _7617078">所在公司</view>
+                <view class="title-item _7617078">薪资</view>
+                <view class="title-item _7617078">查看</view>
+            </view>
+            <view class="content _7617078"  wx:if="list.length!=0">
+                <block class="_7617078" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                    <view class="content-item _7617078">
+                        <view class="col _7617078">{{item.month_date}}</view>
+                        <view class="col _7617078">{{item.company_name}}</view>
+                        <view class="col _7617078">
+                            <text class="salary _7617078">{{item.salary}}</text>
+                            <text class="_7617078">元</text>
+                        </view>
+                        <view class="col action _7617078" bindtap="goUrl" data-wpygourl-a="{{item.month_date}}" data-wpygourl-b="{{id_num}}">
+                            查看详情
+                        </view>
+                    </view>
+                </block>
+                <view class="look-more _7617078" bindtap="loadMore" wx:if="{{isShowLoadMore}}">
+                    查看更多
+                </view>
+            </view>
+            
+    <view class="no-data-content _c4bd724 _7617078" wx:if="{{isShowNoData}}">
+        <view class="img-view _c4bd724">
+            <image class="img _c4bd724" src="../../../images/icon_nodata.png"/>
+            <view class="text _c4bd724">暂无数据</view>
+        </view>
+    </view>
+        </view>
+    </view>

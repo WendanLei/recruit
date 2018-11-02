@@ -1,0 +1,15 @@
+
+    <view class="cash-record-container _70383bb">
+        <view class="conent _70383bb">
+            <block class="_70383bb" wx:for="{{list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                
+    <view class="cash-item _2b4800e _70383bb">
+        <view class="top _2b4800e">
+            <view class="top-left _2b4800e">{{item.method}}</view>
+            <view class="top-right _2b4800e">{{item.update_at}}</view>
+        </view>
+        <view class="bottom _2b4800e">{{item.cash}}</view>
+    </view>
+            </block>
+        </view>
+    </view>

@@ -1,0 +1,59 @@
+
+    <view class="m-search _16823bc">
+        <view class="m-search-top _16823bc">
+            <view class="m-search-box _16823bc">
+                <image class="m-icon-search _16823bc" style="width: 30rpx;height:30rpx;margin: 0 20rpx;" src="../../images/icon_search.png"/>
+                <input type="text" placeholder="搜索公司/职位" bindblur="inputBlur" class="_16823bc"/>
+            </view>
+            <view bindtap="cancelTap" class="_16823bc">取消</view>
+        </view>
+        <scroll-view scroll-y="true" style="height:100%;" bindscrolltolower="lower"  wx:if="{{work_list.length >0}}" class="_16823bc">
+            <block class="_16823bc" wx:for="{{work_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                
+    <view class="m-info-box _13e525e _16823bc" bindtap="$info$tap" data-com-index="{{index}}" data-wpytap-a="{{item}}">
+        <image class="m-info-img _13e525e" src="{{item.pic_env}}"/>
+        <view class="m-info-right _13e525e">
+            <view class="m-info-tr1 _13e525e">
+                <view class="m-info-td1 _13e525e">
+                    <text class="m-name m-over _13e525e">{{item.name}} </text>
+                    <view class="m-tabs _13e525e">
+                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward}}">入职奖{{item.reward}}</view>
+                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_up}}">伯乐奖{{item.reward_up}}</view>
+                    </view>
+                </view>
+                <view class="m-info-td2 _13e525e">
+                    <p class="m-price m-over _13e525e"  wx:if="{{item.mini_salary}}">¥{{item.mini_salary}}-{{item.max_salary}}</p>
+                </view>
+            </view>
+            <view class="m-info-tr2 _13e525e">
+                <view class="m-info-td1 _13e525e">
+                    <p class="m-name _13e525e" wx:if="{{!item.train_time && item.company_name}}">{{item.company_name}}</p>
+                    <p class="m-name _13e525e" wx:if="{{item.train_time}}">培训时间：{{item.train_time}}</p>
+                </view>
+            </view>
+            <view class="m-info-tr3 _13e525e">
+                <view class="m-info-td1 _13e525e">
+                    <p class="m-name m-name-first _13e525e" wx:if="{{item.city_name}}">{{item.city_name}}</p>
+                    <p class="m-name _13e525e" wx:if="{{item.keyword1}}">{{item.keyword1}}</p>
+                    <p class="m-name _13e525e" wx:if="{{item.keyword2}}">{{item.keyword2}}</p>
+                    <p class="m-name _13e525e" wx:if="{{item.address}}">北部软件园创意园B5栋2楼</p>
+                </view>
+                <view class="m-info-td2 _13e525e">
+                    <p class="m-time _13e525e" wx:if="{{item.update_at}}">{{item.update_at}}</p>
+                    <!--<p class="m-time" wx:if="{{list.train_time}}">{{list.train_time}}</p>-->
+                    <!-- <p class="m-link">取消收藏</p> -->
+                </view>
+            </view>
+            <view class="m-info-tr4 _13e525e" wx:if="{{$info$isShowCancelCollect}}">
+                <p class="_13e525e"/>
+                <p class="m-link _13e525e">取消收藏</p>
+            </view>
+            <view class="m-info-tr4 _13e525e" wx:if="{{item.offer}}">
+                <p class="_13e525e"/>
+                <view class="m-btn _13e525e">{{item.offer}}</view>
+            </view>
+        </view>
+    </view>
+            </block>
+        </scroll-view>
+    </view>

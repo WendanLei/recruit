@@ -1,0 +1,24 @@
+
+    <view class="salary-search-container _d9c954a">
+        <view class="form-view _d9c954a">
+            <form bindsubmit="formSubmit" bindreset="formReset" class="_d9c954a">
+                <view class="main _d9c954a">
+                    <view class="form-item name-view _d9c954a">
+                        <view class="section__title _d9c954a">真实姓名</view>
+                        <input name="name" placeholder="请拍照识别姓名" disabled value="{{userData.name}}" placeholder-style="color: #bebebe;font-size: 24rpx;" class="_d9c954a"/>
+                    </view>
+                    <view class="form-item tel-view _d9c954a">
+                        <view class="section__title _d9c954a">身份证号</view>
+                        <input name="tel" placeholder="请拍照识别身份证号" disabled value="{{userData.id_num}}" placeholder-style="color: #bebebe;font-size: 24rpx;" class="_d9c954a"/>
+                    </view>
+                </view>
+                <view class="upload-img _d9c954a">
+                    <view class="title _d9c954a">请上传身份证正面照</view>
+                    <image class="img _d9c954a" src="../../../images/icon_smrz.png" bindtap="bindChooiceProduct"/>
+                </view>
+                <view class="btn-area _d9c954a">
+                    <button class="confirm-btn _d9c954a" formType="submit">认证并继续</button>
+                </view>
+            </form>
+        </view>
+    </view>

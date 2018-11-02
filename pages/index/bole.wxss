@@ -1,0 +1,68 @@
+@import "./../../components/common/ranking.wxss";
+input._c70a400,
+textarea._c70a400 {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._c70a400 {
+  color: #F96969;
+}
+.m-bole._c70a400 {
+  width: 100%;
+  overflow: hidden ;
+}
+.m-bole .m-back._c70a400 {
+  height: 20rpx;
+  background-color: #f9f9f9;
+  width: 100%;
+}
+.m-bole .m-top._c70a400 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  /*margin-top: 20rpx;*/
+  padding: 20rpx 0;
+}
+.m-bole .m-top .m-introduce._c70a400 {
+  font-size: 24rpx;
+  color: #9A9CA9;
+  margin: 30rpx 0;
+}
+.m-bole .m-top .m-btn._c70a400 {
+  background-color: #4C80F5;
+  color: #fff;
+  width: 250rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 28rpx;
+  border-radius: 6px;
+  text-align: center;
+}
+.m-bole .m-ranking-list._c70a400 {
+  width: 100%;
+  background-color: #fff;
+}
+.m-bole .m-ranking-list .m-ranking-box._c70a400 {
+  width: 644rpx;
+  margin-left: 53rpx;
+  margin-top: 54rpx;
+}
+.m-bole .m-ranking-list .m-ranking-box .m-title._c70a400 {
+  background-color: #4C80F5;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+  color: #fff;
+  padding: 14rpx 0 14rpx 45rpx;
+  font-size: 28rpx;
+}
+.m-bole .m-ranking-list .m-ranking-box .m-ranking-info._c70a400 {
+  border: 1px solid #E6E6E6;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-top: none;
+  padding-left: 48rpx;
+  padding-right: 42rpx;
+}

@@ -1,0 +1,52 @@
+<form bindsubmit='infoSubmit' bindreset="infoReset">
+  <!-- <button bindtap='chooseImage'>点击拍照或从相册选择图片上传</button> -->
+  <view class="tables {{showView?'view_show':'view_hide'}}">
+    <view class='row'>
+      <view class='tit'>姓名</view>
+      <view class='content'>
+        <input value='{{name}}' name="name" disabled='true' />
+      </view>
+    </view>
+    <view class='row'>
+      <view class='tit'>性别</view>
+      <view class='content'>
+        <input value='{{sex}}' name="sex" disabled='true' />
+      </view>
+    </view>
+    <view class='row'>
+      <view class='tit'>出生日期</view>
+      <view class='content'>
+        <input value='{{birth}}' name="birth" disabled='true' />
+      </view>
+    </view>
+    <view class='row'>
+      <view class='tit'>身份证号</view>
+      <view class='content'>
+        <input value='{{num}}' name="num" disabled='true' />
+      </view>
+    </view>
+    <view class='row'>
+      <view class='tit'>用户地址</view>
+      <view class='content'>
+        <input value='{{address}}' name="address" disabled='true' />
+      </view>
+    </view>
+    <view class='row'>
+      <view class='tit'>手机号</view>
+      <view class='content'>
+        <input value=''  name="mobile" placeholder='请填写11位手机号' maxlength='11' type='number'></input>
+      </view>
+    </view>
+    <view class='row'>
+      <view class='tit'>所属公司</view>
+      <view class='content' >
+        <picker  bindchange="bindCasPickerChange" range="{{array}}" value='{{index}}' >
+        <input class='selectInp'  placeholder-class='{{place}}' placeholder='请选择公司' name='arraylist' disabled='false' value='{{array.length == 1?array[0]:comp_name}}'/> 
+        <input  name="comp_id" style='display:none' value='{{comp_id}}'></input>
+        </picker>
+      </view>
+    </view>
+  </view>
+<button type='button' class="submit {{showView?'view_show':'view_hide'}}" form-type='submit'>上传</button>
+  
+</form>

@@ -1,0 +1,72 @@
+{
+  "pages": [
+    "pages/personal/login",
+    "pages/index/index",
+    "pages/index/bole",
+    "pages/manager/index",
+    "pages/index/new",
+    "pages/index/search",
+    "pages/index/location",
+    "pages/personal/profile/index",
+    "pages/personal/wallet/index",
+    "pages/personal/wallet/cash",
+    "pages/personal/wallet/cashSuccess",
+    "pages/personal/wallet/cashRecord",
+    
+    "pages/personal/team/myTeam",
+    "pages/personal/application/applicationRecord",
+    "pages/personal/need/need",
+    "pages/personal/salary/salarySearch",
+    "pages/personal/salary/salaryDetail",
+    "pages/personal/salary/salaryAdvance",
+    "pages/personal/complaint/complaintAdvice",
+    "pages/personal/code/code",
+    "pages/personal/information/information",
+    "pages/personal/resume/resume",
+    "pages/personal/resume/resumeNote",
+    "pages/personal/index",
+    "pages/work/index",
+    "pages/work/workDetails",
+    "pages/work/adDetails",
+    "pages/work/Hourly",
+    "pages/skill/index",
+    "pages/skill/skillDetails",
+    "pages/personal/profile/certification",
+    "pages/index/circle",
+    "pages/index/companyDetail",
+    "pages/personal/upload/upload"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4C80F5",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#7E7E7E",
+    "selectedColor": "#5B8DFA ",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab_home_unselected.png",
+        "selectedIconPath": "images/tab_home_onselected.png"
+      },
+      {
+        "pagePath": "pages/work/index",
+        "text": "岗位",
+        "iconPath": "images/tab_gw_unselected.png",
+        "selectedIconPath": "images/tab_gw_onselected.png"
+      },
+      {
+        "pagePath": "pages/personal/index",
+        "text": "我的",
+        "iconPath": "images/tab_me_unselected.png",
+        "selectedIconPath": "images/tab_me_onselected.png"
+      }
+    ]
+  }
+}

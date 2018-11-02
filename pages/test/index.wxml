@@ -1,0 +1,151 @@
+
+    <view class="m-workIndex _8b39b77">
+        <view class="m-nav _8b39b77">
+            <block class="_8b39b77" wx:for="{{nav_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                
+    <view class="m-one-nav _382f810 _8b39b77" bindtap="$nav$navTap" data-com-index="{{index}}" data-wpynavtap-a="{{index}}">
+        <view class="_382f810">{{item.name}}</view>
+        <image  wx:if="{{!item.up}}" class="m-icon-arrow-down _382f810" src="../../images/icon_arrow_down2.png"/>
+        <image  wx:if="{{item.up}}" class="m-icon-arrow-down _382f810" src="../../images/icon_arrow_up.png"/>
+    </view>
+            </block>
+        </view>
+        <view class="m-back _8b39b77"/>
+        <view class="m-work-content _8b39b77">
+            <block class="_8b39b77" wx:for="{{work_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                
+    <view class="m-info-box _13e525e _8b39b77" bindtap="$info$tap" data-com-index="{{index}}" data-wpytap-a="{{item}}">
+        <image class="m-info-img _13e525e" src="{{item.pic_env}}"/>
+        <view class="m-info-right _13e525e">
+            <view class="m-info-tr1 _13e525e">
+                <view class="m-info-td1 _13e525e">
+                    <text class="m-name m-over _13e525e">{{item.name}} </text>
+                    <view class="m-tabs _13e525e">
+                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward}}">入职奖{{item.reward}}</view>
+                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_up}}">推荐奖{{item.reward_up}}</view>
+                    </view>
+                </view>
+                <view class="m-info-td2 _13e525e">
+                    <p class="m-price m-over _13e525e"  wx:if="{{item.mini_salary}}">¥{{item.mini_salary}}-{{item.max_salary}}</p>
+                </view>
+            </view>
+            <view class="m-info-tr2 _13e525e">
+                <view class="m-info-td1 _13e525e">
+                    <p class="m-name _13e525e" wx:if="{{!item.train_time && item.company_name}}">{{item.company_name}}</p>
+                    <p class="m-name _13e525e" wx:if="{{item.train_time}}">培训时间：{{item.train_time}}</p>
+                </view>
+            </view>
+            <view class="m-info-tr3 _13e525e">
+                <view class="m-info-td1 _13e525e">
+                    <p class="m-name m-name-first _13e525e" wx:if="{{item.city_name}}">{{item.city_name}}</p>
+                    <p class="m-name m-key-word _13e525e" style="max-width:{{(item.keyword1&&!item.keyword2)?370:(item.keyword1&&item.keyword1.length>6&&item.keyword2)?150:(item.keyword1&&item.keyword1.length<=6&&item.keyword2)?100:0}}rpx;" wx:if="{{item.keyword1}}">{{item.keyword1}}</p>
+                    <p class="m-name m-key-word _13e525e" style="max-width:{{(!item.keyword1&&item.keyword2)?370:(item.keyword1&&item.keyword2)?150:0}}rpx;" wx:if="{{item.keyword2}}">{{item.keyword2}}</p>
+                    <p class="m-name _13e525e" wx:if="{{item.address}}"></p>
+                </view>
+                <view class="m-info-td2 _13e525e">
+                    <p class="m-time _13e525e" wx:if="{{item.update_at}}">{{item.update_at}}</p>
+                    <!--<p class="m-time" wx:if="{{list.train_time}}">{{list.train_time}}</p>-->
+                    <!-- <p class="m-link">取消收藏</p> -->
+                </view>
+            </view>
+            <view class="m-info-tr4 _13e525e" wx:if="{{$info$isShowCancelCollect}}">
+                <p class="_13e525e"/>
+                <p class="m-link _13e525e">取消收藏</p>
+            </view>
+            <view class="m-info-tr4 _13e525e" wx:if="{{item.offer}}">
+                <p class="_13e525e"/>
+                <view class="m-btn _13e525e">{{item.offer}}</view>
+            </view>
+        </view>
+    </view>
+            </block>
+        </view>
+
+        <view class="m-cover _8b39b77"  wx:if="{{nav_list[0].up}}" bindtap="coverTap" data-wpycovertap-a="0">
+            <view class="m-modal _8b39b77">
+                <view class="m-btn-box _8b39b77">
+                    <block class="_8b39b77" wx:for="{{data_list.area_data}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                        
+        <view class="m-btn  {{select_list.area_data.id == item.id?'m-active':''}} _f812715 _8b39b77" catchtap="$btn$btnTap"  wx:if="{{item.id}}" data-com-index="{{index}}" data-wpybtntap-a="{{item}}">{{item.name}}</view>
+        <view class="m-btn  {{select_list.area_data.sort_way == item.sort_way?'m-active':''}} _f812715" catchtap="$btn$btnTap"  wx:if="{{item.sort_way}}" data-com-index="{{index}}" data-wpybtntap-a="{{item}}">{{item.name}}</view>
+        <view class="m-btn {{select_list.area_data.areano == item.areano?'m-active':''}} _f812715" catchtap="$btn$btnTap"  wx:if="{{item.area_name}}" data-com-index="{{index}}" data-wpybtntap-a="{{item}}">{{item.area_name}}</view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <view class="m-cover _8b39b77"  wx:if="{{nav_list[1].up}}" bindtap="coverTap" data-wpycovertap-a="1">
+            <view class="m-modal _8b39b77">
+                <view class="m-btn-box _8b39b77">
+                    <block class="_8b39b77" wx:for="{{data_list.job_data}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                        
+        <view class="m-btn  {{select_list.job_data.id == item.id?'m-active':''}} _f812715 _8b39b77" catchtap="$btn$btnTap"  wx:if="{{item.id}}" data-com-index="{{index}}" data-wpybtntap-a="{{item}}">{{item.name}}</view>
+        <view class="m-btn  {{select_list.job_data.sort_way == item.sort_way?'m-active':''}} _f812715" catchtap="$btn$btnTap"  wx:if="{{item.sort_way}}" data-com-index="{{index}}" data-wpybtntap-a="{{item}}">{{item.name}}</view>
+        <view class="m-btn {{select_list.job_data.areano == item.areano?'m-active':''}} _f812715" catchtap="$btn$btnTap"  wx:if="{{item.area_name}}" data-com-index="{{index}}" data-wpybtntap-a="{{item}}">{{item.area_name}}</view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <view class="m-cover _8b39b77"  wx:if="{{nav_list[2].up}}" bindtap="coverTap" data-wpycovertap-a="2">
+            <view class="m-modal _8b39b77">
+                <view class="m-btn-box _8b39b77">
+                    <block class="_8b39b77" wx:for="{{data_list.sort_data}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                        
+        <view class="m-btn  {{select_list.sort_data.id == item.id?'m-active':''}} _f812715 _8b39b77" catchtap="$btn$btnTap"  wx:if="{{item.id}}" data-com-index="{{index}}" data-wpybtntap-a="{{item}}">{{item.name}}</view>
+        <view class="m-btn  {{select_list.sort_data.sort_way == item.sort_way?'m-active':''}} _f812715" catchtap="$btn$btnTap"  wx:if="{{item.sort_way}}" data-com-index="{{index}}" data-wpybtntap-a="{{item}}">{{item.name}}</view>
+        <view class="m-btn {{select_list.sort_data.areano == item.areano?'m-active':''}} _f812715" catchtap="$btn$btnTap"  wx:if="{{item.area_name}}" data-com-index="{{index}}" data-wpybtntap-a="{{item}}">{{item.area_name}}</view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <view class="_8b39b77">
+            <block class="_8b39b77" wx:for="{{all_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                
+    <view class="m-info-box _13e525e _8b39b77" bindtap="$info$tap" data-com-index="{{index}}" data-wpytap-a="{{item}}">
+        <image class="m-info-img _13e525e" src="{{item.pic_env}}"/>
+        <view class="m-info-right _13e525e">
+            <view class="m-info-tr1 _13e525e">
+                <view class="m-info-td1 _13e525e">
+                    <text class="m-name m-over _dccd2f4">{{item.name}} </text>
+                    <view class="m-tabs _13e525e">
+                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward}}">入职奖{{item.reward}}</view>
+                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_up}}">推荐奖{{item.reward_up}}</view>
+                    </view>
+                </view>
+               
+            </view>
+            <view class="m-info-tr2 _13e525e">
+                <view class="m-info-td1 _13e525e">
+                    <p class="m-name _13e525e" wx:if="{{!item.train_time && item.company_name}}">{{item.company_name}}</p>
+                    <p class="m-name _13e525e" wx:if="{{item.train_time}}">培训时间：{{item.train_time}}</p>
+                </view>
+                 <view class="m-info-td2 _13e525e">
+                    <p class="m-price m-over _dccd2f2"  wx:if="{{item.mini_salary}}">¥{{item.mini_salary}}-{{item.max_salary}}</p>
+                </view>
+            </view>
+            <view class="m-info-tr3 _13e525e">
+                <view class="m-info-td1 _13e525e">
+                    <p class="m-name m-name-first _13e525e" wx:if="{{item.city_name}}">{{item.city_name}}</p>
+                    <p class="m-name m-key-word _13e525e" style="max-width:{{(item.keyword1&&!item.keyword2)?370:(item.keyword1&&item.keyword1.length>6&&item.keyword2)?150:(item.keyword1&&item.keyword1.length<=6&&item.keyword2)?100:0}}rpx;" wx:if="{{item.keyword1}}">{{item.keyword1}}</p>
+                    <p class="m-name m-key-word _13e525e" style="max-width:{{(!item.keyword1&&item.keyword2)?370:(item.keyword1&&item.keyword2)?150:0}}rpx;" wx:if="{{item.keyword2}}">{{item.keyword2}}</p>
+                    <p class="m-name _13e525e" wx:if="{{item.address}}">北部软件园创意园B5栋2楼</p>
+                </view>
+                <view class="m-info-td2 _13e525e">
+                    <p class="m-time _13e525e" wx:if="{{item.update_at}}">{{item.update_at}}</p>
+                    <!--<p class="m-time" wx:if="{{list.train_time}}">{{list.train_time}}</p>-->
+                    <!-- <p class="m-link">取消收藏</p> -->
+                </view>
+            </view>
+            <view class="m-info-tr4 _13e525e" wx:if="{{$info$isShowCancelCollect}}">
+                <p class="_13e525e"/>
+                <p class="m-link _13e525e">取消收藏</p>
+            </view>
+            <view class="m-info-tr4 _13e525e" wx:if="{{item.offer}}">
+                <p class="_13e525e"/>
+                <view class="m-btn _13e525e">{{item.offer}}</view>
+            </view>
+        </view>
+    </view>
+            </block>
+        </view>
+
+    </view>

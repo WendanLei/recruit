@@ -1,0 +1,113 @@
+input._9b319e2,
+textarea._9b319e2 {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._9b319e2 {
+  color: #F96969;
+}
+.salary-advance-container._9b319e2 {
+  background: #eee;
+  height: 100%;
+  width: 100%;
+  padding-top: 20rpx;
+}
+.salary-advance-container .form-view._9b319e2 {
+  position: fixed;
+  width: 100%;
+}
+.salary-advance-container .form-view .main._9b319e2 {
+  padding-left: 40rpx;
+  background: #fff;
+}
+.salary-advance-container .form-view .main .picker-select._9b319e2 {
+  width: 220rpx;
+  height: 100rpx;
+}
+.salary-advance-container .form-view .main .picker-select .picker._9b319e2 {
+  width: 500rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #000;
+  font-size: 24rpx;
+}
+.salary-advance-container .form-view .form-item._9b319e2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.salary-advance-container .form-view .form-item .section__title._9b319e2 {
+  width: 150rpx;
+  font-size: 28rpx;
+  color: #5D677D;
+  margin-right: 10rpx;
+  text-align: left;
+}
+.salary-advance-container .form-view .form-item .sex-text._9b319e2 {
+  color: #bebebe;
+  font-size: 24rpx;
+  margin-right: 15rpx;
+}
+.salary-advance-container .form-view .form-item.tel-view._9b319e2 {
+  border: 0;
+  height: 300rpx;
+  align-items: flex-start;
+  padding-top: 20rpx;
+}
+.salary-advance-container .form-view .form-item.tel-view .text-area._9b319e2 {
+  padding: 5rpx 15rpx;
+}
+.salary-advance-container .form-view .tip._9b319e2 {
+  margin: 20rpx 40rpx;
+}
+.salary-advance-container .form-view .tip .word._9b319e2 {
+  color: #bebebe;
+  font-size: 24rpx;
+}
+.salary-advance-container .form-view .btn-area._9b319e2 {
+  margin-top: 120rpx;
+}
+.salary-advance-container .form-view .btn-area .confirm-btn._9b319e2 {
+  width: 440rpx;
+  border: 0;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #4C80F5;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: #fff;
+}
+.salary-advance-container .no-tab-content._9b319e2 {
+  padding: 100rpx 0;
+}
+.salary-advance-container .no-tab-content .img-view .img._9b319e2 {
+  display: block;
+  width: 254rpx;
+  height: 220rpx;
+  margin: 0 auto;
+}
+.salary-advance-container .no-tab-content .img-view .text._9b319e2 {
+  margin-top: 100rpx;
+  color: #9a9ca9;
+  text-align: center;
+  font-size: 28rpx;
+}
+.salary-advance-container .no-tab-content .btn-view._9b319e2 {
+  margin-top: 40rpx;
+}
+.salary-advance-container .no-tab-content .btn-view .btn._9b319e2 {
+  width: 250rpx;
+  border: 0;
+  height: 70rpx;
+  line-height: 70rpx;
+  background: #4C80F5;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #fff;
+}

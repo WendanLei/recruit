@@ -1,0 +1,50 @@
+@import "./../../components/common/button.wxss";
+@import "./../../components/common/info.wxss";
+@import "./../../components/common/navigator.wxss";
+input._8b39b77,
+textarea._8b39b77 {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._8b39b77 {
+  color: #F96969;
+}
+.m-workIndex .m-nav._8b39b77 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 60rpx;
+  padding: 10rpx 0;
+}
+.m-workIndex .m-back._8b39b77 {
+  height: 20rpx;
+  background-color: #f9f9f9;
+  width: 100%;
+}
+.m-workIndex .m-cover._8b39b77 {
+  position: fixed;
+  overflow: hidden;
+  top: 80rpx;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.m-workIndex .m-cover .m-modal._8b39b77 {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #E6E6E6;
+}
+.m-workIndex .m-cover .m-modal .m-btn-box._8b39b77 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 20rpx 34rpx;
+}

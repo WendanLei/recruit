@@ -1,0 +1,16 @@
+@import "./../../../components/wallet/cashRecord.wxss";
+input._70383bb,
+textarea._70383bb {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._70383bb {
+  color: #F96969;
+}
+.cash-record-container._70383bb {
+  background: #eee;
+  padding-top: 20rpx;
+}
+.cash-record-container .conent._70383bb {
+  background: #fff;
+}

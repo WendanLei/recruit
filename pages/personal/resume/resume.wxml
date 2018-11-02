@@ -1,0 +1,45 @@
+<view class="resume" wx:for="{{resumeList}}" wx:if="{{resumeList && resumeList.length>0}}">
+  <view class="row">
+    <view class="col">
+      <image src="https://mini3.pinecc.cn/webinfo/lj/kefu1.png"></image>
+    </view>
+    <view class="col">
+     <text>姓名： {{item.username}}</text>
+     <text>性别： {{item.gender==1 ? '男' : (item.gender==2) ? '女' : '未知'}}</text>
+     <text>手机: {{item.mobile ? item.mobile : '未知'}}</text>
+     <text>地址： {{item.address ? item.address : '未知'}}</text>
+    </view>
+    <form class="col" report-submit bindsubmit='edit' data-index="{{index}}" data-name='{{item.status}}' data-id="{{item.id}}" >
+      
+      <text>{{item.job}}</text>
+      <text>{{item.company_name}}</text>
+      <button form-type='submit' class="{{item.status=='未查看' ? 'redName' :'' }}">{{item.status}}</button>
+    </form>
+  </view>
+  <form report-submit bindsubmit='gotoNote' data-id="{{item.id}}">
+    <button form-type='submit' class="row" name="pushMsgFm">
+        <text>驻场备注：</text>
+        <text class="note" > {{item.tips ? item.tips : '无'}}</text>
+    </button>
+    
+   
+
+  </form>
+</view>
+<view class="resume"  wx:if="{{resumeList.length==0}}" style='padding:0;margin:0;height:100%'>
+  <view class='col' style='align-items:center;margin-top:200rpx;color:#333'>
+    <image src="../../../images/Pic_sqjl.png" style='width:216rpx;margin:0 auto' mode="widthFix"></image>
+    <text>暂无投递简历</text>
+  </view>
+  <image></image>
+ 
+</view>
+<view class="block" bindtap='close' wx:if="{{isShow}}">
+  <view class="status" >
+    <text class="{{activeName=='已查看' ? 'active' : ''}}" catchtap='editStatus' data-name='已查看' >已查看</text>
+    <text class="{{activeName=='已录用' || activeName=='录用' ? 'active' : ''}}" catchtap='editStatus' data-name='已录用'>已录用</text>
+    <text class="{{activeName=='未录用' ? 'active' : ''}}" catchtap='editStatus' data-name='未录用'>未录用</text>
+    <text class="{{activeName=='已离职' ? 'active' : ''}}" catchtap='editStatus' data-name='已离职'>已离职</text>
+  </view>
+</view>
+

@@ -1,0 +1,8 @@
+<view class="MessageNotification">
+  <view class="MessageNotification_tr" wx:for="{{noticeList}}" data-id="{{item.id}}" bindtap='readNotice' data-read="{{item.is_read}}">
+    <text class="type">{{item.title}}</text>
+    <text class="content">{{item.content}}</text>
+    <view class="icon" wx:if="{{item.is_read==2}}"></view>
+  </view>
+  
+</view>

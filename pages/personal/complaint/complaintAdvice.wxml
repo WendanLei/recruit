@@ -1,0 +1,37 @@
+
+    <view class="salary-search-container _09a4b66">
+        <view class="form-view _09a4b66">
+            <form bindsubmit="formSubmit" bindreset="formReset" class="_09a4b66">
+                <view class="main _09a4b66">
+                    <view class="form-item name-view _09a4b66">
+                        <view class="section__title _09a4b66">您的手机</view>
+                        <input name="mobile" type="number" placeholder="请输入手机号" placeholder-style="color: #bebebe;font-size: 24rpx;" class="_09a4b66"/>
+                    </view>
+                    <view class="form-item tel-view _09a4b66">
+                        <view class="section__title _09a4b66">所在城市</view>
+                        <picker mode="region" bindchange="bindRegionChange" value="{{city}}" custom-item="{{customItem}}" class="_09a4b66">
+                            <view class="picker _09a4b66">
+                                {{city[0]}}，{{city[1]}}，{{city[2]}}
+                            </view>
+                        </picker>
+                    </view>
+                    <view class="form-item _09a4b66">
+                        <view class="section__title _09a4b66">投诉单位</view>
+                        <input name="company_name" placeholder="请输入您投诉的单位" placeholder-style="color: #bebebe;font-size: 24rpx;" class="_09a4b66"/>
+                    </view>
+                    <view class="other _09a4b66">
+                        <view class="section__title _09a4b66">投诉内容</view>
+                        <textarea class="text-area _09a4b66" name="content" placeholder="请输入您要投诉的内容" placeholder-style="color: #bebebe;font-size: 24rpx;"/>
+                    </view>
+                    <view class="other _09a4b66">
+                        <view class="section__title _09a4b66">其他</view>
+                        <textarea class="text-area _09a4b66" name="other" placeholder="请输入其他内容" placeholder-style="color: #bebebe;font-size: 24rpx;"/>
+                    </view>
+                </view>
+                <view class="btn-area _09a4b66">
+                    <button class="confirm-btn _09a4b66" formType="submit">提交</button>
+                    <view class="service-tel _09a4b66">客服电话：0571-XXXXX</view>
+                </view>
+            </form>
+        </view>
+    </view>

@@ -1,0 +1,25 @@
+
+    <view class="cash-container _fb1a5ca">
+        <view class="conent _fb1a5ca">
+            <view class="title _fb1a5ca">请输入提现金额</view>
+            <view class="form-view _fb1a5ca">
+                <form bindsubmit="formSubmit" class="_fb1a5ca">
+                    <view class="form-item _fb1a5ca">
+                        <view class="section__title _fb1a5ca">
+                            <text class="icon-tx _fb1a5ca">¥</text>
+                        </view>
+                        <input type="digit" name="cash" value="{{cash}}" placeholder="最低可提现金额10元" placeholder-style="color: #bebebe;font-size: 24rpx;" class="_fb1a5ca"/>
+                        <view class="cash-more _fb1a5ca" bindtap="cashAll">全部提现</view>
+                    </view>
+                    <view class="can-count _fb1a5ca">可提现金额¥ {{canCash}}</view>
+                    <view class="btn-area _fb1a5ca">
+                        <button class="confirm-btn _fb1a5ca" formType="submit">下一步</button>
+                    </view>
+            </form>
+            <view class="record _fb1a5ca">
+                <image class="icon _fb1a5ca" src="../../../images/icon_tx.png"/>
+                <text class="text _fb1a5ca" bindtap="goUrl">提现记录</text>
+            </view>
+            </view>
+        </view>
+    </view>

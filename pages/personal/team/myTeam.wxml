@@ -1,0 +1,67 @@
+<wxs module="strSplit" src="../../../components/common/split.wxs" />
+    <view class="my-team-container">
+        <view class="tab-main">
+            <view class="tab-view {{index == 0 ? 'active' : ''}}"  bindtap="tab" data-wpytab-a="0"><text class="tab-icon">我的邀请({{page_info.total_items}})</text></view>
+            <view class="tab-view {{index == 1 ? 'active' : ''}}" bindtap="tab" data-wpytab-a="1"><text class="tab-icon">我的奖励</text></view>
+        </view>
+        <view class="tab-content"  wx:if="{{index==0&&list0.length!==0}}">
+            <block wx:for="{{list0}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                <view class="invite-item">
+                    <view class="avatar-view">
+                        <image class="avatar" src="{{item.avatar}}"/>
+                        <text class="name">{{item.nickname}}</text>
+                    </view>
+                    <view class="time">{{item.update_at}}</view>
+                </view>
+            </block>
+        </view>
+        <view class="tab-content"  wx:if="{{index==1&&myList.length!==0}}">
+           
+              <view  class="tab-h"  >
+                  <view wx:for="{{navList}}" class="tab-item" >{{item}}</view>
+              </view>
+              <view class="myteam">
+          <!-- <view class="m-back _296d8bb"/> -->
+                <view class="myteamContent">
+                    
+                        <view class="myteamTr" wx:for="{{myList}}" wx:for-index="index" wx:for-item="item" wx:key="index"> 
+                          <view class="myteamCol">
+                            <image src="{{item.avater}}"></image>
+                            <text>{{item.username}}</text>
+                          </view>
+                          <view class="myteamCol">
+                            <text>{{item.method}}</text>
+                            <text>{{item.company_name}}</text>
+                          </view>
+                          <view class="myteamCol">
+                            
+                            <text>{{item.cash}}</text>
+                          </view>
+                          <view class="myteamCol">
+                           
+                            <text>{{strSplit.split(item.update_at," ")}}</text>
+                          </view>
+
+                        </view>
+                </view>
+              </view>
+                     
+          
+        </view>
+        
+    <view class="no-data-content" wx:if="{{index==0&&list0.length==0}}">
+        <view class="img-view">
+            <image class="img" src="../../../images/icon_nodata.png"/>
+            <view class="text">暂无数据</view>
+        </view>
+    </view>
+
+        
+    <view class="no-data-content" wx:if="{{index==1&&myList.length==0}}">
+        <view class="img-view">
+            <image class="img" src="../../../images/icon_nodata.png"/>
+            <view class="text">暂无数据</view>
+        </view>
+    </view>
+
+    </view>

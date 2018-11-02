@@ -1,0 +1,10 @@
+
+    <view class="m-login _e37e006">
+        <view class="m-log _e37e006">
+            <image src="{{webInfo.p_icon}}" style="width: 100rpx;height: 100rpx;" class="_e37e006"/>
+            <p class="_e37e006">{{webInfo.p_name}}</p>
+        </view>
+        <view class="_e37e006">网页由该公众号开发，请确认授权一下信息</view>
+        <view class="m-grey _e37e006">●获得你的公开信息(昵称，头像等)</view>
+        <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="m-btn _e37e006"> 登录</button>
+    </view>

@@ -1,0 +1,16 @@
+input._f6e714a,
+textarea._f6e714a {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red._f6e714a {
+  color: #F96969;
+}
+.m-circle._f6e714a {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  color: #5D677D;
+  font-size: 26rpx;
+}

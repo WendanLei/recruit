@@ -1,0 +1,23 @@
+input,
+textarea {
+  font-size: 28rpx;
+  color: #000;
+}
+.m-red {
+  color: #F96969;
+}
+.no-data-content {
+  padding: 100rpx 0;
+}
+.no-data-content .img-view .img {
+  display: block;
+  width: 200rpx;
+  height: 254rpx;
+  margin: 0 auto;
+}
+.no-data-content .img-view .text {
+  margin-top: 100rpx;
+  color: #9a9ca9;
+  text-align: center;
+  font-size: 28rpx;
+}
