@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _wepy = require('./../../../npm/wepy/lib/wepy.js');
 
+var regeneratorRuntime = require('../../../npm/regenerator-runtime/runtime.js');
+
 var _wepy2 = _interopRequireDefault(_wepy);
 
 var _tip = require('./../../../utils/tip.js');
@@ -50,40 +52,76 @@ var salaryAdvance = function (_wepy$page) {
             sess_key: '',
             array: [],
             arrayId: [],
-            select: '请选择',
-            selectId: ''
+          select:false,
+            selectId: '',
+          keyword:"",
+          search:[],
+          userData: {},
         }, _this2.methods = {
             bindPickerChange: function bindPickerChange(e) {
-                this.select = this.array[e.detail.value];
+                this.keyword = this.array[e.detail.value];
                 this.selectId = this.arrayId[e.detail.value];
             },
             formSubmit: function formSubmit(e) {
+                
+              if (this.userData.resume_fill) {
                 if (!e.detail.value.amount) {
-                    _tip2.default.error('请输入金额');
-                    return;
+                  _tip2.default.error('请输入金额');
+                  return;
                 }
                 if (!/^\d+(\.\d{1,2})?$/.test(e.detail.value.amount)) {
-                    _tip2.default.error('只允许两位以内的小数');
-                    return;
+                  _tip2.default.error('只允许两位以内的小数');
+                  return;
                 }
                 if (!e.detail.value.reason) {
-                    _tip2.default.error('请输入申请原因');
-                    return;
+                  _tip2.default.error('请输入申请原因');
+                  return;
                 }
                 if (!this.selectId) {
-                    _tip2.default.error('请选择公司');
-                    return;
+                  _tip2.default.error('请选择公司');
+                  return;
                 }
                 var json = e.detail.value;
                 json['sess_key'] = this.sess_key;
                 json['company_id'] = this.selectId;
                 this.postadvance(json);
+              } else {
+                wx.navigateTo({
+                  url: '/pages/personal/profile/certification?road=cash',
+                })
+              }
+               
             },
             goUrl: function goUrl() {
                 wx.navigateTo({
                     url: '/pages/personal/salary/salaryDetail'
                 });
-            }
+            },
+          inputKeywork: function(e){
+            console.log(e)
+            this.keyword=e.detail.value;
+            this.search = [];
+            this.select=true;
+            this.$apply(); 
+            if(e.detail.value){
+              for (var i = 0; i < e.source.data.array.length; i++) {
+                console.log(e.source.data.keyword, e.source.data.array[i].indexOf(e.source.data.keyword))
+                if (e.source.data.array[i].indexOf(e.source.data.keyword) != -1) {
+                  this.search.push({ name: e.source.data.array[i], id: e.source.data.arrayId[i] });
+                }
+              }
+            }        
+           
+            this.$apply();
+           
+          },
+          searchSelect:function(e){
+            this.keyword = this.search[e.currentTarget.dataset.index].name;
+            this.selectId = this.search[e.currentTarget.dataset.index].id;
+            this.select=false;
+            this.$apply();
+          },
+         
         }, _temp), _possibleConstructorReturn(_this2, _ret);
     }
 
@@ -165,15 +203,66 @@ var salaryAdvance = function (_wepy$page) {
 
             return postadvanceCompany;
         }()
-    }, {
-        key: 'onLoad',
-        value: function onLoad() {
+      }, {
+        key: 'getuserInfo',
+        value: function () {
+          var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sess_key) {
+            var that, res;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    that = this;
+
+                    _tip2.default.loading();
+                    _context.next = 4;
+                    return _api2.default.userInfo({
+                      method: 'POST', query: {
+                        sess_key: sess_key
+                      }
+                    });
+
+                  case 4:
+                    res = _context.sent;
+
+                    if (res.data.error_code == '0') {
+                      that.userData = res.data.bizobj.data;
+                      that.$apply();
+                      
+                    
+                      _tip2.default.loaded();
+                    } else {
+                      _tip2.default.error(res.data.msg);
+                    }
+
+                  case 6:
+                  case 'end':
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          function getuserInfo(_x) {
+            return _ref2.apply(this, arguments);
+          }
+
+          return getuserInfo;
+        }()
+        // 短信验证码
+
+      },   {
+        key: 'onShow',
+        value: function onShow() {
             var _this = this;
             wx.getStorage({
                 key: 'sess_key',
                 success: function success(res) {
                     _this.sess_key = res.data;
-                    _this.postadvanceCompany(res.data);
+                  _this.getuserInfo(res.data);
+                  _this.postadvanceCompany(_this.sess_key);
+                  
+                  
                 }
             });
         }

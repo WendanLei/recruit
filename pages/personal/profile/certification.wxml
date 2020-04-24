@@ -14,7 +14,7 @@
                 </view>
                 <view class="upload-img _d9c954a">
                     <view class="title _d9c954a">请上传身份证正面照</view>
-                    <image class="img _d9c954a" src="../../../images/icon_smrz.png" bindtap="bindChooiceProduct"/>
+                    <image class="img _d9c954a" src="https://recruit.czucw.com/webinfo/lj/icon_smrz.png" bindtap="bindChooiceProduct"/>
                 </view>
                 <view class="btn-area _d9c954a">
                     <button class="confirm-btn _d9c954a" formType="submit">认证并继续</button>

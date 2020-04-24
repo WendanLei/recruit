@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _wepy = require('./../../../npm/wepy/lib/wepy.js');
 
+var regeneratorRuntime = require('../../../npm/regenerator-runtime/runtime.js');
+
 var _wepy2 = _interopRequireDefault(_wepy);
 
 var _tip = require('./../../../utils/tip.js');
@@ -68,7 +70,7 @@ var applicationRecord = function (_wepy$page) {
       // 获取申请记录
     }, _this2.methods = {
       tab: function tab(index) {
-        let _this=this;
+        var _this=this;
         this.page_info = { cur_page: 0, page_size: 8, total_items: 2, total_pages: 1 };
         if (index == 0) {
           this.list0 = [];
@@ -93,6 +95,21 @@ var applicationRecord = function (_wepy$page) {
       detailTap: function detailTap(v) {
         wx.navigateTo({
           url: '/pages/work/workDetails?sess_key=' + this.sess_key + '&id=' + v.re_job_id
+        });
+      },
+      signTap: function detailTap(v) {
+        console.log(v,"///")
+        wx.setStorage({
+          key: 'detailTitle',
+          data: this.activeName,
+        })
+        wx.getStorage({
+          key: 'sess_key',
+          success: function success(res) {
+            wx.navigateTo({
+              url: '/pages/skill/skillDetails?sess_key=' + res.data + '&id=' + v.currentTarget.id
+            });
+          }
         });
       },
       goUrl: function goUrl() {
@@ -129,6 +146,7 @@ var applicationRecord = function (_wepy$page) {
                 res = _context.sent;
 
                 if (res.data.error_code == '0') {
+                  console.log("调接口了", that.page_info.page_size, Number(that.page_info.cur_page) + 1 || 1);
                   if (res.data.bizobj.data == null) {
                     that.list0 = [];
                     that.page_info = { cur_page: 0, page_size: 8, total_items: 2, total_pages: 1 };
@@ -286,13 +304,20 @@ var applicationRecord = function (_wepy$page) {
   },
   {
     key: 'onLoad',
-    value: function onLoad() {
+    value: function onLoad(options) {
       var _this = this;
+      _this.page_info.cur_page=0;
       wx.getStorage({
         key: 'sess_key',
         success: function success(res) {
           _this.sess_key = res.data;
-          _this.getapplyWorkList(res.data);
+          if(options.index){
+            _this.index = options.index;
+            _this.getapplyTrainList(res.data);
+          }else{
+            _this.getapplyWorkList(res.data);
+          }
+         
         }
       });
     }

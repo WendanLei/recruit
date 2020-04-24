@@ -1,19 +1,154 @@
 <wxs module="strSplit" src="../../../components/common/split.wxs" />
     <view class="my-team-container">
         <view class="tab-main">
-            <view class="tab-view {{index == 0 ? 'active' : ''}}"  bindtap="tab" data-wpytab-a="0"><text class="tab-icon">我的邀请({{page_info.total_items}})</text></view>
+            <view class="tab-view {{index == 0 ? 'active' : ''}}"  bindtap="tab" data-wpytab-a="0"><text class="tab-icon">我的邀请({{totalNum}})</text></view>
             <view class="tab-view {{index == 1 ? 'active' : ''}}" bindtap="tab" data-wpytab-a="1"><text class="tab-icon">我的奖励</text></view>
         </view>
-        <view class="tab-content"  wx:if="{{index==0&&list0.length!==0}}">
-            <block wx:for="{{list0}}" wx:for-index="index" wx:for-item="item" wx:key="index">
-                <view class="invite-item">
-                    <view class="avatar-view">
-                        <image class="avatar" src="{{item.avatar}}"/>
-                        <text class="name">{{item.nickname}}</text>
-                    </view>
-                    <view class="time">{{item.update_at}}</view>
+        <view class="tab-content"  wx:if="{{index==0}}">
+            
+            <view class='block' data-index="1" bindtap='getList'>
+               <view class='invite line' >
+                   <image src='/images/invite1.png' ></image>
+                   <text class='text'>新的求职者</text>
+                   <text class='icon' wx:if="{{allData.new_team_count>0}}">{{allData.new_team_count}}</text>
+               </view>
+                <view wx:if="{{activityIndex==1 && isShow}}" class='headerRow'>
+                  <view class='row' >
+                    <view style='width:80rpx;text-align:left'>头像</view>
+                    <view class='col2'>昵称</view>
+                    <view class='col3'>电话</view>
+                    <view class='flex'>公司名称</view>
+                    <!-- <view class='flex'>{{item.update_at}}</view> -->
+                  </view>
+                  <view class='row' wx:for="{{headList}}">
+                    <image src='{{item.avatar}}'></image>
+                    <view class='col2'>{{item.nickname}}</view>
+                    <view class='col3' bindtap='calling' data-tel="{{item.mobile}}">{{item.mobile}}</view>
+                    <view class='flex'>{{item.company_name}}</view>
+                    <!-- <view class='flex'>{{item.update_at}}</view> -->
+                  </view>
+                  <view style='color:#666;font-size:28rpx;text-align:center;line-height:60rpx;' wx:if="{{headList.length==0}}">暂无数据</view>
                 </view>
-            </block>
+            </view>
+            <view class='block' data-index="2" bindtap='getList'>
+               <view class='invite line'>
+                   <image src='/images/invite2.png' ></image>
+                   <text class='text'>离职人员</text>
+                   <text class='icon' wx:if="{{allData.resign_count}}">{{allData.resign_count}}</text>
+               </view>
+                <view  wx:if="{{activityIndex==2 && isShow}}" class='headerRow'>
+                  <view class='row' >
+                    <view style='width:80rpx;text-align:left'>头像</view>
+                    <view class='col2'>昵称</view>
+                    <view class='col3'>电话</view>
+                    <view class='flex'>公司名称</view>
+                    <!-- <view class='flex'>{{item.update_at}}</view> -->
+                  </view>
+                  <view class='row' wx:for="{{headList}}">
+                    <image src='{{item.avatar}}'></image>
+                    <view class='col2'>{{item.nickname}}</view>
+                    <view class='col3' bindtap='calling' data-tel="{{item.mobile}}">{{item.mobile}}</view>
+                    <view class='flex'>{{item.company_name}}</view>
+                    <!-- <view class='flex'>{{item.update_at}}</view> -->
+                  </view>
+                  <view style='color:#666;font-size:28rpx;text-align:center;line-height:80rpx;' wx:if="{{headList.length==0}}">暂无数据</view>
+                </view>
+            </view>
+            <view class='block' data-index="3" bindtap='getList'>
+            <view class='invite line'>
+                  <image src='/images/invite3.png' ></image>
+                   <text class='text'>入职人员(我的下级)</text>
+                   <text class='icon' wx:if="{{allData.recruit_count}}">{{allData.recruit_count}}</text>
+               </view>
+                <view  wx:if="{{activityIndex==3 && isShow}}" class='headerRow' >
+                  <view class='row' >
+                    <view style='width:80rpx;text-align:left'>头像</view>
+                    <view class='col2'>昵称</view>
+                    <view class='col3' >电话</view>
+                    <view class='flex'>公司名称</view>
+                    <!-- <view class='flex'>{{item.update_at}}</view> -->
+                  </view>
+                  <view class='row' wx:for="{{headList}}">
+                    <image src='{{item.avatar}}'></image>
+                    <view class='col2'>{{item.nickname}}</view>
+                    <view class='col3' bindtap='calling' data-tel="{{item.mobile}}">{{item.mobile}}</view>
+                    <view class='flex'>{{item.company_name}}</view>
+                    <!-- <view class='flex'>{{item.update_at}}</view> -->
+                  </view>
+                  <view style='color:#666;font-size:28rpx;text-align:center;line-height:80rpx;' wx:if="{{headList.length==0}}">暂无数据</view>
+                </view>
+            </view>
+              <view class='block' data-index="5" bindtap='getList'>
+            <view class='invite line'>
+                  <image src='/images/invite5.png' ></image>
+                   <text class='text'>入职人员(他人下级)</text>
+                   <text class='icon' wx:if="{{allData.recruit_other_count}}">{{allData.recruit_other_count}}</text>
+               </view>
+                <view  wx:if="{{activityIndex==5 && isShow}}" class='headerRow' >
+                  <view class='row' >
+                    <view style='width:80rpx;text-align:left'>头像</view>
+                    <view class='col2'>昵称</view>
+                    <view class='col3' >电话</view>
+                    <view class='flex'>公司名称</view>
+                    <!-- <view class='flex'>{{item.update_at}}</view> -->
+                  </view>
+                  <view class='row' wx:for="{{headList}}">
+                    <image src='{{item.avatar}}'></image>
+                    <view class='col2'>{{item.nickname}}</view>
+                    <view class='col3' bindtap='calling' data-tel="{{item.mobile}}">{{item.mobile}}</view>
+                    <view class='flex'>{{item.company_name}}</view>
+                    <!-- <view class='flex'>{{item.update_at}}</view> -->
+                  </view>
+                  <view style='color:#666;font-size:28rpx;text-align:center;line-height:80rpx;' wx:if="{{headList.length==0}}">暂无数据</view>
+                </view>
+            </view>
+            <view class='block' style='padding-bottom:0;' data-index="4" bindtap='getList'>
+            <view class='invite ' style='border-bottom:none;'>
+                  <image src='/images/invite4.png' ></image>
+                   <text class='text'>面试未通过</text>
+                   <text class='icon' wx:if="{{allData.uncruit_count>0}}">{{allData.uncruit_count}}</text>
+               </view>
+                <view  wx:if="{{activityIndex==4 && isShow}}" class='headerRow'>
+                  <view class='row' >
+                    <view style='width:80rpx;text-align:left'>头像</view>
+                    <view class='col2'>昵称</view>
+                    <view class='col3'>电话</view>
+                    <view class='flex'>公司名称</view>
+                    <!-- <view class='flex'>{{item.update_at}}</view> -->
+                  </view>
+                  <view class='row' wx:for="{{headList}}">
+                    <image src='{{item.avatar}}'></image>
+                    <view class='col2'>{{item.nickname}}</view>
+                    <view class='col3' bindtap='calling' data-tel="{{item.mobile}}">{{item.mobile}}</view>
+                    <view class='flex'>{{item.company_name}}</view>
+                    <!-- <view class='flex'>{{item.update_at}}</view> -->
+                  </view>
+                  <view style='color:#666;font-size:28rpx;text-align:center;line-height:80rpx;' wx:if="{{headList.length==0}}">暂无数据</view>
+                </view>
+            </view>
+           <view class='title'>我的团队({{totalNum}})</view>
+           <view>
+              <view class='row' >
+                <view style='width:80rpx;text-align:left'>头像</view>
+                <view class='col2'>昵称</view>
+                <view class='col3'>电话</view>
+                 <view class='flex'>公司名称</view>
+                <!-- <view class='flex'>{{item.update_at}}</view> -->
+              </view>
+              <view class='row' wx:for="{{list0}}">
+                <image src='{{item.avatar}}'></image>
+                <view class='col2'>{{item.nickname}}</view>
+                <view class='col3' bindtap='calling' data-tel="{{item.mobile}}">{{item.mobile}}</view>
+                 <view class='flex'>{{item.company_name}}</view>
+                <!-- <view class='flex'>{{item.update_at}}</view> -->
+              </view>
+            </view>
+            <view class="no-data-content" wx:if="{{index==0&&list0.length==0}}">
+                <view class="img-view">
+                    <image class="img" src="../../../images/icon_nodata.png"/>
+                    <view class="text">暂无数据</view>
+                </view>
+            </view>
         </view>
         <view class="tab-content"  wx:if="{{index==1&&myList.length!==0}}">
            
@@ -26,8 +161,8 @@
                     
                         <view class="myteamTr" wx:for="{{myList}}" wx:for-index="index" wx:for-item="item" wx:key="index"> 
                           <view class="myteamCol">
-                            <image src="{{item.avater}}"></image>
-                            <text>{{item.username}}</text>
+                            <image src="{{item.avatar}}"></image>
+                            <text>{{item.nickname}}</text>
                           </view>
                           <view class="myteamCol">
                             <text>{{item.method}}</text>
@@ -49,12 +184,12 @@
           
         </view>
         
-    <view class="no-data-content" wx:if="{{index==0&&list0.length==0}}">
+    <!-- <view class="no-data-content" wx:if="{{index==0&&list0.length==0}}">
         <view class="img-view">
             <image class="img" src="../../../images/icon_nodata.png"/>
             <view class="text">暂无数据</view>
         </view>
-    </view>
+    </view> -->
 
         
     <view class="no-data-content" wx:if="{{index==1&&myList.length==0}}">

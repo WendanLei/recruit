@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _wepy = require('./../../../npm/wepy/lib/wepy.js');
 
+var regeneratorRuntime = require('../../../npm/regenerator-runtime/runtime.js');
+
 var _wepy2 = _interopRequireDefault(_wepy);
 
 var _tip = require('./../../../utils/tip.js');
@@ -54,15 +56,20 @@ var MyTeam = function (_wepy$page) {
             index: 0,
             sess_key: '',
             list0: [],
+          headList:[],
             
             page_info: { cur_page: 0, page_size: 15, total_items: 0, total_pages: 1 },
-          myList: [{ nickname: 'xxxx', avater: 'https://mini3.pinecc.cn/webinfo/lj/kefu1.png', project: '', company: '一道网络科技有限公司', amount: 100, date:'2018.10.15'},
-            { nickname: 'xxxx', avater: 'https://mini3.pinecc.cn/webinfo/lj/kefu1.png', project: '', company: '一道网络科技有限公司', amount: 100, date: '2018.10.15' },
-            { nickname: 'xxxx', avater: 'https://mini3.pinecc.cn/webinfo/lj/kefu1.png', project: '', company: '一道网络科技有限公司', amount: 100, date: '2018.10.15' },
-            { nickname: 'xxxx', avater: 'https://mini3.pinecc.cn/webinfo/lj/kefu1.png', project: '', company: '一道网络科技有限公司', amount: 100, date: '2018.10.15' }
+          myList: [{ nickname: 'xxxx', avater: 'https://recruit.czucw.com/webinfo/lj/kefu1.png', project: '', company: '一道网络科技有限公司', amount: 100, date:'2018.10.15'},
+            { nickname: 'xxxx', avater: 'https://recruit.czucw.com/webinfo/lj/kefu1.png', project: '', company: '一道网络科技有限公司', amount: 100, date: '2018.10.15' },
+            { nickname: 'xxxx', avater: 'https://recruit.czucw.com/webinfo/lj/kefu1.png', project: '', company: '一道网络科技有限公司', amount: 100, date: '2018.10.15' },
+            { nickname: 'xxxx', avater: 'https://recruit.czucw.com/webinfo/lj/kefu1.png', project: '', company: '一道网络科技有限公司', amount: 100, date: '2018.10.15' }
           ],//我的奖励
             //滑动切换
           navList: ["昵称", "项目", "金额", "日期"],
+          totalNum:0,
+          isShow:false,
+          activityIndex:1,
+          allData:{},
           
         }, _this2.$repeat = {}, _this2.$props = { "NoData": {} }, _this2.$events = {}, _this2.components = {
             NoData: _noData2.default
@@ -74,6 +81,8 @@ var MyTeam = function (_wepy$page) {
                     this.list0 = [];
                     this.page_info = { cur_page: 0, page_size: 15, total_items: 0, total_pages: 1 };
                     this.getteamUserList(this.sess_key);
+                  this.getteamUserGroup(this.sess_key);
+                  this.getteamUserGroupList(this.sess_key,1)
                 } else {
                   this.myList = [];
                     this.page_info = { cur_page: 0, page_size: 15, total_items: 0, total_pages: 1 };
@@ -81,6 +90,24 @@ var MyTeam = function (_wepy$page) {
                 }
                 this.index = index;
             },
+            calling:function calling(e){
+              wx.makePhoneCall({
+                phoneNumber: e.currentTarget.dataset.tel //仅为示例，并非真实的电话号码
+              })
+            },
+          getList: function getList(e){
+            let that=this;
+            var index=e.currentTarget.dataset.index
+            this.getteamUserGroupList(this.sess_key,index);
+            if (this.activityIndex== index){
+              this.isShow = !this.isShow;
+            }else{
+              this.isShow=true;
+            }
+            this.getteamUserGroup(that.sess_key);
+            this.activityIndex=index;
+            that.$apply();
+          },
          
         }, _temp), _possibleConstructorReturn(_this2, _ret);
     }
@@ -98,6 +125,7 @@ var MyTeam = function (_wepy$page) {
 
                                 _tip2.default.loading();
                                 _context.next = 4;
+                       
                                 return _api2.default.teamUserList({ method: 'POST', query: {
                                         sess_key: sess_key,
                                         page: Number(that.page_info.cur_page) + 1 || 1,
@@ -110,7 +138,7 @@ var MyTeam = function (_wepy$page) {
                                 if (res.data.error_code == '0') {
                                     if (res.data.bizobj.data == null) {
                                         that.list0 = [];
-                                        that.page_info = { cur_page: 0, page_size: 15, total_items: 0, total_pages: 1 };
+                                      that.page_info = { cur_page: 0, page_size: 15, total_items: 0, total_pages: 1 }; that.totalNum=0;
                                     } else {
                                         if (res.data.bizobj.page_info.cur_page != 1 && res.data.bizobj.page_info.cur_page <= res.data.bizobj.page_info.total_pages) {
                                             that.list0 = that.list0.concat(res.data.bizobj.data);
@@ -118,6 +146,7 @@ var MyTeam = function (_wepy$page) {
                                             that.list0 = res.data.bizobj.data;
                                         }
                                         that.page_info = res.data.bizobj.page_info;
+                                      that.totalNum = res.data.bizobj.page_info.total_items;
                                     }
                                     that.$apply();
                                     _tip2.default.loaded();
@@ -139,9 +168,105 @@ var MyTeam = function (_wepy$page) {
 
             return getteamUserList;
         }()
-        // 获取我的奖励
-
     }, {
+        key: 'getteamUserGroupList',
+        value: function () {
+          var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sess_key,_type) {
+            var that, res;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    that = this;
+
+                    _tip2.default.loading();
+                    _context.next = 4;
+
+                    return _api2.default.teamUserGroupList({
+                      method: 'POST', query: {
+                        sess_key: sess_key,
+                        type:_type,
+                       
+                      }
+                    });
+
+                  case 4:
+                    res = _context.sent;
+
+                    if (res.data.error_code == '0') {
+                     
+                      this.headList = res.data.bizobj.data;
+                 
+                      that.$apply();
+                      _tip2.default.loaded();
+                    } else {
+                      _tip2.default.error(res.data.msg);
+                    }
+
+                  case 6:
+                  case 'end':
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          function getteamUserGroupList(_x,_x1) {
+            return _ref2.apply(this, arguments);
+          }
+
+          return getteamUserGroupList;
+        }()
+      },{
+        key: 'getteamUserGroup',
+        value: function () {
+          var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sess_key) {
+            var that, res;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    that = this;
+
+                    _tip2.default.loading();
+                    _context.next = 4;
+
+                    return _api2.default.teamUserGroup({
+                      method: 'POST', query: {
+                        sess_key: sess_key,
+                     
+                      
+                      }
+                    });
+
+                  case 4:
+                    res = _context.sent;
+
+                    if (res.data.error_code == '0') {
+                      that.allData=res.data.bizobj.data;
+                      that.$apply();
+                      _tip2.default.loaded();
+                    } else {
+                      _tip2.default.error(res.data.msg);
+                    }
+
+                  case 6:
+                  case 'end':
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          function getteamUserGroup(_x) {
+            return _ref2.apply(this, arguments);
+          }
+
+          return getteamUserGroup;
+        }()
+
+
+      }, {
         key: 'getUserTeamPrizeList',
         value: function () {
             var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(sess_key) {
@@ -197,13 +322,24 @@ var MyTeam = function (_wepy$page) {
         }()
     }, {
         key: 'onLoad',
-        value: function onLoad() {
+        value: function onLoad(options) {
+          
             var _this = this;
+            _this.page_info.cur_page = 0;
             wx.getStorage({
                 key: 'sess_key',
                 success: function success(res) {
                     _this.sess_key = res.data;
-                    _this.getteamUserList(res.data);
+                   
+                  if (options.index && options.index==1){
+                      _this.getUserTeamPrizeList(res.data);
+
+                      _this.index=options.index;
+                    }else{
+                      _this.getteamUserList(res.data);
+                      _this.getteamUserGroup(res.data);
+                      _this.getteamUserGroupList(res.data,1)
+                    }
                 }
             });
         }

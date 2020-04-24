@@ -1,13 +1,15 @@
 <view class="resume" wx:for="{{resumeList}}" wx:if="{{resumeList && resumeList.length>0}}">
   <view class="row">
     <view class="col">
-      <image src="https://mini3.pinecc.cn/webinfo/lj/kefu1.png"></image>
+      <image src="{{item.avatar}}"></image>
     </view>
     <view class="col">
      <text>姓名： {{item.username}}</text>
      <text>性别： {{item.gender==1 ? '男' : (item.gender==2) ? '女' : '未知'}}</text>
-     <text>手机: {{item.mobile ? item.mobile : '未知'}}</text>
-     <text>地址： {{item.address ? item.address : '未知'}}</text>
+     <text catchtap='editStatus' data-name='已查看' data-index="{{index}}" wx:if="{{item.status== '未查看'}}">手机:  xxxxxx</text>
+      <text  wx:else catchtap='{{item.mobile ? "calling" : ""}}' data-tel='{{item.mobile}}'>手机: {{item.mobile  ? item.mobile : '未知'}}</text>
+     <text>年龄： {{item.birth ? item.birth : '未知'}}</text>
+     <!-- <text>身份证：{{item.id_num ? item.id_num : '未知'}} </text> -->
     </view>
     <form class="col" report-submit bindsubmit='edit' data-index="{{index}}" data-name='{{item.status}}' data-id="{{item.id}}" >
       
@@ -28,11 +30,10 @@
 </view>
 <view class="resume"  wx:if="{{resumeList.length==0}}" style='padding:0;margin:0;height:100%'>
   <view class='col' style='align-items:center;margin-top:200rpx;color:#333'>
-    <image src="../../../images/Pic_sqjl.png" style='width:216rpx;margin:0 auto' mode="widthFix"></image>
+    <image src="https://recruit.czucw.com/webinfo/lj/Pic_sqjl.png" style='width:216rpx;margin:0 auto' mode="widthFix"></image>
     <text>暂无投递简历</text>
   </view>
-  <image></image>
- 
+  
 </view>
 <view class="block" bindtap='close' wx:if="{{isShow}}">
   <view class="status" >

@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _wepy = require('./../../../npm/wepy/lib/wepy.js');
 
+var regeneratorRuntime = require('../../../npm/regenerator-runtime/runtime.js');
+
 var _wepy2 = _interopRequireDefault(_wepy);
 
 var _tip = require('./../../../utils/tip.js');
@@ -53,7 +55,7 @@ var resume = function (_wepy$page) {
       activeIndex:null,
       activeName:null,
       resumeList:[],
-      page_info: { cur_page: 0, page_size: 8, total_items: 2, total_pages: 1 }
+      page_info: { cur_page: 0, page_size: 15, total_items: 2, total_pages: 1 }
 
 
     }, _this2.$repeat = {}, _this2.$props = { "NoData": {} }, _this2.$events = {}, _this2.components = {
@@ -62,10 +64,16 @@ var resume = function (_wepy$page) {
       
     }, _this2.methods = {
       editStatus: function (e) {
-       let _this=this;
-       let type=null;
-       let statusName=e.currentTarget.dataset.name;
-      _this.activeStatus[_this.activeIndex] = statusName;
+       var _this=this;
+       var type=null;
+       var statusName=e.currentTarget.dataset.name;
+        console.log(e.currentTarget.dataset.index, e.currentTarget.dataset.index!=null)
+        if (e.currentTarget.dataset.index!=null) {
+          _this.activeIndex = e.currentTarget.dataset.index;
+          _this.$apply();
+        }
+        console.log(_this.activeIndex,_this.resumeList[0].id);
+        _this.activeStatus[_this.activeIndex] = statusName;
       _this.activeName = statusName;
         switch (statusName){
           case "已查看": 
@@ -90,6 +98,7 @@ var resume = function (_wepy$page) {
           key: 'sess_key',
           success: function (res) {
             _this.changeResume(res.data, _this.resumeList[_this.activeIndex].id, type);
+            if (_this.page_info.cur_page>0)
             _this.page_info.cur_page = _this.page_info.cur_page-1;
            
           },
@@ -99,8 +108,8 @@ var resume = function (_wepy$page) {
       },
       edit:function(e){
        
-        let _this = this;
-        let statusName = e.currentTarget.dataset.name;
+        var _this = this;
+        var statusName = e.currentTarget.dataset.name;
         _this.activeIndex = e.currentTarget.dataset.index;
         _this.activeName = statusName;
         _this.isShow = true;
@@ -110,7 +119,7 @@ var resume = function (_wepy$page) {
       },
       gotoNote:function(e){
         console.log(e.detail.formId,"qqqqqqqqq");
-        let _this=this;
+        var _this=this;
         wx.setStorage({
           key: 'resumedId',
           data: e.currentTarget.dataset.id,
@@ -122,6 +131,18 @@ var resume = function (_wepy$page) {
       close:function(){
         this.isShow=false;
         this.$apply();
+      },
+      calling: function (e) {
+
+        wx.makePhoneCall({
+          phoneNumber: e.currentTarget.dataset.tel, //此号码并非真实电话号码，仅用于测试
+          success: function () {
+            console.log("拨打电话成功！")
+          },
+          fail: function () {
+            console.log("拨打电话失败！")
+          }
+        })
       },
 
     }, _temp), _possibleConstructorReturn(_this2, _ret);
@@ -205,7 +226,7 @@ var resume = function (_wepy$page) {
                   res = _context.sent;
 
                   if (res.data.error_code == '0') {
-                    that.getresumeList(sess_key);
+                    that.resumeList[that.activeIndex].status = that.activeName;
                   }else{
                     _tip2.default.error(res.data.msg);
                   }
@@ -227,7 +248,7 @@ var resume = function (_wepy$page) {
       }()
     },{
     key: 'onShow',
-    value: function onLoad() {
+      value: function onShow() {
       var _this = this;
       _this.page_info = { cur_page: 0, page_size: 15, total_items: 2, total_pages: 1 };
       wx.getStorage({

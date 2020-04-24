@@ -1,5 +1,14 @@
 @import "../../components/CustomerService/CustomerService.wxss";
 @import "../index/index.wxss";
+page{
+  background: #fff;
+}
+.btn{
+  padding: 0;
+  margin: 0;
+  background: none;
+  
+}
 /* 广告图片 */
 .ad{
   padding: 0 29rpx;
@@ -10,8 +19,9 @@
 
   
 }
+
 .service{
-  bottom: 160rpx;
+  bottom: 130rpx;
 }
 input._f412186,
 textarea._f412186 {
@@ -235,19 +245,21 @@ textarea._f412186 {
   background-color: #CDD7EC ;
   color: #ffffff;
 }
-.m-workDetails .btn-area._f412186 {
-  margin-top: 15rpx;
+.m-index-content._1ebc9fc {
+  padding-bottom: 20rpx;
 }
+
 .m-workDetails .btn-area .confirm-btn._f412186 {
-  width: 440rpx;
-  border: 0;
-  height: 80rpx;
+ 
+  border: none;
+  
   line-height: 80rpx;
-  background: #4C80F5;
-  border-radius: 40rpx;
-  font-size: 28rpx;
-  color: #fff;
-  margin: 40rpx auto;
+  background: none;
+  font-size: 32rpx;
+  color: #ccc;
+  text-align: right;
+ background: #fff;
+  padding: 20rpx 10px 120rpx ;
 }
 .m-workDetails .share-mask._f412186 {
   position: fixed;
@@ -330,7 +342,7 @@ textarea._f412186 {
   margin-top: 300rpx;
 }
 .m-workDetails .circle-photo-mask .save-photo-btn._f412186 {
-  margin-top: 50px;
+  margin-top: 50rpx;
   width: 440rpx;
   border: 0;
   height: 80rpx;
@@ -341,6 +353,6 @@ textarea._f412186 {
   color: #fff;
 }
 .m-workDetails .circle-photo-mask .cancel-view._f412186 {
-  margin-top: 40rpx;
+  margin-top: 20rpx;
   text-align: center;
 }

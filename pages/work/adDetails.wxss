@@ -1,1 +1,4 @@
 /* pages/work/adDetails.wxss */
+image{
+  width: 100%;
+}

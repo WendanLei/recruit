@@ -1,4 +1,10 @@
 @import "../../components/CustomerService/CustomerService.wxss";
+.btn{
+  padding: 0;
+  margin: 0;
+  background: none;
+  
+}
 .service{
   bottom: 160rpx;
 }
@@ -26,7 +32,6 @@ view{
   flex-direction: column;
   align-items: flex-start;
   margin: 0 38rpx;
-  height:100rpx;
   background:rgba(255,255,255,1);
   border:1px solid rgba(0,0,0,1);
   border-radius:10rpx;
@@ -327,6 +332,7 @@ textarea._f5ec5e8 {
   background-color: #4C80F5;
   color: #fff;
   text-align: center;
+  border-radius: 5rpx;
 }
 .m-skillDetails .foot .m-btn.m-active._f5ec5e8 {
   background-color: #CDD7EC ;
@@ -392,19 +398,56 @@ textarea._f5ec5e8 {
   font-size: 32rpx;
   color: #000;
 } */
-
-  .share-mask .share-container .share-content .cancel-content._f412186 {
-    display: flex;
-    align-items: center;
+.m-skillDetails .circle-photo-mask._f412186 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.m-skillDetails .circle-photo-mask .circle-img._f412186 {
+  width: 640rpx;
+  height: 534rpx;
+  margin-left: 55rpx;
+  margin-top: 200rpx;
+}
+.m-skillDetails .circle-photo-mask .circle-img._f412187 {
+  width: 680rpx;
+  height: 560rpx;
+  margin-left: 35rpx;
+  margin-top: 300rpx;
+}
+.m-skillDetails .circle-photo-mask .save-photo-btn._f412186 {
+  margin-top: 50rpx;
+  width: 440rpx;
+  border: 0;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #4C80F5;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  color: #fff;
+}
+.m-skillDetails .circle-photo-mask .cancel-view._f412186 {
+  margin-top: 20rpx;
   text-align: center;
-  height: 190rpx;
+}
+
+.share-mask .share-container .share-content .cancel-content._f412186 {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height: 130rpx;
   font-size: 32rpx;
   color: #000;
-  margin-top: 50rpx;
+
 }
 .share-mask .share-container .share-content .cancel-content._f412186 button{
-  line-height: 90rpx;
-  font-size: 28rpx;
+  line-height: 98rpx;
+  font-size: 32rpx;
 }
 
 .share-mask .share-container .share-content .cancel-content._f412186 ._f412186{
@@ -415,6 +458,7 @@ textarea._f5ec5e8 {
   display: flex;
   flex-direction: column;
   line-height: 120rpx;
+  padding-bottom: 100rpx;
 }
 .share-mask .share-container .share-content._f412186  .checkbox view{
   display: flex;
@@ -429,8 +473,34 @@ textarea._f5ec5e8 {
   text-align: left;
   padding:0 10rpx;
 }
+.share-mask .share-container .share-content._f412186  .checkbox .img{
+  width: 80rpx;
+  margin-right: 20rpx;
+}
 .cancel-content._f412186  button{
   background: #4E82F6;
-  padding: 0rpx 70rpx;
-  color: #fff;
+ width: 100%;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ 
+ line-height: 98rpx;
+color: #fff;
+border-radius: 0;
+}
+.close{
+ width: 100%;
+ font-size: 40rpx;
+ line-height: 40rpx;
+ text-align: center;
+ padding:60rpx 0;
+ position: relative;
+}
+
+.close image{
+  width: 30rpx;
+  position: absolute;
+  right: 0rpx;
+  top: 60rpx;
+ 
 }

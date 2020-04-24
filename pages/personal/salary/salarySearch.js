@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _wepy = require('./../../../npm/wepy/lib/wepy.js');
 
+var regeneratorRuntime = require('../../../npm/regenerator-runtime/runtime.js');
+
 var _wepy2 = _interopRequireDefault(_wepy);
 
 var _tip = require('./../../../utils/tip.js');
@@ -95,7 +97,7 @@ var salarySearch = function (_wepy$page) {
             }
         }, _temp), _possibleConstructorReturn(_this2, _ret);
     }
-
+ 
     _createClass(salarySearch, [{
         key: 'getsalaryList',
         value: function () {

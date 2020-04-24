@@ -8,8 +8,8 @@
                     <view class="money _be2a7ff">{{purseInfo.available_balance}}</view>
                 </view>
             </view>
-            <view class='putForward' bindtap="goUrl" data-wpygourl-a="cash">
-                <image src='https://mini3.pinecc.cn/webinfo/lj/tixian.png'></image>
+            <view class='putForward' bindtap="goUrl" >
+                <image src='https://recruit.czucw.com/webinfo/lj/tixian.png'></image>
             </view>
             <view class='Commission'>
               <view class='commissionLeft commiss'>
@@ -26,10 +26,8 @@
               </view>
             </view>
         </view>
-        <view class="cash-record-content _be2a7ff">
-           
-        </view>
-         <scroll-view scroll-y="true" id="bg" bindscroll="scroll" scroll-top="0" >
+      
+         <view scroll-y="{{false}}" id="bg" bindscroll="scroll" scroll-top="0" >
           <scroll-view scroll-x="true" class="tab-header"  >
               <view wx:for="{{tabList}}" wx:for-index="idx" class="tab-navItem {{currentTab==idx?'active':''}}"  data-current="{{idx}}" bindtap="swichNav" data-title="{{navListTitle[idx]}}">{{item}}</view>
           </scroll-view>
@@ -37,19 +35,20 @@
               <swiper-item wx:for="{{navListTitle}}" wx:for-item="list">
                   
                   <scroll-view scroll-y="{{true}}" class="scoll-h"  bindscroll="scroll"   data-status="{{list}}" lower-threshold='50px' wx:for="{{navListTitle}}" wx:for-item="list" bindscrolltolower="bindDownLoad">
-                  <view class="m-skillIndex _296d8bb">
+                  <view class="m-skillIndex _296d8bb" >
               <!-- <view class="m-back _296d8bb"/> -->
                     <view class="m-skill-box _296d8bb">
                         <view  class="tab-h"  >
                             <view wx:for="{{navList}}" class="tab-item" >{{item}}</view>
                         </view>
                         <view class="myteam">
+                       
                     <!-- <view class="m-back _296d8bb"/> -->
-                          <view class="myteamContent">
-                            <view class="myteamTr" wx:for="{{myList}}" wx:for-index="index" wx:for-item="item" wx:key="index"> 
+                          <view class="myteamContent" >
+                            <view class="myteamTr" wx:for="{{myList}}" wx:for-index="index" wx:for-item="item" > 
                               <view class="myteamCol">
-                                <image src="{{item.avater}}"></image>
-                                <text>{{item.username}}</text>
+                                <image src="{{item.avatar}}"></image>
+                                <text>{{item.nickname}}</text>
                               </view>
                               <view class="myteamCol">
                                 <text>{{item.method}}</text>
@@ -59,7 +58,7 @@
                                 <text>{{item.cash}}</text>
                               </view>
                               <view class="myteamCol">
-                                <text>{{item.ration}}</text>
+                                <text>{{item.ratio}}</text>
                                 <text>{{strSplit.split(item.update_at,' ')}}</text>
                               </view>
 
@@ -78,8 +77,8 @@
                   </scroll-view>
               </swiper-item>
           </swiper>
-        </scroll-view>
-         <block>
+        </view>
+         <!-- <block>
           <include src="../../../components/CustomerService/CustomerService.wxml" />
-        </block>
+        </block> -->
     </view>

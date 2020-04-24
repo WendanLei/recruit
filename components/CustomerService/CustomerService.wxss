@@ -3,17 +3,19 @@
   position: fixed;
   bottom: 100rpx;
   right: 30rpx;
+ 
+}
+.service image{
   width: 107rpx;
   height: 107rpx;
 }
-.service image{
-  width: 100%;
-  height: 100%;
-}
-.service contact-button{
+.service button{
   position: absolute;
   width: 100%;
   height: 100%;
+  padding: 0;
+  margin: 0;
+  background: #fff;
   opacity: 0;
   left: 0;
   top: 0;

@@ -1,21 +1,14 @@
 
   <view class="code-container _3358192">
         <view class="background _3358192">
-            <image style='width:100%;height:100%' class="img _3358192" src="../../../images/ori_person.png"/>
+            <image style='width:100%;height:100%' class="img _3358192" src="https://recruit.czucw.com/webinfo/lj/ori_person.png"/>
         </view>
         <view class="content _3358192">
-           <!--  <view class="text-view _3358192">
-                <view class="text _3358192">邀请好友一起赚取现金红包</view>
-                <view class="text _3358192">多邀多赚</view>
-            </view>  -->
+          
             <view class="img-view _3358193" bindtap="loadImg">
-                <!-- <image class="img _3358192" src="{{pic}}" bindload="imgLoad" binderror="imgError"  wx:if="{{pic.length >0}}" style="width: 640rpx;height: 600rpx;margin-top:20rpx;"/> -->
                 <image style='width:100%;height:100%' class="img _3358192" src="{{pic}}" bindload="imgLoad" binderror="imgError"  wx:if="{{pic.length >0}}" />
             </view>
         </view>
     </view> 
 
 
-<!-- <view class="m-circle _f6e714a" bindtap="loadImg">
-    <image class="img _3358192" src="{{pic}}" bindload="imgLoad" binderror="imgError"  wx:if="{{pic.length >0}}" style="width: 750rpx;height: auto;"/>
-</view> -->

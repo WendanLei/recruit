@@ -159,3 +159,15 @@ textarea {
     overflow: hidden;
     text-overflow:ellipsis;
 }
+.invite{display: flex;width: 100%;align-items: center;font-size: 28rpx;color:#333;border-bottom: 1px solid #f3f3f3;}
+.invite image{width:70rpx;height:70rpx;border-radius: 10rpx;margin:20rpx 40rpx 20rpx 0;}
+.invite .text{display: inline-block;flex:1;text-align: left;}
+.invite .icon{background: #ff5555;color:#fff;font-size:24rpx;width:40rpx;height:40rpx;line-height: 40rpx;text-align: center;display: inline-block;margin-left:30rpx;border-radius: 50%;}
+.block {padding:0rpx 40rpx;}
+.title{background: #e6e6e6;color: #666;text-align: center;font-size: 30rpx;line-height: 90rpx;}
+.row{display: flex;align-items: center;border-bottom: 1px solid #f3f3f3;padding:20rpx 40rpx;font-size: 24rpx;}
+.row .flex{flex:1;text-align: right;}
+.row .col2{width:20%;text-align: center;}
+.row .col3{width:30%;text-align: center;}
+.row image{width:80rpx;height: 80rpx;border-radius: 50%;margin-right:20rpx;}
+.headerRow{max-height:300rpx;overflow-y:auto;}

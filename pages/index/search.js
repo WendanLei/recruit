@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _wepy = require('./../../npm/wepy/lib/wepy.js');
 
+var regeneratorRuntime = require('../../npm/regenerator-runtime/runtime.js');
+
 var _wepy2 = _interopRequireDefault(_wepy);
 
 var _api = require('./../../api/api.js');
@@ -64,25 +66,24 @@ var Search = function (_wepy$page) {
         }, _this2.methods = {
             inputBlur: function inputBlur(e) {
                 var _this = this;
-                wx.getStorage({
-                    key: 'sess_key',
-                    success: function success(res) {
-                        _this.getWorkList(res.data, e.detail.value);
-                    }
-                });
+              
+              _this.getWorkList(wx.getStorageSync("sess_key"), e.detail.value);
             },
             cancelTap: function cancelTap() {
                 wx.navigateBack();
             },
             detailTap: function detailTap(v) {
-                wx.getStorage({
-                    key: 'sess_key',
-                    success: function success(res) {
-                        wx.navigateTo({
-                            url: '/pages/work/workDetails?sess_key=' + res.data + '&id=' + v.id
-                        });
-                    }
-                });
+                // wx.getStorage({
+                //     key: 'sess_key',
+                //     success: function success(res) {
+                //         wx.navigateTo({
+                //             url: '/pages/work/workDetails?sess_key=' + res.data + '&id=' + v.id
+                //         });
+                //     }
+                // });
+              wx.navigateTo({
+                url: '/pages/work/workDetails?sess_key=' + wx.getStorageSync("sess_key") + '&id=' + v.id
+              });
             }
         }, _temp), _possibleConstructorReturn(_this2, _ret);
     }

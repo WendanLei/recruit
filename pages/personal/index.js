@@ -24,6 +24,8 @@ var _createClass = function () {
 
 var _wepy = require('./../../npm/wepy/lib/wepy.js');
 
+var regeneratorRuntime = require('../../npm/regenerator-runtime/runtime.js');
+
 var _wepy2 = _interopRequireDefault(_wepy);
 
 var _tip = require('./../../utils/tip.js');
@@ -31,9 +33,7 @@ var _tip = require('./../../utils/tip.js');
 var _tip2 = _interopRequireDefault(_tip);
 
 
-var _formSubmit = require('./../../utils/formsubmit.js');
 
-var formSubmit2 = _interopRequireDefault(_formSubmit);
 
 var _api = require('./../../api/api.js');
 
@@ -124,53 +124,105 @@ var personalIndex = function (_wepy$page) {
       userData: {},
       avatar: '',
       is_show: null,
+      fixed: true,
+      startY:null,
+      formId:[],
+      moveTop:0,
+      winHeight:null,
+      URL:null,
+      flag:false,
+      listHeight:0,
       // 获取个人资料
     }, _this2.methods = {
-      formSubmit4 :function(e){
-        console.log(e,"/6666");
+     
+      formSubmit: function (e) {
+        var that=this;
+        var url=that.URL;
+        if (that.formId.length < 10) that.formId = that.formId.concat(e.detail.formId); 
+        if (that.formId.length == 10) {
+          wx.getStorage({
+            key: 'sess_key',
+            success: function (res) {
+              that.getUserFormId(res.data, that.data.formId.toString());
+            },
+          })
+          if(that.flag==true){
+            if (url == 'personal/salary/salarySearch' && this.userData.resume_fill == 0) {
+              wx.navigateTo({
+                url: '/pages/personal/profile/certification?road=search'
+              });
+              return;
+            }
+            wx.navigateTo({
+              url: '/pages/' + url
+            });
+          }
+        }
       },
-      formSubmit3: function (e) {
-        console.log(e);
-      },
-      formSubmit2: function (e) {
-        console.log(e);
-      },
-      formSubmit1: function (e) {
-        console.log(e);
+      goLogin: function goLogin() {
+        wx.setStorage({
+          key: 'gourl',
+          data: '/pages/personal/index',
+        })
+        wx.navigateTo({
+          url: '/pages/personal/login?page=index',
+        })
       },
       goUrl: function goUrl(url) {
-        console.log(url,"//////");
-        
-        console.log(this.userData.resume_fill)
-        if (url == 'personal/salary/salarySearch' && this.userData.resume_fill == 0) {
-          wx.navigateTo({
-            url: '/pages/personal/profile/certification?road=search'
-          });
+        var that=this;
+        if(that.sess_key){
+          that.flag = true;
+          that.URL = url;
+          console.log(url);
+          that.$apply();
           return;
         }
-        wx.navigateTo({
-          url: '/pages/' + url
-        });
-      }
-      // is_save: function is_save(save) {
-      //   console.log(this.userData.bind_fill)
-      //     console.log(_this.userData.bind_fill)
-      //       if(_this.userData.bind_fill == 1) {
-      //   _this.is_show = true
-      // } else {
-      //   _this.is_show = false
-      // }
-      // }
+        wx.showToast({
+          title: '请先登录授权才能才看信息！',
+          icon:'none'
+        })
+      
+      },
+      contact:function(){
+        var that=this;
+        that.flag=false;
+        that.$apply();
+      },
+      start:function(e){
+        var that=this;
+        //  高度自适应
+        that.startX = e.changedTouches[0].pageX;
+        that.startY = e.changedTouches[0].pageY;
+        that.$apply();
+      },
+      move:function (e) {
+        var that=this;
+      
+        if (e.changedTouches[0].pageY <= that.startY) {
+          that.fixed = false;
+          var ih = that.listHeight / 95;
+          if (ih <5 ){
+           
+            console.log(ih)
+            that.moveTop =-95*parseFloat(5-ih).toFixed(1);
+          }
+         
+        }
+        else{
+          that.moveTop = 0;
+        } 
+      },
+    
+     
     }, _temp), _possibleConstructorReturn(_this2, _ret);
   }
 
   _createClass(personalIndex, [{
     key: 'getuserInfo',
     value: function () {
-      var _ref2 = _asyncToGenerator( /*#__PURE__*/ regeneratorRuntime.mark(function _callee(sess_key) {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sess_key) {
         var that, res;
         return regeneratorRuntime.wrap(function _callee$(_context) {
-
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -179,29 +231,20 @@ var personalIndex = function (_wepy$page) {
                 _tip2.default.loading();
                 _context.next = 4;
                 return _api2.default.userInfo({
-                  method: 'POST',
-                  query: {
+                  method: 'POST', query: {
                     sess_key: sess_key
                   }
                 });
+
               case 4:
                 res = _context.sent;
-
+                console.log(res)
                 if (res.data.error_code == '0') {
+                  console.log(res)
                   that.userData = res.data.bizobj.data;
-                  console.log(that.userData.bind_fill)
-                  if (that.userData.bind_fill == 1) {
-                    that.is_show = true
-                  } else {
-                    that.is_show = false
-                  }
-                  console.log(that.userdata)
                   that.$apply();
                   _tip2.default.loaded();
-                } else {
-                  _tip2.default.error(res.data.msg);
-                }
-
+                } 
               case 6:
               case 'end':
                 return _context.stop();
@@ -216,14 +259,98 @@ var personalIndex = function (_wepy$page) {
 
       return getuserInfo;
     }()
+    // 短信验证码
+
   }, {
-    key: 'onLoad',
-    value: function onLoad() {
+      key: 'getUserFormId',
+      value: function getUserFormId () {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sess_key, forum) {
+          var that, res;
+          return regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+
+              switch (_context.prev = _context.next) {
+                case 0:
+                  that = this;
+
+                  _tip2.default.loading();
+                  _context.next = 4;
+                  return _api2.default.getUserFormId({
+                    method: 'POST', query: {
+                      sess_key: sess_key,
+                      forum: forum,
+
+                    }
+                  });
+
+                case 4:
+                  res = _context.sent;
+                  
+                  if (res.data.error_code == 0) {
+
+                    that.$apply();
+
+                  } else {
+                    _tip2.default.error(res.data.error_msg);
+                  }
+
+                case 6:
+                case 'end':
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        }));
+
+        function getUserFormId(_x, _x2) {
+          return _ref2.apply(this, arguments);
+        }
+
+        return getUserFormId;
+      }()
+    }, {
+    key: 'onShow',
+    value: function onShow() {
       var _this = this;
-      wx.getStorage({
-        key: 'sess_key',
-        success: function success(res) {
-          _this.getuserInfo(res.data);
+      wx.hideShareMenu();
+      _this.formId = [];
+      if(wx.getStorageSync('sess_key')){
+        wx.getStorage({
+          key: 'sess_key',
+          success: function success(res) {
+            console.log(res)
+            _this.sess_key = res.data;
+            _this.getuserInfo(res.data);
+          }
+        });
+      }else{
+        wx.navigateTo({
+          url: '/pages/personal/login?page=index',
+        })
+      }
+      _this.is_show = wx.getStorageSync("compId");
+     
+      
+     console.log( wx.getSystemInfoSync().windowHeight,"??");
+      var query = wx.createSelectorQuery();
+      var wheight = wx.getSystemInfoSync().windowHeight
+      query.select('.avatar-content').boundingClientRect();
+      query.selectViewport().scrollOffset();
+      query.exec((res) => {
+        // var listHeight = wheight-res[0].height; // 获取list高度
+        console.log(wheight, res[0].height);
+        _this.listHeight=Number(wheight) - Number(res[0].height)
+        _this.$apply();
+       
+      }) ;
+      _this.$apply();
+    
+      wx.getSystemInfo({
+        success: function (res) {
+          var clientHeight = res.windowHeight;
+          var calc = clientHeight;
+          _this.winHeight = calc;
+          _this.winWidth = res.screenWidth;
         }
       });
       wx.getStorage({
@@ -233,12 +360,7 @@ var personalIndex = function (_wepy$page) {
         }
       });
       _onfire2.default.on('loadUserInfo', function () {
-        wx.getStorage({
-          key: 'sess_key',
-          success: function success(res) {
-            _this.getuserInfo(res.data);
-          }
-        });
+        _this.getuserInfo(_this.sess_key);
       });
       _onfire2.default.on('toSearch', function () {
         wx.navigateTo({
@@ -246,7 +368,7 @@ var personalIndex = function (_wepy$page) {
         });
       });
     }
-  }]);
+    }]);
 
   return personalIndex;
 }(_wepy2.default.page);

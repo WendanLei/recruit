@@ -183,7 +183,7 @@
           // await, by contrast, there is no opportunity to examine the
           // rejection reason outside the generator function, so the
           // only option is to throw it from the await expression, and
-          // let the generator function handle the exception.
+          // var the generator function handle the exception.
           result.value = unwrapped;
           resolve(result);
         }, reject);
@@ -349,7 +349,7 @@
 
           if (context.method === "throw") {
             // If maybeInvokeDelegate(context) changed context.method from
-            // "return" to "throw", let that override the TypeError below.
+            // "return" to "throw", var that override the TypeError below.
             return ContinueSentinel;
           }
         }
@@ -389,7 +389,7 @@
       context.next = delegate.nextLoc;
 
       // If context.method was "throw" but the delegate handled the
-      // exception, let the outer generator proceed normally. If
+      // exception, var the outer generator proceed normally. If
       // context.method was "next", forget context.arg since it has been
       // "consumed" by the delegate iterator. If context.method was
       // "return", allow the original .return call to continue in the
@@ -581,7 +581,7 @@
 
         if (caught) {
           // If the dispatched exception was caught by a catch block,
-          // then let that catch block handle the exception normally.
+          // then var that catch block handle the exception normally.
           context.method = "next";
           context.arg = undefined;
         }

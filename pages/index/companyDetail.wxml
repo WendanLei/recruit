@@ -11,15 +11,17 @@
   <view class="m-index-content _1ebc9fc" >
     <block class="_1ebc9fc" wx:for="{{all_list}}" wx:for-index="index" wx:for-item="item" wx:key="index">
       
-      <view class="m-info-box _13e525e _1ebc9fc" bindtap="detailTap" data-com-index="{{index}}" data-wpytap-a="{{item}}" data-id="{{item.id}}">
+      <view class="m-info-box _13e525e _1ebc9fc" bindtap="detail" data-com-index="{{index}}" data-wpytap-a="{{item}}" id="{{item.id}}">
           <image class="m-info-img _13e525e" src="{{item.pic_env}}"/>
           <view class="m-info-right _13e525e">
               <view class="m-info-tr1 _13e525e">
                   <view class="m-info-td1 _13e525e">
                       <text class="m-name m-over _dccd2f4">{{item.name}} </text>
                       <view class="m-tabs _13e525e">
-                          <view class="m-tab m-over _13e525e"  wx:if="{{item.reward}}">入职奖{{item.reward}}</view>
-                          <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_up}}">推荐奖{{item.reward_up}}</view>
+                         <!-- <view wx:if="{{item.reward_way &&  userData.is_head==1}}" class="m-tab m-over _13e525e blue" >{{item.reward_way}}</view> -->
+                         <view wx:if="{{item.reward_title &&  userData.is_head==1}}" class="m-tab m-over _13e525e blue">{{item.reward_title}}</view>
+                          <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_title_apply}}">{{item.reward_title_apply}}</view>
+                          
                       </view>
                   </view>
               </view>
@@ -63,9 +65,10 @@
       </view>
     </view> 
   </view>
-  <view class="footer">
-    <view class="{{activeName=='薪资查询' ? 'activeItem' : '' }}" bindtap='tab' data-index="0" data-name='薪资查询'>薪资查询</view>
-    <view class="{{activeName=='我的' ? 'activeItem' : '' }}" bindtap='tab' data-index="1" data-name='我的'>我的</view>
-  </view>
+  <!-- <view class="footer">
+      <view class="{{activeIndex==2 ? 'activeItem' : '' }}" bindtap='tab' data-index="2" data-name='首页'>首页</view>
+    <view class="{{activeIndex== 0 ? 'activeItem' : '' }}" bindtap='tab' data-index="0" data-name='薪资查询'>薪资查询</view>
+    <view class="{{activeIndex==1 ? 'activeItem' : '' }}" bindtap='tab' data-index="1" data-name='我的'>我的</view>
+  </view> -->
 </view>
   

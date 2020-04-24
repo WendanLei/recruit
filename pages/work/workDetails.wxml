@@ -22,7 +22,7 @@
                 <view class="m-right _f412186">更新时间：{{all_data.uodate_at}}</view>
             </view>
         </view>
-        <view class="ad" bindtap='adDetail' >
+        <view class="ad" bindtap='adDetail' data-title="图文" >
            <image src="{{adUrl.url}}" style="height:123rpx;width: 693rpx;"/>
         </view>
         <view class="m-reward _f412186" style="padding-bottom: 20rpx;">
@@ -219,8 +219,8 @@
                                   <view class="m-info-td1 _13e525e">
                                       <text class="m-name m-over _dccd2f4">{{item.name}} </text>
                                       <view class="m-tabs _13e525e">
-                                          <view class="m-tab m-over _13e525e"  wx:if="{{item.reward}}">入职奖{{item.reward}}</view>
-                                          <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_up}}">推荐奖{{item.reward_up}}</view>
+                                          <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_title &&  userData.is_head==1}}">{{item.reward_title}}</view>
+                                          <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_title_apply}}">{{item.reward_title_apply}}</view>
                                       </view>
                                   </view>
                               </view>
@@ -261,9 +261,9 @@
               </view>
             </view>
        
-            <view class="btn-area _f412186">
-                <button class="confirm-btn _f412186" bindtap="goUrl">查看更多岗位</button>
-            </view>
+            <!-- <view class="btn-area _f412186">
+                <button class="confirm-btn _f412186" bindtap="goUrl">查看更多岗位...</button>
+            </view> -->
         </scroll-view>
          <view class="m-back _f412186" >
           <view class="m-reward _f412186" style="padding-bottom: 20rpx;">
@@ -279,8 +279,8 @@
                                 <view class="m-info-td1 _13e525e">
                                     <text class="m-name m-over _dccd2f4">{{item.name}} </text>
                                     <view class="m-tabs _13e525e">
-                                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward}}">入职奖{{item.reward}}</view>
-                                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_up}}">推荐奖{{item.reward_up}}</view>
+                                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_title  &&  userData.is_head==1}}">{{item.reward_title}}</view>
+                                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_title_apply}}">{{item.reward_title_apply}}</view>
                                     </view>
                                 </view>
                             </view>
@@ -322,37 +322,57 @@
           </view>
         </view>
 
-       
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
         <foot class="m-foot _f412186">
             <view class="m-link m-btn-share _f412186" bindtap="showShare">
                 <view class="_f412186">
-                    <image src="../../images/icon_fx.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
+                    <image src="https://recruit.czucw.com/webinfo/lj/icon_fx.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
                 </view>
                 <p class="_f412186">分享</p>
             </view>
-            <view class="m-link m-no-lick _f412186" bindtap="collectTap"  wx:if="{{!all_data.has_collect}}">
-                <view class="m-select-img _f412186">
-                    <image src="../../images/icon_sc.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
+            <view class="m-link m-btn-share _f412186" bindtap="collectTap"  wx:if="{{!all_data.has_collect}}">
+                <view class=" _f412186">
+                    <image src="https://recruit.czucw.com/webinfo/lj/icon_sc.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
                 </view>
-                <p class="m-select-p _f412186">收藏</p>
+                <p style="color:#5B5B5B">收藏</p>
             </view>
-            <view class="m-link _f412186" bindtap="collectTap" wx:if="{{all_data.has_collect}}" data-wpycollecttap-a="un">
-                <view class="m-select-img _f412186">
-                    <image src="../../images/icon_sc_onselected.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
+            <view class="m-link m-btn-share _f412186 " bindtap="collectTap" wx:if="{{all_data.has_collect}}" data-wpycollecttap-a="un">
+                <view class=" _f412186">
+                    <image src="https://recruit.czucw.com/webinfo/lj/icon_sc_onselected.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
                 </view>
-                <p class="m-select-p _f412186">已收藏</p>
+                <p class=" _f412186">已收藏</p>
             </view>
-            <view class="m-btn _f412186" bindtap="applyTap" wx:if="{{!all_data.has_apply}}">立即申请</view>
-            <view class="m-btn m-active _f412186" wx:if="{{all_data.has_apply}}">已申请</view>
+            <view class="m-btn m-active _f412186" wx:if="{{all_data.has_apply==1}}">已申请</view>
+            <view class="m-btn _f412186" bindtap="applyTap" wx:else>立即申请</view>
+            
         </foot>
+     </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
         <!-- 分享方式 -->
         <view class="share-mask _f412186" catchtouchmove="true" wx:if="{{isShowShare}}">
             <view class="share-container _f412186">
                 <view class="share-content _f412186">
                     <view class="share-way first _f412186" bindtap="getPhoto">
                         <view class="left _f412186">
-                            <image src="../../images/icon_circle.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
-                            <text class="_f412186">生成朋友圈分享图</text>
+                            <image src="https://recruit.czucw.com/webinfo/lj/icon_circle.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
+                            <text class="_f412186">生成岗位二维码</text>
                         </view>
                         <image src="../../images/icon_arrow_right.png" style="width:20rpx;height:40rpx;" class="_f412186"/>
                     </view>
@@ -360,7 +380,7 @@
                     <button class="share-btn _f412186" open-type="share">
                         <view class="share-way second _f412186">
                             <view class="left _f412186">
-                                <image src="../../images/icon_transimt.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
+                                <image src="https://recruit.czucw.com/webinfo/lj/icon_transimt.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
                                 <text class="_f412186">转发给好友或群聊</text>
                             </view>
                             <image src="../../images/icon_arrow_right.png" style="width:20rpx;height:40rpx;" class="_f412186"/>
@@ -380,7 +400,7 @@
                 <icon type="cancel" size="40" color="white" bindtap="hidePhoto" class="_f412186"/>
             </view>
         </view>
-        <block>
+        <!-- <block>
           <include src="../../components/CustomerService/CustomerService.wxml" />
-        </block>
+        </block> -->
     </view>

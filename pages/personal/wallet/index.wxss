@@ -29,10 +29,7 @@ page .wallet-container._be2a7ff {
   font-size: 32rpx; 
   white-space: nowrap;
   overflow: hidden;
-  position: fixed;
-  top: 235px; 
-  left: 0; 
-  z-index: 9;
+  margin-top:20rpx;
 }
 .tab-navItem{
   width: 33%;
@@ -53,10 +50,11 @@ page .wallet-container._be2a7ff {
 }
 #bg .tab-h{
   position: fixed;
-  top: 0;
+  top: 0rpx;
 }
 #bg .myteam{
-  margin-top: 80rpx;  
+  margin-top: 100rpx;  
+  background: #fff;
 }
 #bg .tab-h .tab-item{
   background: #fff;
@@ -64,8 +62,8 @@ page .wallet-container._be2a7ff {
   color: #4C80F5;
 }
 .tabContent{
-  margin-top: 25px;
-  padding: 0 20rpx;
+  
+  padding: 20rpx 20rpx 0;
 }
 .tab-navItem.active{ color: #fff; content: "";background: #4C80F5;border-left: none;border-right: none;}
 
@@ -85,8 +83,12 @@ textarea._be2a7ff {
   height: 100%;
 }
 .wallet-container .top-fixed._be2a7ff {
-  position: fixed;
+  position: relative;
+  top: 0;
+  left: 0;
   width: 100%;
+  background: #4C80F5;
+  height: 225px;
 }
 .wallet-container .avatar-content._be2a7ff {
   height: 150px;
@@ -248,6 +250,6 @@ textarea._be2a7ff {
   margin-right: 10rpx;
 }
 .wallet-container .cash-record-content._be2a7ff {
-  padding-top: 250px;
-  background: #fff;
+  margin-top: 250px;
+  background: none;
 }

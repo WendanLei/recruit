@@ -1,0 +1,50 @@
+<view class='tab'>
+  <view class='{{activityIndex==1 ? "active tabItem" : "tabItem"}}' bindtap='tab' data-index="1">工头合作申请</view>
+  <view class='{{activityIndex==2 ? "active tabItem" : "tabItem"}}' bindtap='tab' data-index="2">企业合作申请</view>
+</view>
+<form bindsubmit='applyLeader' report-submit="{{true}}" wx:if="{{activityIndex==1}}">
+<view class="block">
+  <view class='title'>申请成为工头</view>
+  <view class='int'>
+    <text>姓名：</text>
+    <input type='text' placeholder='请输入您的姓名' name="username"></input>
+  </view>
+   <view class='int'>
+    <text>手机：</text>
+    <input type='text' placeholder='请输入您的手机号码' name="tel"></input>
+  </view>
+   <view class='int'>
+    <text>地址：</text>
+    <input type='text' placeholder='请输入您的地址' name="address"></input>
+  </view>
+   <view class='int textarea'>
+    <textarea value='个人说明：' disabled></textarea>
+    <textarea type="text" name="info"></textarea>
+  </view>
+  <button class="btn" form-type='submit'>提交审核</button>
+</view>
+</form>
+<form bindsubmit='applyJob'  report-submit="{{true}}"  wx:if="{{activityIndex==2}}">
+<view class="block">
+  <view class='title'>申请发布岗位</view>
+  <view class='int'>
+    <text>单位名称：</text>
+    <input type='text' placeholder='请输入您的单位名称' name="comname"></input>
+  </view>
+   <view class='int'>
+    <text>联系方式：</text>
+    <input type='text' placeholder='请输入您的手机号码' name="tel"></input>
+  </view>
+   <view class='int'>
+    <text>联系人：</text>
+    <input type='text' placeholder='请输入您的名字' name="username"></input>
+  </view>
+   <view class='int'>
+     <text>上传执照</text>
+    <image class="upload" src="{{imgUrl}}" bindtap="bindChooiceProduct" mode='widthFix' wx:if="{{imgUrl}}" />
+     <image class="upload" src="https://recruit.czucw.com/webinfo/lj/icon_smrz.png" bindtap="bindChooiceProduct" mode='widthFix' wx:else />
+    <input type='text' name="url" style='position:absolute;bottom:0;opacity:0;' value="{{imgUrl}}"></input>
+  </view>
+  <button class="btn" form-type='submit'>提交审核</button>
+</view>
+</form>

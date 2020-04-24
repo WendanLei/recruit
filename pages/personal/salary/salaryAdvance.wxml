@@ -4,20 +4,25 @@
             <form bindsubmit="formSubmit" bindreset="formReset" class="_9b319e2">
                 <view class="main _9b319e2">
                     <view class="form-item name-view _9b319e2">
-                        <view class="section__title _9b319e2">预支工资</view>
+                        <view class="section__title _9b319e2">预支工资:</view>
                         <input name="amount" type="digit" placeholder="请输入预支工资" placeholder-style="color: #bebebe;font-size: 24rpx;" class="_9b319e2"/>
                     </view>
-                    <view class="form-item name-view _9b319e2">
-                        <view class="section__title _9b319e2">公\t\r\t\r\t\r\t\r\t\r\t\r司</view>
+                    <view class="form-item name-view _9b319e2" style='position:relative'>
+                        <view class="section__title _9b319e2">公\t\r\t\r\t\r\t\r\t\r\t\r司:</view>
+                        <input  type="text" placeholder="请输入公司名称" placeholder-style="color: #bebebe;font-size: 24rpx;" class="_9b319e2"  bindinput='inputKeywork' value='{{keyword}}'/>
                         <picker class="picker-select _9b319e2" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
                             <view class="picker _9b319e2">
-                                {{select}}
+                               ▼
                             </view>
                         </picker>
+                         <view class="search" wx:if="{{search.length>0 && select}}">
+                          <view wx:for="{{search}}" bindtap='searchSelect' data-index="{{index}}">{{item.name}}</view>
+                          </view>
                     </view>
+                   
                     <view class="form-item tel-view _9b319e2">
-                        <view class="section__title _9b319e2">申请理由</view>
-                        <textarea class="text-area _9b319e2" name="reason" placeholder="请输入申请理由" placeholder-style="color: #bebebe;font-size: 24rpx;"/>
+                        <view class="section__title _9b319e2">申请理由:</view>
+                        <textarea class="text-area _9b319e2" name="reason"/>
                     </view>
                 </view>
                 <view class="tip _9b319e2">
@@ -30,7 +35,7 @@
         </view>
         <view class="no-tab-content _9b319e2"  wx:if="{{!isStaff}}">
             <view class="img-view _9b319e2">
-                <image class="img _9b319e2" src="../../../images/pic_gzyz.png"/>
+                <image class="img _9b319e2" src="https://recruit.czucw.com/webinfo/lj/pic_gzyz.png"/>
                 <view class="text _9b319e2">你还不是入职员工，不能预支工资</view>
             </view>
             <view class="btn-view _9b319e2">

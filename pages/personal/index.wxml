@@ -1,107 +1,115 @@
-<view class="personal-container _f3c6ce6">
-  <view class="avatar-content _f3c6ce6">
-    <view class="content _f3c6ce6">
-      <image class="avatar _f3c6ce6" src="{{avatar}}" />
-      <view class="name _f3c6ce6">{{userData.username}}</view>
+
+<view class="personal-container _f3c6ce6" bindtouchstart='start' bindtouchmove='move'>
+  
+   <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true">
+    <button formType="submit" class='btn'>
+    
+  <view class="function-content _f3c6ce6"  style='top:{{moveTop}}px'>
+    <view class="avatar-content _f3c6ce6" >
+      <view class="content _f3c6ce6">
+        <image class="avatar _f3c6ce6" src="{{avatar ? avatar : '/images/invite1.png'}}" />
+        <view class="name _f3c6ce6"  wx:if="{{userData.username}}">{{userData.username}}</view>
+        <view url="/pages/personal/login?page=index" wx:else class="name _f3c6ce6" bindtap="goLogin">登 录</view>
+      </view>
     </view>
-  </view>
-  <view class="function-content _f3c6ce6">
-    <view class="function-one _f3c6ce6">
-      <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/profile/index">
-        <image class="icon _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/icon_grzl.png" />
+    <view style='overflow-y:auto;height:{{listHeight}}'>
+    <!-- <view class="function-one _f3c6ce6"> -->
+      <view class="function _f3c6ce6"   bindtap="goUrl" data-wpygourl-a="personal/profile/index">
+        <image class="icon _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/icon_grzl.png" />
         <view class="name _f3c6ce6">个人资料</view>
       </view>
-      <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/wallet/index">
-        <image class="icon _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/icon_grqb.png" />
+      <view class="function _f3c6ce6"  bindtap="goUrl" data-wpygourl-a="personal/wallet/index">
+        <image class="icon _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/icon_grqb.png" />
         <view class="name _f3c6ce6">我的钱包</view>
       </view>
-      <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/team/myTeam">
-        <image class="icon _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/icon_wdtd.png" />
+      <view class="function _f3c6ce6"  bindtap="goUrl" data-wpygourl-a="personal/team/myTeam" wx:if="{{userData.is_head==1}}">
+        <image class="icon _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/icon_wdtd.png" />
         <view class="name _f3c6ce6">我的团队</view>
       </view>
-    </view>
-    <view class="function-one _f3c6ce6">
-      <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/application/applicationRecord">
-        <image class="icon _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/icon_sqjl.png" />
+    <!-- </view> -->
+    <!-- <view class="function-one _f3c6ce6"> -->
+      <view class="function _f3c6ce6"  bindtap="goUrl" data-wpygourl-a="personal/application/applicationRecord">
+        <image class="icon _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/icon_sqjl.png" />
         <view class="name _f3c6ce6">申请记录</view>
       </view>
-      <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/information/information">
+      <view class="function _f3c6ce6"  bindtap="goUrl" data-wpygourl-a="personal/information/information">
         <view class="icon _f3c6ce6">
-           <image src="https://mini3.pinecc.cn/webinfo/lj/xiaoxitongzhi.png" />
+           <image src="https://recruit.czucw.com/webinfo/lj/xiaoxitongzhi.png" />
            <text class="num" wx:if="{{userData.msg_num}}">{{userData.msg_num}}</text>
         </view>
         <view class='name _f3c6ce6'>消息通知</view>
       </view>
-      <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="skill/index">
-        <image class="icon _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/icon_jnts.png" />
+      <view class="function _f3c6ce6"  bindtap="goUrl" data-wpygourl-a="skill/index">
+        <image class="icon _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/icon_jnts.png" />
         <view class="name _f3c6ce6">技能提升</view>
       </view>
       
-    </view>
-    <view class="function-one _f3c6ce6">
+    <!-- </view> -->
+    <!-- <view class="function-one _f3c6ce6"> -->
       <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/salary/salarySearch">
-        <image class="icon icon-xz _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/icon_xzcx.png" />
+        <image class="icon icon-xz _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/icon_xzcx.png" />
         <view class="name _f3c6ce6">薪资查询</view>
       </view>
-      <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/salary/salaryAdvance">
-        <image class="icon _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/icon_gzyz.png" />
+      <!-- <view class="function _f3c6ce6"  bindtap="goUrl" data-wpygourl-a="personal/salary/salaryAdvance">
+        <image class="icon _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/icon_gzyz.png" />
         <view class="name _f3c6ce6">工资预支</view>
-      </view>
-      <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/complaint/complaintAdvice">
-        <image class="icon _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/icon_tsjy.png" />
+      </view> -->
+      <view class="function _f3c6ce6"  bindtap="goUrl" data-wpygourl-a="personal/complaint/complaintAdvice">
+        <image class="icon _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/icon_tsjy.png" />
         <view class="name _f3c6ce6">投诉建议</view>
       </view>
-    </view>
-    <view class="function-one _f3c6ce6">
-      <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/code/code">
-        <image class="icon _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/icon_ewm.png" />
+    <!-- </view> -->
+    <!-- <view class="function-one _f3c6ce6"> -->
+      <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/code/code" wx:if="{{userData.is_head==1}}">
+        <image class="icon _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/icon_ewm.png" />
         <view class="name _f3c6ce6">我的二维码</view>
       </view>
       <view class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/need/need">
-        <image class="icon _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/icon_pxxq.png" />
+        <image class="icon _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/icon_pxxq.png" />
         <view class="name _f3c6ce6">培训需求</view>
       </view>
-       <view class="function _f3c6ce6" >
-        <button class="contact-button" open-type="contact" session-from="weapp">
-          <image class="icon _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/kefu1.png" />
+       <view class="function _f3c6ce6" bindtap='contact'>
+        <button class="contact-button"  open-type="contact" session-from="weapp">
+          <image class="icon _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/kefu1.png" />
            <view class="name _f3c6ce6">联系客服</view>
         </button>
       </view>
-    </view>
-    <view class="function-one _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/resume/resume">
-  
-        <form bindsubmit="formSubmit4" report-submit="true">
-                          <button formType="submit" class='btn'>
-      <form bindsubmit="formSubmit3" report-submit="true">
-                          <button formType="submit" class='btn'>
-      <form bindsubmit="formSubmit2" report-submit="true">
-                          <button formType="submit" class='btn'>
-      <form bindsubmit="formSubmit1" report-submit="true">
-                          <button formType="submit" class='btn'>
-      <view  class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/resume/resume" wx:if="{{is_show}}">
+    <!-- </view> -->
+   
+    <view class="function-one _f3c6ce6"  data-wpygourl-a="personal/resume/resume" wx:if="{{is_show}}" >
+      <view  class="function _f3c6ce6"  bindtap="goUrl" data-wpygourl-a="personal/resume/resume"  >
           <view class="icon _f3c6ce6">
-            <image  src="https://mini3.pinecc.cn/webinfo/lj/jianli.png" />
+            <image  src="https://recruit.czucw.com/webinfo/lj/jianli.png" />
             <text class="num"  wx:if="{{userData.resume_num}}">{{userData.resume_num}}</text>
           </view>
           <view class='name _f3c6ce6'>查看简历</view>
-        
       </view>
-    </button>
-    </form>
-     </button>
-    </form>
-     </button>
-    </form>
-     </button>
-    </form>
-      <view wx:if="{{is_show}}" class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/upload/upload">
-        <image class="icon _f3c6ce6" src="https://mini3.pinecc.cn/webinfo/lj/persondangan.png" />
-        <view class='name _f3c6ce6'>人事档案</view>
-      </view>
-     
-      <view class="function _f3c6ce6" >
-      
-      </view>
+    <view  style='border-right:none'  class="function _f3c6ce6" bindtap="goUrl" data-wpygourl-a="personal/upload/upload">
+      <image class="icon _f3c6ce6" src="https://recruit.czucw.com/webinfo/lj/persondangan.png" />
+      <view class='name _f3c6ce6'>人事档案</view>
     </view>
+    </view>
+    </view>
+    
   </view>
+  </button>
+  </form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
 </view>

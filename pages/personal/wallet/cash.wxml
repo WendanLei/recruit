@@ -17,7 +17,7 @@
                     </view>
             </form>
             <view class="record _fb1a5ca">
-                <image class="icon _fb1a5ca" src="../../../images/icon_tx.png"/>
+                <image class="icon _fb1a5ca" src="https://recruit.czucw.com/webinfo/lj/icon_tx.png"/>
                 <text class="text _fb1a5ca" bindtap="goUrl">提现记录</text>
             </view>
             </view>

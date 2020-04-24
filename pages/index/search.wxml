@@ -18,7 +18,7 @@
                     <text class="m-name m-over _13e525e">{{item.name}} </text>
                     <view class="m-tabs _13e525e">
                         <view class="m-tab m-over _13e525e"  wx:if="{{item.reward}}">入职奖{{item.reward}}</view>
-                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_up}}">伯乐奖{{item.reward_up}}</view>
+                        <view class="m-tab m-over _13e525e"  wx:if="{{item.reward_up}}">推荐奖{{item.reward_up}}</view>
                     </view>
                 </view>
                 <view class="m-info-td2 _13e525e">

@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _wepy = require('./../../../npm/wepy/lib/wepy.js');
 
+var regeneratorRuntime = require('../../../npm/regenerator-runtime/runtime.js');
+
 var _wepy2 = _interopRequireDefault(_wepy);
 
 var _tip = require('./../../../utils/tip.js');
@@ -65,7 +67,7 @@ var resumeNote = function (_wepy$page) {
         this.$apply();
       },
       complete: function(){
-        let _this=this;
+        var _this=this;
         wx.getStorage({
           key: 'resumedId',
           success: function (_res) {

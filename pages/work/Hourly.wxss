@@ -1,6 +1,7 @@
 @import "./../../components/common/button.wxss";
 @import "./../../components/common/info.wxss";
 @import "./../../components/common/navigator.wxss";
+@import "./../../components/common/noData.wxss";
 input._8b39b77,
 textarea._8b39b77 {
   font-size: 28rpx;

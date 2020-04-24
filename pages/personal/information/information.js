@@ -8,6 +8,7 @@ Object.defineProperty(exports, "__esModule", {
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _wepy = require('./../../../npm/wepy/lib/wepy.js');
+var regeneratorRuntime = require('../../../npm/regenerator-runtime/runtime.js');
 
 var _wepy2 = _interopRequireDefault(_wepy);
 
@@ -58,20 +59,42 @@ var noticeList = function (_wepy$page) {
      
     }, _this2.methods = {
       readNotice: function (e){
-        let that=this;
+        var that=this;
         console.log(e)
         if (e.currentTarget.dataset.read==2)
         wx.getStorage({
           key: 'sess_key',
           success: function(res) {
-            that.noticeRead(res.data, e.currentTarget.dataset.id);
-            wx.showToast({
-              title: '已成功查看',
-              icon: 'success',
-              duration: 2000
-            })
-          },
+                that.activeIndex = e.currentTarget.dataset.index;
+                setTimeout(function(){
+                  that.noticeRead(res.data, e.currentTarget.dataset.id);
+                },200)
+            }
         })
+        if (e.currentTarget.dataset.type == 5 || e.currentTarget.dataset.type == 6 ||
+        e.currentTarget.dataset.type == 7 || e.currentTarget.dataset.type == 8 || 
+          e.currentTarget.dataset.type == 9 || e.currentTarget.dataset.type == 14){
+          wx.navigateTo({
+            url: '../wallet/index',
+          })
+        }
+        else if ( e.currentTarget.dataset.type == 2 || e.currentTarget.dataset.type == 3 || e.currentTarget.dataset.type == 10 || e.currentTarget.dataset.type == 11){
+          wx.navigateTo({
+            url: '../team/myTeam?index=0',
+          })
+        } else if (e.currentTarget.dataset.type == 4) {
+          wx.navigateTo({
+            url: '../application/applicationRecord',
+          })
+        } else if (e.currentTarget.dataset.type == 1 ) {
+          wx.navigateTo({
+            url: '../resume/resume',
+          })
+        } else if (e.currentTarget.dataset.type == 12 || e.currentTarget.dataset.type == 13 ) {
+          wx.navigateTo({
+            url: '../application/applicationRecord?index=2',
+          })
+        }
         that.$apply();
       }
      
@@ -88,8 +111,6 @@ var noticeList = function (_wepy$page) {
             switch (_context.prev = _context.next) {
               case 0:
                 that = this;
-
-                _tip2.default.loading();
                 _context.next = 4;
                 return _api2.default.noticeList({
                   method: 'POST', query: {
@@ -103,6 +124,8 @@ var noticeList = function (_wepy$page) {
                 res = _context.sent;
 
                 if (res.data.error_code == '0') {
+                  console.log(that.page_info,"页数");
+                  console.log(res.data.bizobj.data)
                   if (res.data.bizobj.data == null) {
                     that.noticeList = [];
                     that.page_info = { cur_page: 0, page_size: 8, total_items: 2, total_pages: 1 };
@@ -115,7 +138,7 @@ var noticeList = function (_wepy$page) {
                     that.page_info = res.data.bizobj.page_info;
                   }
                   that.$apply();
-                  _tip2.default.loaded();
+                 
                 } else {
                   _tip2.default.error(res.data.msg);
                 }
@@ -146,8 +169,6 @@ var noticeList = function (_wepy$page) {
               switch (_context.prev = _context.next) {
                 case 0:
                   that = this;
-
-                  _tip2.default.loading();
                   _context.next = 4;
                   return _api2.default.noticeRead({
                     method: 'POST', query: {
@@ -155,17 +176,14 @@ var noticeList = function (_wepy$page) {
                       id: _id
                     }
                   });
-
                 case 4:
                   res = _context.sent;
-
                   if (res.data.error_code == '0') {
-                    that.page_info.cur_page = that.page_info.cur_page-1;
-                    that.getnoticeList(sess_key);
+                    that.noticeList[that.activeIndex].is_read=1;
+                    that.$apply();
                   } else {
                     _tip2.default.error(res.data.msg);
                   }
-
                 case 6:
                 case 'end':
                   return _context.stop();
@@ -190,6 +208,7 @@ var noticeList = function (_wepy$page) {
         key: 'sess_key',
         success: function success(res) {
           _this.sess_key = res.data;
+          _this.page_info.cur_page= 0;
           _this.getnoticeList(res.data);
         }
       });

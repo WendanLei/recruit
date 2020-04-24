@@ -42,7 +42,7 @@
       <view class='content' >
         <picker  bindchange="bindCasPickerChange" range="{{array}}" value='{{index}}' >
         <input class='selectInp'  placeholder-class='{{place}}' placeholder='请选择公司' name='arraylist' disabled='false' value='{{array.length == 1?array[0]:comp_name}}'/> 
-        <input  name="comp_id" style='display:none' value='{{comp_id}}'></input>
+    
         </picker>
       </view>
     </view>

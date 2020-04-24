@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _wepy = require('./../../npm/wepy/lib/wepy.js');
 
+var regeneratorRuntime = require('../../npm/regenerator-runtime/runtime.js');
+
 var _wepy2 = _interopRequireDefault(_wepy);
 
 var _tip = require('./../../utils/tip.js');
@@ -76,33 +78,42 @@ var SkillDetails = function (_wepy$page) {
             content1: "<text style='color: red;'>新1</text>",
           balanceAmount:null,
           payType:null,
+          circlePhoto:null,
+          userData: {},
+          formId:[],
         }, _this.$repeat = {}, _this.$props = { "htmlParser": { "xmlns:v-bind": "", "v-bind:parserName.once": "name1", "v-bind:parserContent.sync": "content1" } }, _this.$events = {}, _this.components = {
             htmlParser: _htmlParser2.default
         }, _this.methods = {
             applyTrain: function applyTrain() {
                 var that = this;
-              if (!that.all_data.has_apply && that.all_data.fee<=0) {
-                    wx.getStorage({
-                        key: 'sess_key',
-                        success: function success(res) {
-                            that.applyTrain(res.data, that.all_data.id);
-                        }
-                    });
-                }else{
-                   
-                that.wxpyId = that.all_data.id;
-                that.isShowShare1 = true;
-                    wx.getStorage({
-                      key: 'sess_key',
-                      success: function (res) {
-                        that.getpurseInfo(res.data);
-                      },
-                    })
-                }
-                
+              if (that.userData.mobile && that.userData.username){
+                if (!that.all_data.has_apply && that.all_data.fee <= 0) {
+                  wx.getStorage({
+                    key: 'sess_key',
+                    success: function success(res) {
+                      that.applyTrain(res.data, that.all_data.id);
+                    }
+                  });
+                } else {
+                  that.wxpyId = that.all_data.id;
+                  that.isShowShare1 = true;
+                  that.payType = null;
+                  wx.getStorage({
+                    key: 'sess_key',
+                    success: function (res) {
+                      that.getpurseInfo(res.data);
+                    },
+                  })
+                } 
+              }else{
+                wx.navigateTo({
+                  url: '/pages/personal/profile/index',
+                })
+              }
+             
             },
           wxpay: function () {
-            let _this = this;
+            var _this = this;
             if (_this.all_data.id && _this.payType){
               if (_this.balanceAmount.available_balance < _this.all_data.fee && _this.payType == 2) {
                 wx.showToast({
@@ -128,6 +139,7 @@ var SkillDetails = function (_wepy$page) {
           },
           showShare: function showShare() {
             this.isShowShare = true;
+            
           },
           hideShare: function hideShare() {
             this.isShowShare = false;
@@ -144,16 +156,82 @@ var SkillDetails = function (_wepy$page) {
             this.isShowShare1 = false;
           },
           checkboxChange: function (e) {
-            console.log(e);
-            let _this = this;
+            var _this = this;
             if (e.detail.value[0]){
               if (e.detail.value.length > 1) _this.payType = 3;
               else _this.payType = e.detail.value[0];
             } else _this.payType =0
            
             _this.$apply();
-            console.log(_this.payType, ".../.........");
-          }
+           
+          },
+          getPhoto: function getPhoto() {
+           
+            var that=this;
+            that.isShowShare = false;
+            wx.getStorage({
+              key: 'sess_key',
+              success: function(res) {
+                that.getCirclePhoto(res.data, that.all_data.id);
+              },
+            })
+            
+          },
+          saveImg: function saveImg() {
+            var that = this;
+            wx.downloadFile({
+              url: that.circlePhoto,
+              success: function success(res) {
+                var path = res.tempFilePath;
+                wx.showToast({
+                  title: '正在保存...',
+                  icon: 'loading',
+                  mask: true,
+                  duration: 10000
+                });
+                wx.saveImageToPhotosAlbum({
+                  filePath: path,
+                  success: function success(res) {
+                    wx.hideToast();
+                    wx.showToast({
+                      title: '保存成功',
+                      icon: 'success',
+                      duration: 1000
+                    });
+                    that.isShowPhoto = false;
+                    that.$apply();
+                  },
+                  fail: function fail(res) {
+                  
+                    _tip2.default.error('保存失败');
+                  },
+                  complete: function complete(res) {
+
+                  }
+                });
+              }, fail: function fail(res) {
+                _tip2.default.error('下载失败');
+              }
+            });
+          },
+          adDetail: function (e) {
+            wx.navigateTo({
+              url: '/pages/work/adDetails?title=' + e.currentTarget.dataset.title,
+            })
+          },
+          formSubmit: function (e) {
+            var that = this;
+            if (that.formId.length < 10) that.formId = that.formId.concat(e.detail.formId);
+            if (that.formId.length == 10) {
+              wx.getStorage({
+                key: 'sess_key',
+                success: function (res) {
+                  that.getUserFormId(res.data, that.formId.toString());
+                  that.formId = [];
+                },
+              })
+            }
+          },
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -215,6 +293,53 @@ var SkillDetails = function (_wepy$page) {
             return getSkillDetails;
         }()
     }, {
+        key: 'getUserFormId',
+        value: function () {
+          var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sess_key, forum) {
+            var that, res;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    that = this;
+
+                    _tip2.default.loading();
+                    _context.next = 4;
+                    return _api2.default.getUserFormId({
+                      method: 'POST', query: {
+                        sess_key: sess_key,
+                        forum: forum,
+
+                      }
+                    });
+
+                  case 4:
+                    res = _context.sent;
+
+                    if (res.data.error_code == 0) {
+
+                      that.$apply();
+
+                    } else {
+                      _tip2.default.error(res.data.error_msg);
+                    }
+
+                  case 6:
+                  case 'end':
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          function getUserFormId(_x, _x2) {
+            return _ref2.apply(this, arguments);
+          }
+
+          return getUserFormId;
+        }()
+      }, {
         key: 'getCirclePhoto',
         value: function () {
           var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sess_key, id) {
@@ -227,7 +352,7 @@ var SkillDetails = function (_wepy$page) {
 
                     _tip2.default.loading();
                     _context.next = 4;
-                    return _api2.default.workDetailSharePic({
+                    return _api2.default.trainDetailSharePic({
                       method: 'POST', query: {
                         sess_key: sess_key,
                         id: id
@@ -286,7 +411,9 @@ var SkillDetails = function (_wepy$page) {
                                 res = _context2.sent;
 
                                 if (res.data.error_code == 0) {
+                                  
                                     that.all_data.has_apply = 1;
+                                  console.log(that.all_data.has_apply, "//////");
                                     that.$apply();
                                     wx.showToast({
                                         title: '报名成功',
@@ -338,8 +465,47 @@ var SkillDetails = function (_wepy$page) {
                     if (res.data.error_code == 0) {
                       that.balanceAmount = res.data.bizobj.data;
                       that.$apply();
-                      console.log(that.balanceAmount,"////")
+                    }
+                  case 6:
+                  case 'end':
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+          function getpurseInfo(_x) {
+            return _ref2.apply(this, arguments);
+          }
+          return getpurseInfo;
+        }()
+      }, {
+        key: 'getuserInfo',
+        value: function () {
+          var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sess_key) {
+            var that, res;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    that = this;
 
+                    _tip2.default.loading();
+                    _context.next = 4;
+                    return _api2.default.userInfo({
+                      method: 'POST', query: {
+                        sess_key: sess_key
+                      }
+                    });
+
+                  case 4:
+                    res = _context.sent;
+
+                    if (res.data.error_code == '0') {
+                      that.userData = res.data.bizobj.data;
+                      that.$apply();
+                      _tip2.default.loaded();
+                    } else {
+                      _tip2.default.error(res.data.msg);
                     }
 
                   case 6:
@@ -350,14 +516,15 @@ var SkillDetails = function (_wepy$page) {
             }, _callee, this);
           }));
 
-          function getpurseInfo(_x) {
+          function getuserInfo(_x) {
             return _ref2.apply(this, arguments);
           }
 
-
-          return getpurseInfo;
+          return getuserInfo;
         }()
-      }, {
+        // 短信验证码
+
+      },  {
         key: 'miniPay',
         value: function () {
           var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(sess_key, _id, _type) {
@@ -367,20 +534,18 @@ var SkillDetails = function (_wepy$page) {
                 switch (_context.prev = _context.next) {
                   case 0:
                     that = this;
-                    console.log(_context);
                     _context.next = 4;
                     return _api2.default.miniPay({
                       method: 'GET', query: {
                         sess_key: sess_key,
                         id: _id,
                         paytype: _type
-
                       }
                     });
                   case 4:
                     _results = _context.sent;
-                    console.log(_results);
-                    if (_results.statusCode == 200 && _results.data) {
+                    if (_results.statusCode == 200 && _results.data && ((that.balanceAmount.available_balance < that.all_data.fee && _type == 3) || _type == 1)) 
+                     {
                       wx.requestPayment({
                         'timeStamp': _results.data.timeStamp + "",
                         'nonceStr': _results.data.nonceStr + "",
@@ -388,11 +553,9 @@ var SkillDetails = function (_wepy$page) {
                         'signType': 'MD5',
                         'paySign': _results.data.paySign + "",
                         'success': function (res) {
-                          console.log(res);
-                          that.isShowShare1 = false;
+                          that.all_data.has_apply=1;
                         },
                         'fail': function (res) {
-                          console.log(res);
                           // _tip2.default.error(res.error_msg);
                           wx.showToast({
                             title: '付款失败',
@@ -401,14 +564,22 @@ var SkillDetails = function (_wepy$page) {
                           })
                         }
                       })
+                      that.isShowShare1 = false;
                       that.$apply();
                     } else {
-                      if (_results.statusCode == 4) {
-                        wx.navigateTo({
-                          url: '/pages/personal/login',
-                        })
-                      }
-
+                        if (_results.data.msg == 'success') {
+                         
+                          that.$apply();
+                          _tip2.default.success("余额付款成功");
+                        } 
+                        else _tip2.default.error(_results.data.msg);
+                        that.isShowShare1 = false;
+                        that.$apply();
+                        if (_results.statusCode == 4) {
+                          wx.navigateTo({
+                            url: '/pages/personal/login',
+                          })
+                        }
                     }
                   case 6:
                   case 'end':
@@ -422,12 +593,24 @@ var SkillDetails = function (_wepy$page) {
           }
           return miniPay;
         }()
-      },   {
+      }, {
+        key:'onShow',
+        value: function onShow() {
+ 
+          var _this = this;
+          wx.getStorage({
+            key: 'sess_key',
+            success: function (res) {
+              _this.getuserInfo(res.data)
+            },
+          })
+        }
+      },  {
         key: 'onLoad',
         value: function onLoad(options) {
             // WxParse.wxParse('htmlParserName' , "html", "<p style='font-size: 32rpx; padding: 30rpx 0; text-align: center;'>没有任何内容</p>", this,0);
-            let _this=this;
-            
+            var _this=this;
+        
           wx.getStorage({
             key: 'detailTitle',
             success: function success(res) {
@@ -435,6 +618,7 @@ var SkillDetails = function (_wepy$page) {
               wx.setNavigationBarTitle({
                 title: res.data+'详情',
               })
+             
               _this.getSkillDetails(options.sess_key, options.id);
             }
           });

@@ -1,0 +1,25 @@
+/* pages/index/cooperation.wxss */
+page {background: #eee;}
+.tab{display: flex;align-items: center;line-height: 80rpx;font-size: 28rpx;margin:20rpx;}
+.tabItem{width: 50%;text-align: center;background: #fff;}
+.active{background: #4C80F5;color:#fff;}
+.block {font-size: 28rpx;padding-bottom: 30rpx;background: #fff;}
+.title{color: #5D677D;padding:20rpx 40rpx;}
+.int {display: flex;align-items: center;line-height:80rpx;font-size: 28rpx;border-bottom: 1px solid #f3f3f3;padding:20rpx 40rpx;position: relative;}
+.int text {width:150rpx;text-align: left;}
+.int input {height: 100%;flex: 1;}
+.textarea{align-items: stretch;border-bottom: none;}
+.int textarea{border:1px solid #f3f3f3;border-radius: 10rpx;height: 150rpx;}
+.int textarea:first-child {width: 200rpx;height: 100rpx;border:none;}
+.upload{width: 250rpx;height: 100rpx;display: inline-block;border:1px solid #f3f3f3;border-radius: 10rpx;text-align: center;line-height: 100rpx;}
+.btn {
+    width:440rpx;
+    border:0;
+    height:80rpx;
+    line-height:80rpx;
+    background:#4C80F5;
+    border-radius:40rpx;
+    font-size:28rpx;
+    color:#fff;
+    margin:20rpx auto;
+}

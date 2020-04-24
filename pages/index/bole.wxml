@@ -2,7 +2,7 @@
     <view class="m-bole _c70a400">
         <view class="m-back _c70a400"/>
         <view class="m-top _c70a400">
-            <image class="m-image _c70a400" style="width: 442rpx;height: 342rpx;" src="../../images/pic_blph.png"/>
+            <image class="m-image _c70a400" style="width: 442rpx;height: 342rpx;" src="https://recruit.czucw.com/webinfo/lj/pic_blph.png"/>
             <p class="m-introduce _c70a400">推荐好友入职可领取会员费哦</p>
             <button class="m-btn _c70a400" bindtap="boleTap">立即推荐</button>
         </view>
@@ -15,7 +15,7 @@
     <view class="m-one-bole _36cb3d2 _c70a400">
         <view class="m-left _36cb3d2">
             <p class="m-num _36cb3d2"  wx:if="{{index > 0}}">{{index+1}}</p>
-            <image style="width: 54rpx;height: 54rpx;" src="../../images/icon_jp.png"  wx:if="{{index == 0}}" class="_36cb3d2"/>
+            <image style="width: 54rpx;height: 54rpx;" src="https://recruit.czucw.com/webinfo/lj/icon_jp.png"  wx:if="{{index == 0}}" class="_36cb3d2"/>
             <image style="width: 60rpx;height: 60rpx;margin: 0 20rpx" src="{{item.avatar}}" class="_36cb3d2"/>
             <p class="_36cb3d2">{{item.username}}</p>
         </view>

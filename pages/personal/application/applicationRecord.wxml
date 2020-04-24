@@ -55,7 +55,7 @@
         </view>
         <view class="no-tab-content _2d12a6e"  wx:if="{{index==0&&list0.length==0}}">
             <view class="img-view _2d12a6e">
-                <image class="img _2d12a6e" src="../../../images/no-application.png"/>
+                <image class="img _2d12a6e" src="https://recruit.czucw.com/webinfo/lj/no-application.png"/>
                 <view class="text _2d12a6e">这里没有申请过哦</view>
             </view>
             <view class="btn-view _2d12a6e">
@@ -67,7 +67,7 @@
         <view class="tab-content _2d12a6e"  wx:if="{{index==1&&list1.length!==0}}">
             <block class="_2d12a6e" wx:for="{{list1}}" wx:for-index="index" wx:for-item="item" wx:key="index">
                 
-              <view class="m-info-box _13e525e _2d12a6e" bindtap="$Info$tap" data-com-index="{{index}}" data-wpytap-a="{{item}}">
+              <view class="m-info-box _13e525e _2d12a6e" bindtap="$Info$tap" data-com-index="{{index}}" data-wpytap-a="{{item}}" >
                   <image class="m-info-img _13e525e" src="{{item.pic_env}}"/>
                   <view class="m-info-right _13e525e">
                       <view class="m-info-tr1 _13e525e">
@@ -115,7 +115,7 @@
         </view>
         <view class="no-tab-content _2d12a6e" wx:if="{{index==1&&list1.length==0}}">
             <view class="img-view _2d12a6e">
-                <image class="img _2d12a6e" src="../../../images/no-collection.png"/>
+                <image class="img _2d12a6e" src="https://recruit.czucw.com/webinfo/lj/no-collection.png"/>
                 <view class="text _2d12a6e">这里没有收藏过哦</view>
             </view>
             <view class="btn-view _2d12a6e">
@@ -123,13 +123,13 @@
             </view>
         </view>
 
-        <view class="tab-content _2d12a6e"  wx:if="{{index==2&&list2.length!==0}}">
+        <view class="tab-content _2d12a6e"  wx:if="{{index==2&&skill_list.length!==0}}">
             <view class="m-skillIndex _296d8bb">
               <view class="m-skill-box _296d8bb">
                   
                   <block class="_296d8bb" wx:for="{{skill_list}}" wx:for-index="index" wx:for-item="item" wx:key="index" >
-                      <view class="m-info-box _13e525e _296d8bb" bindtap="$info$tap" data-com-index="{{index}}" data-wpytap-a="{{item}}">
-                          <image class="m-info-img _13e525e" src="{{item.pic_env}}"/>
+                      <view class="m-info-box _13e525e _296d8bb" bindtap="signTap" data-com-index="{{index}}" data-wpytap-a="{{item}}" id="{{item.id}}">
+                          <image class="m-info-img _13e525e" src="{{item.pic_env}}" style='width: 298rpx;'/>
                           <view class="m-info-right _13e525e">
                               <view class="m-info-tr1 _13e525e">
                                   <view class="m-info-td1 _13e525e">
@@ -138,7 +138,7 @@
                               </view>
                               <view class="m-info-tr2 _13e525e">
                                   <view class="m-info-td1 _13e525e">
-                                      <p class="m-name _13e525e" wx:if="{{item.train_time}}">{{activeName}}地点：{{item.address}}</p>
+                                      <p class="m-name _13e525e" wx:if="{{item.train_time}}">{{activeName}}地点：{{item.address? item.address :'暂无'}}</p>
                                   </view>
                               </view>
                               <view class="m-info-tr3 _13e525e">
@@ -174,9 +174,9 @@
               </view>
             </view>
         </view>
-        <view class="no-tab-content _2d12a6e" wx:if="{{index==2&&list2.length==0}}">
+        <view class="no-tab-content _2d12a6e" wx:if="{{index==2&&skill_list.length==0}}">
             <view class="img-view _2d12a6e">
-                <image class="img _2d12a6e" src="../../../images/no-collection.png"/>
+                <image class="img _2d12a6e" src="https://recruit.czucw.com/webinfo/lj/no-collection.png"/>
                 <view class="text _2d12a6e">这里没有报名过哦</view>
             </view>
             <view class="btn-view _2d12a6e">

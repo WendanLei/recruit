@@ -1,6 +1,7 @@
 @import "./../../components/common/button.wxss";
 @import "./../../components/common/info.wxss";
 @import "./../../components/common/navigator.wxss";
+@import "/pages/personal/salary/salarySearch.wxss";
 ._8b39b77 .m-info-box._13e525e {
   padding: 20rpx;
 }

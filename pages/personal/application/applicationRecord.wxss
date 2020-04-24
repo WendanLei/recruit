@@ -1,4 +1,5 @@
 @import "./../../../components/common/info.wxss";
+
 .tab-content._2d12a6e .m-skill-box._296d8bb {
   padding: 0;
 }
@@ -96,7 +97,7 @@ textarea._2d12a6e {
   padding-top: 82rpx;
 }
 .application-record-container .no-tab-content._2d12a6e {
-  padding: 100rpx 0;
+  padding: 150rpx 0;
 }
 .application-record-container .no-tab-content .img-view .img._2d12a6e {
   display: block;

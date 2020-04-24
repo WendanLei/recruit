@@ -9,6 +9,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _wepy = require('./../../npm/wepy/lib/wepy.js');
 
+var regeneratorRuntime = require('../../npm/regenerator-runtime/runtime.js');
+
 var _wepy2 = _interopRequireDefault(_wepy);
 
 var _tip = require('./../../utils/tip.js');
@@ -55,7 +57,7 @@ var adDetails = function (_wepy$page) {
       all_data: {
         has_apply: 0
       },
-      detailTitle: null,
+      title: null,
       name1: "myHtmlParserKiner1",
       content1: "<text style='color: red;'>新1</text>"
     }, _this.$repeat = {}, _this.$props = { "htmlParser": { "xmlns:v-bind": "", "v-bind:parserName.once": "name1", "v-bind:parserContent.sync": "content1" } }, _this.$events = {}, _this.components = {
@@ -99,7 +101,9 @@ var adDetails = function (_wepy$page) {
 
                 if (res.data.error_code == 0) {
                   that.all_data = res.data.bizobj.data;
-                  var _content = res.data.bizobj.data.content;
+                  var _content=null;
+                  if (that.title == '图文')  _content = res.data.bizobj.data.content_rec;
+                  else  _content = res.data.bizobj.data.content;
                   _wxParse2.default.wxParse('htmlParserName', "html", _content, that, 0);
                   that.$apply();
                   _tip2.default.loaded();
@@ -174,11 +178,13 @@ var adDetails = function (_wepy$page) {
   }, {
     key: 'onLoad',
     value: function onLoad(options) {
-      // WxParse.wxParse('htmlParserName' , "html", "<p style='font-size: 32rpx; padding: 30rpx 0; text-align: center;'>没有任何内容</p>", this,0);
-      let _this = this;
-      this.getAdDetails(options.sess_key, options.id);
-      
-
+      var _this = this;
+      wx.hideShareMenu();
+      wx.setNavigationBarTitle({
+        title:options.title+'详情',
+      })
+      _this.title = options.title;
+      this.getAdDetails();
     }
   }]);
 

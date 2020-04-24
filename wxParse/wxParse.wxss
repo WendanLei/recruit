@@ -73,6 +73,10 @@ view{
     word-break:break-all;
     overflow:auto;
 }
+.wxParse-p{
+   margin: 10rpx;
+}
+
 
 .wxParse-video{
     text-align: center;
@@ -86,6 +90,7 @@ view{
 .wxParse-img{
     /*background-color: #efefef;*/
     overflow: hidden;
+    width: 750rpx;
 }
 
 .wxParse-blockquote {

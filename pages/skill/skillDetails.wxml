@@ -21,7 +21,7 @@
             </view>
         </view>
         <view class="m-back _f5ec5e8"/>
-        <view class="share">
+        <view class="share" data-title="分享" bindtap='adDetail'>
           <view class="block">
             <p class="shareFirst">
               <text>分享奖励</text>
@@ -47,21 +47,42 @@
             </view>
 
         </view>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
+    <form bindsubmit="formSubmit" report-submit="true"><button formType="submit" class='btn'>
         <view class="foot _f5ec5e8">
             <button class="m-link m-btn-share _f412186" bindtap="showShare">
-                    <image src="../../images/icon_fx.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
+                    <image src="https://recruit.czucw.com/webinfo/lj/icon_fx.png" style="width:40rpx;height:40rpx;" class="_f412186"/>
                 <p class="_f412186">分享</p>
             </button>
-            <view class="m-btn {{all_data.has_apply? 'm-active':''}} _f5ec5e8" bindtap="applyTrain">立即报名( {{all_data.fee}}元 )</view>
+            <button class="m-btn {{all_data.has_apply==1? 'm-active':''}} _f5ec5e8" bindtap="applyTrain" disabled='{{all_data.has_apply==1 ? true : false}}'>立即报名( {{all_data.fee}}元 )</button>
         </view>
+         </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
+    </button></form>
          <!-- 分享方式 -->
         <view class="share-mask _f412186" catchtouchmove="true" wx:if="{{isShowShare}}">
+        
             <view class="share-container _f412186">
                 <view class="share-content _f412186">
                     <view class="share-way first _f412186" bindtap="getPhoto">
                         <view class="left _f412186">
-                            <image src="../../images/icon_circle.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
-                            <text class="_f412186">生成朋友圈分享图</text>
+                            <image src="https://recruit.czucw.com/webinfo/lj/icon_circle.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
+                            <text class="_f412186">生成二维码</text>
                         </view>
                         <image src="../../images/icon_arrow_right.png" style="width:20rpx;height:40rpx;" class="_f412186"/>
                     </view>
@@ -69,7 +90,7 @@
                     <button class="share-btn _f412186" open-type="share">
                         <view class="share-way second _f412186">
                             <view class="left _f412186">
-                                <image src="../../images/icon_transimt.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
+                                <image src="https://recruit.czucw.com/webinfo/lj/icon_transimt.png" style="width:80rpx;height:80rpx;" class="_f412186"/>
                                 <text class="_f412186">转发给好友或群聊</text>
                             </view>
                             <image src="../../images/icon_arrow_right.png" style="width:20rpx;height:40rpx;" class="_f412186"/>
@@ -91,15 +112,21 @@
         </view>
           <!-- 支付方式 -->
         <view class="share-mask _f412186" catchtouchmove="true" wx:if="{{isShowShare1}}">
+           
             <view class="share-container _f412186">
                 <view class="share-content _f412186">
+                  <view class="close row" bindtap="hideShare1">
+                    <text>支付方式</text>
+                    <image src="/images/close.png" mode="widthFix" ></image>
+                  </view>
                     <checkbox-group bindchange="checkboxChange">
                         <label class="checkbox">
                         <view>
-                        <image src="/images/weixin.png" style='width:50rpx' mode='widthFix'></image><text class="rowFlex">微信支付</text> <checkbox value='1' />
+                        <image src="/images/weixin.png" class="img" mode='widthFix'></image><text class="rowFlex">微信支付</text> <checkbox value='1' />
                           <text class="unCheck {{payType==1 || payType==3 ? 'activeChecked' : ''}}">{{payType==1 || payType==3 ? "√" : ''}}</text>
                         </view>
                         <view>
+                            <image src="/images/discount.png" class="img" mode='widthFix'></image>
                           <text class="rowFlex">余额支付 ({{balanceAmount.available_balance}})</text><checkbox value='2' />
                            <text class="unCheck disabeldCheck" wx:if="{{balanceAmount.available_balance ==0 }}">√</text>
                            <text wx:else class="unCheck  {{payType==2 || payType==3 ? 'activeChecked' : ''}} ">{{payType==2 || payType==3 ? "√" : ''}}</text>
@@ -107,7 +134,7 @@
                         </label>
                       </checkbox-group>
                     <view class="cancel-content _f412186">
-                       <button bindtap="hideShare1">取消</button>
+                       <!-- <button bindtap="hideShare1">取消</button> -->
                        <button bindtap="wxpay">确认</button>
                     </view>
                 </view>

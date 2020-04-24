@@ -1,104 +1,3 @@
-// Page({
-//   data: {
-//     address_count: "",
-//     showView: false
-//   },
-//   onLoad: function (options) {
-//     // console.log(this.$parent)
-//   },
-
-//   infoSubmit: function (e) {
-
-//     // console.log(e)
-//   },
-//   chooseImage: function () {
-//     var that = this;
-//     var str = "ahji3o3s4e6p8a0sdewqdasj";
-//     console.log(str.substring(2, 6));
-//     wx.chooseImage({
-//       count: 1,
-//       // sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-//       // sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-//       success: function (e) {
-//         console.log(that)
-//         console.log(e.tempFilePaths[0])
-//         that.setData({
-//           imageSrc: e.tempFilePaths[0]
-//         })
-//         wx.showToast({
-//           title: '数据加载中',
-//           icon: 'loading',
-//           duration: 2000
-//         });
-//         wx.uploadFile({
-//           url: 'https://recruit.czucw.com/api/User/bindPic2UserInfo',
-//           filePath: e.tempFilePaths[0],
-//           header: { "content-type": "application/x-www-form-urlencoded" },
-//           name: 'pic_info',
-//           data: {
-//             sess_key: '',
-//             pic_info: e.tempFilePaths[0]
-//           },
-//           success: function (res) {
-
-//             console.log(res, "=================================")
-//             var code = JSON.parse(res.data)
-//             // console.log(code.data, "=================================")
-
-//             if (200 == res.statusCode) {
-//               // var str = res.data.birth;
-//               // var birth = str.substring(0, 4) + "-" + str.substring(4, 6) + "-" + str.substring(6, 8);
-//               var alldata = JSON.parse(res.data)
-//               // console.log(alldata)
-//               that.setData({
-//                 showView: true,
-//                 name: decodeURI(alldata.bizobj.data.name),
-//                 address: alldata.bizobj.data.address,
-//                 sex: alldata.bizobj.data.sex == 1 ? "男" : "女",
-//                 nationality: decodeURI(alldata.bizobj.data.nationality),
-//                 num: alldata.bizobj.data.id_num,
-//                 birth: alldata.bizobj.data.birth,
-//                 address_count: decodeURI(alldata.bizobj.data.user_address)
-//               })
-//             } else {
-//               wx.showModal({
-//                 title: '提示信息',
-//                 content: '你选择的图片不符合规格，请重新上传',
-//                 showCancel: false,
-//                 confirmText: '确定',
-//                 success: function (res) {
-//                   console.log("点击了确定", res)
-//                   that.setData({
-//                     imageSrc: "../image/indenty.jpg",
-//                     showView: false,
-//                     name: "",
-//                     address: "",
-//                     sex: "",
-//                     nationality: "",
-//                     num: "",
-//                     birth: "",
-//                     address_count: "0/200"
-//                   })
-//                 },
-//                 fail: function (res) {
-//                   console.log(res)
-//                 },
-//                 complete: function (res) { },
-//               })
-//             }
-//           },
-//           fail: function (res) {
-//             console.log(res)
-//           },
-//           complete: function (res) { },
-//         })
-
-//       }
-//     })
-
-//   }
-
-// })
 
 
 
@@ -221,9 +120,10 @@ var personalIndex = function(_wepy$page) {
       navigationBarTitleText: '人事档案'
     }, _this2.data = {
       // address_count: null,
-      // showView: false,
+      showView: true,
       sess_key: '',
-      post_id: null
+      post_id: null,
+      
       // list:[]
       // array: [],
       // com_name:'请选择',
@@ -237,79 +137,76 @@ var personalIndex = function(_wepy$page) {
       infoSubmit: function(e) {
         var _this = this;
         var reg = /^1[3|4|5|7|8|9][0-9]\d{8}$/;
-        console.log(e)
-        wx.request({
-          url: 'https://recruit.czucw.com/api/User/submitBindUser.html',
-          method: 'post',
-          data: {
-            sess_key: _this2.data.sess_key,
-            id_num: e.detail.value.num,
-            birth: e.detail.value.birth,
-            name: e.detail.value.name,
-            sex: e.detail.value.sex == "男" ? 1 : 2,
-            user_address: e.detail.value.address,
-            re_company_id: e.detail.value.comp_id,
-            mobile: e.detail.value.mobile
-          },
-          header: {
-            'content-type': 'application/x-www-form-urlencoded',
-            'Accept': 'application/json'
-          },
-          success: function(res) {
-            console.log(res)
-            if (res.data.error_code == 0 && reg.test(e.detail.value.mobile) && e.detail.value.comp_id) {
-              wx.showToast({
-                title: '上传成功',
-                icon: 'succes',
-                duration: 2000,
-                mask:true,
-              });
-              setTimeout(function () {
-                wx.switchTab({
-                  url: '../index',
+        console.log(e, _this.comp_id)
+        if (e.detail.value.mobile && e.detail.value.arraylist && e.detail.value.address){
+          wx.request({
+            url: 'https://recruit.czucw.com/api/User/submitBindUser.html',
+            method: 'post',
+            data: {
+              sess_key: _this2.data.sess_key,
+              id_num: e.detail.value.num,
+              birth: e.detail.value.birth,
+              name: e.detail.value.name,
+              sex: e.detail.value.sex == "男" ? 1 : 2,
+              user_address: e.detail.value.address,
+              re_company_id: _this.comp_id,
+              mobile: e.detail.value.mobile
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded',
+              'Accept': 'application/json'
+            },
+            success: function (res) {
+              console.log(res)
+             
+                wx.showToast({
+                  title: '上传成功',
+                  icon: 'succes',
+                  duration: 2000,
+                  mask: true,
+                });
+                setTimeout(function () {
+                  wx.switchTab({
+                    url: '/pages/index/index',
+                  })
+                }, 2000)
+                _this2.setData({
+                  // showView: false
                 })
-              }, 2000)
-              _this2.setData({
-                showView: false
-              })
-            } else {
-              wx.showToast({
-                title: '请完善信息',
-                icon: 'none',
-                duration: 2000
-              });
+              
+            },
+            fail: function (res) {
+              console.log(res)
             }
-          },
-          fail: function(res) {
-            console.log(res)
-          }
-        })
+          })
+        }
+       
+        else {
+          wx.showToast({
+            title: '请完善信息',
+            icon: 'none',
+            duration: 2000
+          });
+          
+        }
       },
       bindCasPickerChange: function(e) {
         var _this = this
         // console.log(_this)
         // console.log(list)
-        console.log(e)
+        console.log(typeof (Number(e.detail.value)), _this2.data.arraylist)
         _this2.data.arraylist = list
-
         _this2.setData({
           arraylist: list,
+          showView:true,
           comp_name: decodeURI(_this2.data.arraylist[e.detail.value].name),
           comp_id: _this2.data.arraylist[e.detail.value].id,
           index: e.detail.value
         })
-        _this2.data.comp_id = _this2.data.arraylist[e.detail.value].id
-        // console.log(_this.data.array)
-        // this.data.com_name = this.data.array[e.detail.value].name
-        // console.log(this.data.arraylist[e.detail.value].name)
-        // console.log('乔丹选的是', this.data.arraylist[e.detail.value].id)
-        // this.setData({
-        //   com_name: this.data.array[e.detail.value].name,
-        //   comp_id: this.data.arraylist[e.detail.value].id
-        // })
-        // this.setData({
-        //   casIndex: e.detail.value
-        // })
+        _this.comp_id = _this2.data.arraylist[e.detail.value].id;
+        _this.$apply();
+     
+       
       },
 
       chooseImage: function() {
@@ -357,7 +254,7 @@ var personalIndex = function(_wepy$page) {
                       success: function(res) {
                         console.log("点击了确定", res)
                         _this2.setData({
-                          showView: false,
+                          // showView: false,
                           name: "",
                           address: "",
                           sex: "",
@@ -384,17 +281,8 @@ var personalIndex = function(_wepy$page) {
 
                     console.log(alldata)
                     list = alldata.bizobj.data.comp_list
-                    // that.data.showView = true
-                    // that.data.name = decodeURI(alldata.bizobj.data.name)
-                    // that.data.address = alldata.bizobj.data.address
-                    // that.data.sex = alldata.bizobj.data.sex == 1 ? "男" : "女"
-                    // that.data.nationality = decodeURI(alldata.bizobj.data.nationality)
-                    // that.data.num = alldata.bizobj.data.id_num
-                    // that.data.birth = alldata.bizobj.data.birth
-                    // that.data.address = decodeURI(alldata.bizobj.data.user_address)
-                    // that.data.arraylist = allarrs
-                    // that.data.array = arrs
-                    console.log(that)
+                   
+                    console.log(that,"//////./////...///")
                     _this2.setData({
                       showView: true,
                       name: decodeURI(alldata.bizobj.data.name),

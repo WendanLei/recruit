@@ -2,10 +2,17 @@
 
 var _wxRequest = require('./../utils/wxRequest.js');
 
-var api2 = 'https://mini3.pinecc.cn/';//测试库r
-var textApi ="https://www.easy-mock.com/mock/5bc692f3e6f1f6491a3fb625/" //mock数据地址
-// var api2 = 'https://recruit.czucw.com'; //正式库
 
+// var textApi ="https://www.easy-mock.com/mock/5bc692f3e6f1f6491a3fb625/" //mock数据地址
+// var api2 = 'https://mini3.pinecc.cn/';//测试库r
+var api2 = 'https://recruit.czucw.com/'; //正式库
+// appId ="wx75055d972d69a26f" //测试
+// appId = "wxdff1a01c3575172c" //正式库
+// var api2 = 'https://recruit.pinecc.cn/'; // 测试库
+var getUrl = function getUrl(){
+  var api1 = api2;
+  return api1;
+};
 //登录 注册
 
 var login = function login(params) {
@@ -77,11 +84,15 @@ var complain = function complain(params) {
     return (0, _wxRequest.wxRequest)(params, api2 + 'api/User/complain.html');
 }; //投诉建议
 
-
 var teamUserList = function teamUserList(params) {
-    return (0, _wxRequest.wxRequest)(params, api2 + 'api/User/teamUserList.html');
+  return (0, _wxRequest.wxRequest)(params, api2 + 'api/User/teamUserList.html');
+}; //我的邀请团队列表
+var teamUserGroupList = function teamUserGroupList(params) {
+  return (0, _wxRequest.wxRequest)(params, api2 + 'api/User/teamUserGroupList.html');
+}; //我的邀请团队列表
+var teamUserGroup = function teamUserGroup(params) {
+  return (0, _wxRequest.wxRequest)(params, api2 + '/api/User/teamUserGroup.html');
 }; //我的邀请
-
 var SalaryTeamPrizeList = function SalaryTeamPrizeList(params) {
     return (0, _wxRequest.wxRequest)(params, api2 + 'api/Salary/teamPrizeList.html');
 }; //薪资组成
@@ -122,7 +133,11 @@ var city = function city(params) {
 
 
 //mock数据
+// 获取跳转页面
 
+var userBelong = function userInfo(params) {
+  return (0, _wxRequest.wxRequest)(params, api2 + 'api/User/userBelong.html');
+};
 //个人资料
 var userInfo = function userInfo(params) {
   return (0, _wxRequest.wxRequest)(params, api2 + 'api/User/userInfo.html');
@@ -223,15 +238,35 @@ var getUserFormId = function UserTeamPrizeList(params) {
 var noticeRead = function noticeRead(params) {
   return (0, _wxRequest.wxRequest)(params, api2 + 'api/Notice/noticeRead.html');
 }; 
+//分享活动图片
+var trainDetailSharePic = function noticeRead(params) {
+  return (0, _wxRequest.wxRequest)(params, api2 + 'api/User/trainDetailSharePic');
+}; 
+//检查是否验证过身份信息
+var checkUserIdnum = function checkUserIdnum(params) {
+  return (0, _wxRequest.wxRequest)(params, api2 + 'api/User/checkUserIdnum');
+}; 
+// 申请成为工头
+var applyHead = function applyHead(params) {
+  return (0, _wxRequest.wxRequest)(params, api2 + 'api/User/applyHead.html');
+}; 
+// 申请发布岗位
+var applyRecruit = function applyRecruit(params) {
+  return (0, _wxRequest.wxRequest)(params, api2 + 'api/User/applyRecruit.html');
+}; 
+// 上传执照
+var upload = function applyRecruit(params) {
+  return (0, _wxRequest.wxRequest)(params, api2 + 'api/File/uploadImagesBase64.html');
+}; 
 //评价
 module.exports = {
     login: login, getUserInfo: getUserInfo, webInfo: webInfo, workList: workList, workTypeList: workTypeList, disttrictList: disttrictList, blList: blList, workDetail: workDetail, userInfo: userInfo,
     updateUserInfo: updateUserInfo, sendProfileSms: sendProfileSms, advance: advance, applyWork: applyWork, applyWorkList: applyWorkList, collectWorkList: collectWorkList, trainList: trainList,
-    trainDetail: trainDetail, addTrainWill: addTrainWill, Cashdetail: Cashdetail, CashnewIn: CashnewIn, CashWillIn: CashWillIn, teamUserList: teamUserList,
+  trainDetail: trainDetail, addTrainWill: addTrainWill, Cashdetail: Cashdetail, CashnewIn: CashnewIn, CashWillIn: CashWillIn, teamUserList: teamUserList, teamUserGroup: teamUserGroup, teamUserGroupList: teamUserGroupList, applyRecruit: applyRecruit, applyHead: applyHead, upload: upload,
     UserTeamPrizeList: UserTeamPrizeList, SalaryTeamPrizeList: SalaryTeamPrizeList, salaryList: salaryList, complain: complain, recWorkList: recWorkList, withdraw: withdraw, withdrawList: withdrawList,
     collectWork: collectWork, cityList: cityList, applyTrain: applyTrain, shareQrPic: shareQrPic, resumeFill: resumeFill, salaryDetailByMonth: salaryDetailByMonth, unCollectWork: unCollectWork,
     workDetailSharePic: workDetailSharePic, advanceCompany: advanceCompany, defaultDistrict:defaultDistrict, prov:prov, city: city,
     // mock数据
-  Adv: Adv, activityList: activityList, ActivityTypeList: ActivityTypeList, activityDetail: activityDetail, applyTrainList: applyTrainList, resumeList: resumeList, changeResume: changeResume, purseInfo: purseInfo, noticeList: noticeList, companyInfo: companyInfo, companyworkList: companyworkList, getUserFormId: getUserFormId, miniPay: miniPay, miniWorkList: miniWorkList, noticeRead: noticeRead,
+  Adv: Adv, activityList: activityList, ActivityTypeList: ActivityTypeList, activityDetail: activityDetail, applyTrainList: applyTrainList, resumeList: resumeList, changeResume: changeResume, purseInfo: purseInfo, noticeList: noticeList, companyInfo: companyInfo, companyworkList: companyworkList, getUserFormId: getUserFormId, miniPay: miniPay, miniWorkList: miniWorkList, noticeRead: noticeRead, trainDetailSharePic: trainDetailSharePic, userBelong: userBelong, checkUserIdnum: checkUserIdnum, getUrl: getUrl
 
 };

@@ -54,6 +54,17 @@ var Nav = function (_wepy$page) {
                     });
                 } else if (list.name == '圈子') {
                     console.log(list);
+                  wx.navigateToMiniProgram({
+                    appId: 'wxf90daf21a231fb26', // 要跳转的小程序的appid
+                    path: 'pages/index/index', // 跳转的目标页面
+                    // extarData: {
+                    //   open: 'auth'
+                    // },
+                    success(res) {
+                      // 打开成功 
+                      console.log(res,"////"); 
+                    }
+                  }) 
                     // wx.navigateToMiniProgram({
                     //     appId: '',
                     //     path: list.url,
@@ -65,9 +76,9 @@ var Nav = function (_wepy$page) {
                     //         // 打开成功
                     //     }
                     // })
-                    wx.navigateTo({
-                        url: list.url
-                    });
+                    // wx.navigateTo({
+                    //     url: list.url
+                    // });
                 } else {
                     wx.navigateTo({
                         url: list.url

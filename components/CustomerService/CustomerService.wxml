@@ -1,6 +1,7 @@
   
                               <view class="service">
-                                <image src='https://mini3.pinecc.cn/webinfo/lj/kefu.png'></image>
-                                <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+                                <image src='https://recruit.czucw.com/webinfo/lj/kefu.png'></image>
+                                <button open-type='contact'></button>
+                               
                               </view>
                         

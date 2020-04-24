@@ -2,7 +2,7 @@
     <view class="cash-success-container _c24e586">
         <view class="conent _c24e586">
             <view class="title _c24e586">
-                <image class="success-pic _c24e586" src="../../../images/Pic_sqjl.png"/>
+                <image class="success-pic _c24e586" src="https://recruit.czucw.com/webinfo/lj/Pic_sqjl.png"/>
                 <view class="success-text _c24e586">提现申请已提交，请等待人工审核</view>
             </view>
             <view class="btn-area _c24e586">

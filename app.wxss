@@ -6,6 +6,7 @@ textarea {
 .m-red {
   color: #F96969;
 }
+.blue{background: #4C80F5!important;}
 page {
   width: 100%;
   height: 100%;
@@ -37,25 +38,24 @@ checkbox {
 }
 
 .unCheck{
-
   width: 40rpx;
   height: 40rpx;
   background: #fff;
   display: inline-block;
   border: 1px solid #e3e3e3;
   padding: 0;
-   line-height: 40rpx;
-    text-align: center;
+  border-radius: 50%;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
 
 }
 .activeChecked{
   background: #77CBF2;
    border: 1px solid #77CBF2;
    color: #fff;
-   font-size: 32rpx;
   
-  
-
 }
 .disabeldCheck {
   background: #f1f1f1;

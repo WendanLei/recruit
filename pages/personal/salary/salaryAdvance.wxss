@@ -1,3 +1,26 @@
+.search{
+  position: absolute;
+  width: 500rpx;
+  top: 100%;
+  left: 150rpx;
+  border: 1px solid #f3f3f3;
+  border-bottom: none;
+  max-height: 200rpx;
+  background: #fff;
+  overflow-y: auto;
+  font-size: 24rpx;
+  color: #333;
+  z-index: 999;
+
+}
+.search view{
+  display: block;
+  line-height: 60rpx;
+  border-bottom: 1px solid #f3f3f3;
+  background: #fff;
+  padding: 0 20rpx;
+
+}
 input._9b319e2,
 textarea._9b319e2 {
   font-size: 28rpx;
@@ -21,11 +44,12 @@ textarea._9b319e2 {
   background: #fff;
 }
 .salary-advance-container .form-view .main .picker-select._9b319e2 {
-  width: 220rpx;
+  width: 50rpx;
   height: 100rpx;
+  text-align: right;
 }
 .salary-advance-container .form-view .main .picker-select .picker._9b319e2 {
-  width: 500rpx;
+  width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -40,7 +64,14 @@ textarea._9b319e2 {
   align-items: center;
   justify-content: flex-start;
   height: 100rpx;
+  padding-right:40rpx;
   border-bottom: 1rpx solid #e6e6e6;
+
+  
+ 
+}
+.salary-advance-container .form-view .form-item._9b319e2 input{
+  flex: 1;
 }
 .salary-advance-container .form-view .form-item .section__title._9b319e2 {
   width: 150rpx;
@@ -62,6 +93,12 @@ textarea._9b319e2 {
 }
 .salary-advance-container .form-view .form-item.tel-view .text-area._9b319e2 {
   padding: 5rpx 15rpx;
+  position: static;
+  z-index: 1;
+  background: #fff;
+  height: 200rpx;
+ 
+
 }
 .salary-advance-container .form-view .tip._9b319e2 {
   margin: 20rpx 40rpx;
